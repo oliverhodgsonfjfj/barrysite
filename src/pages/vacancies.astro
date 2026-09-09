@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+const title = 'Careers and vacancies | Focus Accountancy, Bristol';
+const description = 'Join a small, friendly Bristol accountancy practice. Current vacancy: Client Manager. We are always happy to hear from qualified or part-qualified accountants.';
+---
+<Base title={title} description={description} current="/about">
+  <PageHero
+    eyebrow="Careers"
+    title="Careers with Focus Accountancy"
+    intro="At Focus we are always open to hearing from people who are motivated to work in a small, friendly accountancy practice. Even when we are not looking for any specific roles, we are happy to hear from you if you are qualified or part-qualified, and have good IT and communication skills."
+    compact
+  >
+    <p style="margin-top:1.25rem"><a class="btn" href="#vacancy">Current vacancy: Client Manager</a></p>
+  </PageHero>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Company profile</p>
+      <h2 class="page-section-title">A streamlined service, delivered personally</h2>
+      <p class="lead" style="max-width:66ch">
+        Focus is a small Bristol-based accountancy firm specialising in supporting contractors, consultants and
+        freelancers, helping them save time in bookkeeping and financial management, backed by the peace of mind of
+        using experienced qualified accountants.
+      </p>
+      <div class="cards cards--3" style="margin-top:1.75rem">
+        <div class="card"><h3 class="card__title">Personal</h3><p>We deliver exceptional customer service. We include an annual review with our clients alongside unlimited phone and email support, where they are in contact with a qualified accountant.</p></div>
+        <div class="card"><h3 class="card__title">Supportive</h3><p>Our service helps clients streamline their administration with FreeAgent cloud software. We have also developed tools, apps and information sheets specifically to support our target clients. We help with VAT returns, tax returns, year-end accounts, tax planning, forecasting, company secretarial work and much more.</p></div>
+        <div class="card"><h3 class="card__title">Efficient</h3><p>We're constantly looking for ways to save time for our clients, through streamlined data entry and automation. We're delighted to have very high customer retention rates, and by the client testimonials given and referrals we receive.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Team building</p>
+      <h2 class="page-section-title">Every month, together</h2>
+      <p class="lead" style="max-width:60ch">At Focus we do team building every month. We find that it brings us together, which is important to maintain a friendly workplace. It also gives our team some time off work to relax.</p>
+      <div class="photo-row" style="margin-top:1.5rem">
+        <img src="/img/team-ice-skating.jpg" alt="The team on the ice at a skating rink" loading="lazy" />
+        <img src="/img/team-pub-meal.jpg" alt="The team sharing a meal at a pub" loading="lazy" />
+        <img src="/img/team-rainy-walk.jpg" alt="The team on a riverside walk in the rain" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="vacancy">
+    <div class="container grid grid--7-5" data-reveal>
+      <div class="card">
+        <p class="eyebrow">Current vacancy</p>
+        <h2 class="card__title">Client Manager</h2>
+        <ul class="card__list">
+          <li>Direct candidates only</li>
+          <li>Job type: full time</li>
+          <li>Salary: dependent on experience</li>
+          <li>Essential experience: fully qualified with 3+ years UK work experience</li>
+          <li>Flexible working: by mutual agreement, within 8am to 6pm, Monday to Friday, with the option of working partly from home</li>
+        </ul>
+        <h3>Is this you?</h3>
+        <ul class="card__list">
+          <li>Fully qualified (ACCA, ACA or CIMA) with 3 years+ experience in client and staff management in the UK</li>
+          <li>Enjoys interacting with people, has strong communication skills and is approachable</li>
+          <li>Team player who is willing to step in and help wherever they can</li>
+          <li>A positive, proactive attitude to problem solving, keen to take ownership of the role</li>
+          <li>Naturally curious and on the lookout for a better way to do things</li>
+          <li>Strong IT skills, willing and able to learn new platforms and IT solutions</li>
+          <li>Looking to progress within the practice to cover more management responsibilities</li>
+        </ul>
+        <h3>The role</h3>
+        <ul class="card__list">
+          <li>Working directly with clients, using your judgement and expertise to help them understand their business</li>
+          <li>Engaging with client data to continuously improve systems and inform decisions</li>
+          <li>Supervising junior members of the team, helping them to develop strategic thinking and technical skills</li>
+          <li>Bringing your passion for business, continuously challenging how we do things and building improvements into everything you do</li>
+        </ul>
+        <h3>Key responsibilities</h3>
+        <ul class="card__list">
+          <li>Preparing and reviewing year-end company accounts and corporation tax returns for client approval</li>
+          <li>Preparing and reviewing sole trader accounts, personal tax returns, and partnership accounts and tax returns</li>
+          <li>Meeting clients and responding to any queries</li>
+          <li>Dealing with new client enquiries and company formations</li>
+          <li>Supervising production of VAT returns, payroll and so on</li>
+          <li>Advising clients on salary and dividends</li>
+          <li>Mucking in with the team on tasks as needed</li>
+        </ul>
+        <p>
+          We are a growing practice with a professional client base, providing very high customer service. We are
+          FreeAgent Gold Partners and provide FreeAgent cloud software to our clients as part of the service. As we
+          are 100% paperless and all our clients work in the cloud, you will need good IT skills and be happy to
+          learn new software.
+        </p>
+        <p><a class="btn" href="https://recruiterflow.com/hfbac/jobs/103" rel="noopener">Apply for this role</a></p>
+      </div>
+      <div>
+        <div class="card">
+          <p class="eyebrow">Speculative applications</p>
+          <p>We'd be happy to hear from you if you're great with people and have good IT skills: being able to deal with new software, work with social media, have knowledge of digital marketing, experience with accountancy software and occasionally deal with a bust printer.</p>
+          <p>Drop us an email with your CV or a video presentation.</p>
+          <p><a class="btn btn--outline btn--small" href="mailto:team@focusaccountancy.co.uk?subject=I'm interested in working for you">team@focusaccountancy.co.uk</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container grid grid--5-7" data-reveal>
+      <div>
+        <p class="eyebrow">Testimony</p>
+        <h2>Sanuga's time at Focus</h2>
+        <img src="/img/sanuga-senanayake.jpg" alt="Sanuga Senanayake" width="160" height="160" loading="lazy" style="border-radius:30%;width:160px;height:160px;object-fit:cover;margin-top:1rem" />
+      </div>
+      <div class="prose">
+        <p>During my time at Focus Accountancy, I gained first-hand experience of how a successful accountancy firm operates, developing an appreciation for the importance of maintaining accurate, reliable and well-structured financial records.</p>
+        <p>I was responsible for preparing tax returns and year end accounts, reconciling financial data, liaising with HMRC, and compiling client information in a clear and interpretable format to support effective decision-making. I gained exposure to a variety of software tools, including FreeAgent and TaxCalc, which enhanced my ability to process financial data efficiently and, more importantly, showed how technology can streamline accounting workflows and support client management at scale.</p>
+        <p>As I progressed in the role, I was given increasing responsibility, including handling more complex tax returns and accounts. The highly supportive work environment, with a strong emphasis on learning and development, was a true highlight. I was given the autonomy to approach tasks independently, while always having access to detailed guidance and feedback when needed.</p>
+        <p>Overall, the role significantly developed both my technical and professional skillset, and has provided me with an invaluable foundation for pursuing a career in the financial services industry.</p>
+        <p><strong>Sanuga Senanayake</strong></p>
+      </div>
+    </div>
+  </section>
+</Base>

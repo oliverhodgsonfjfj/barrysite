@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import TeamExplorer from '../components/TeamExplorer.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import accredited from '../assets/badges/freeagent-accredited-2025.jpg';
+import { site } from '../data/site';
+
+const title = 'About us and the team | Focus Accountancy, Bristol';
+const description =
+  'A small Bristol-based accountancy firm founded in 2007. Meet the team, every one a FreeAgent Accredited Practitioner, and the clients we work with around the world.';
+---
+<Base title={title} description={description} current="/about" ogImage="/img/office.jpg">
+  <PageHero
+    eyebrow="About us"
+    title="We say 'the Focus is on you' with good reason"
+    intro="We are a small Bristol-based accountancy firm. If you are a contractor, consultant or freelancer, Focus Accountancy has been designed to meet your individual needs with a very affordable and supportive service."
+    image="/img/office.jpg"
+    imageAlt="The Focus Accountancy office: a timber-clad garden office with a full-height glass front"
+  />
+
+  <section class="section">
+    <div class="container grid grid--7-5" data-reveal>
+      <div class="prose">
+        <p>
+          We combine an accessible personal approach with the latest cloud-based accountancy services. Being small
+          means we can be agile, taking advantage of new technologies and helping clients quickly understand and
+          adapt to changes in legislation.
+        </p>
+        <p>
+          We were early adopters of cloud-based bookkeeping and accounting software when we started offering it to
+          our clients over 10 years ago. We work predominantly with FreeAgent and have a wealth of knowledge on the
+          software and the advantages it brings. We are proud that everyone in the team is a FreeAgent Accredited
+          Practitioner.
+        </p>
+        <p>
+          Our services work on a fixed monthly fee basis with no hidden charges and unlimited telephone and email
+          support. We understand that small businesses, especially start-ups, often need a lot of support and advice.
+          Our size means you'll always deal with a name you'll recognise and who knows both you and your business.
+        </p>
+        <p>
+          So why not <a href="/contact">contact us</a> for a free, no-obligation discussion. We'll put the Focus on you.
+        </p>
+      </div>
+      <div>
+        <div class="card">
+          <Image src={accredited} height={44} alt="FreeAgent Accredited Practitioner 2025" />
+          <p class="small muted" style="margin-top:0.9rem">Founded by Barry Adams in 2007. ACCA registered, FSB member, FreeAgent Gold Partner since 2014.</p>
+          <p style="margin-top:1rem"><a class="btn btn--outline btn--small" href="/we-care">How we care</a> <a class="btn btn--outline btn--small" href="/vacancies">Careers</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TeamExplorer />
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <div class="section__intro">
+        <p class="eyebrow">About our clients</p>
+        <h2>A multi-national team, and clients from all over the world</h2>
+        <p class="lead">
+          We are very proud to have a multi-national team and to work with a large number of amazing clients from
+          many different countries. Have a look to see if we're working with someone from your country, and if not,
+          come and join us!
+        </p>
+      </div>
+      <img class="flags" src="/img/client-flags.jpg" alt="Flags of the 44 countries our clients come from, from Argentina to Zimbabwe" loading="lazy" />
+    </div>
+  </section>
+
+  <HowItWorks />
+
+  <section class="section section--tight band band--pattern">
+    <div class="container" data-reveal>
+      <h2>Ready when you are</h2>
+      <p class="lead">A free, no-obligation meeting is the best place to start.</p>
+      <p><a class="btn btn--light" href={site.calendly.barry} rel="noopener">Book a free meeting</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .flags { width: 100%; border-radius: var(--radius-lg); border: 1px solid var(--line); background: #fff; }
+</style>

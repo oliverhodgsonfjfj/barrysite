@@ -1,0 +1,235 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import TestimonialsSection from '../components/ui/testimonials-3';
+import FaqAccordion from '../components/react/FaqAccordion';
+import AeroHero from '../components/ui/aero-hero';
+import WhoWeWorkWith from '../components/react/WhoWeWorkWith';
+import Overview from '../components/react/Overview';
+import TeamCards from '../components/ui/team-cards';
+import hero from '../assets/hero-bristol.jpg';
+import freeagentGold from '../assets/badges/freeagent-gold-partner.png';
+import acca from '../assets/badges/acca.png';
+import fsb from '../assets/badges/fsb.png';
+import threeBest from '../assets/badges/threebest-rated-2025.png';
+import { site } from '../data/site';
+import { team } from '../data/team';
+import { reviews, leadQuote } from '../data/reviews';
+import { faqs } from '../data/faq';
+
+const title = 'Focus Accountancy | Accountants for contractors, consultants and freelancers in Bristol';
+const description =
+  'Bristol-based accountancy firm using FreeAgent to offer services tailored to contractors, consultants and freelancers for a fixed monthly fee.';
+
+const heroImg = await getImage({ src: hero, width: 1920, format: 'webp', quality: 80 });
+
+const industries = [
+  'Engineers', 'Information workers', 'IT professionals', 'Designers and programmers', 'Medical consultants',
+  'Management consultants', 'Advertising, marketing and PR', 'Physiotherapists', 'Publishers', 'Human resources', 'Architects',
+];
+
+const teamMembers = team.map((m) => ({
+  name: m.name,
+  letters: m.letters,
+  role: m.role,
+  bio: m.bio[0].split('. ').slice(0, 1).join('. ') + '.',
+  image: `/team/${m.slug}.jpg`,
+  email: m.email,
+  linkedin: m.linkedin,
+  calendly: m.calendly?.video,
+}));
+
+const testimonialGrid = reviews.slice(0, 6).map((r) => ({
+  name: r.name,
+  role: `“${r.title}”`,
+  image: r.photo ? `/reviews/${r.name.toLowerCase().replace(/\s+/g, '-')}.jpg` : undefined,
+  quote: r.quote,
+}));
+
+const ro = site.registeredOffice;
+const mapUrl = (o: { line1: string; town: string; postcode: string }) =>
+  `https://www.google.com/maps?q=${encodeURIComponent(`${o.postcode}, ${o.town}, UK`)}&z=16&output=embed`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  '@id': `${site.url}/#organisation`,
+  name: site.name,
+  url: `${site.url}/`,
+  logo: `${site.url}/favicon.png`,
+  image: `${site.url}/og/home.jpg`,
+  description,
+  telephone: '+44 117 290 0007',
+  email: site.email,
+  foundingDate: String(site.founded),
+  address: { '@type': 'PostalAddress', streetAddress: ro.line1, addressLocality: ro.town, postalCode: ro.postcode, addressCountry: 'GB' },
+  areaServed: 'GB',
+  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' }],
+  sameAs: [site.social.facebook, site.social.linkedin, site.social.twitter],
+  priceRange: '££',
+};
+---
+<Base title={title} description={description} current="/" ogImage="/og/home.jpg" overlayHeader>
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify(schema)} />
+
+  <!-- Full-screen hero (21st "aero hero" style) -->
+  <AeroHero
+    image={heroImg.src}
+    imageAlt="A freelance consultant working on a laptop at a kitchen table by a window, with Bristol's colourful terraced houses outside"
+    eyebrow="The Focus is on you"
+    title="Accountants for contractors, consultants and freelancers"
+    text="Fixed monthly fees, FreeAgent included, unlimited support, and a small Bristol team you'll know by name."
+    ctaLabel="Book a free meeting"
+    ctaHref={site.calendly.barry}
+    secondaryLabel="Find your plan"
+    secondaryHref="#plan-finder"
+  />
+
+  <!-- Overview -->
+  <section class="section section--tight" id="intro" aria-label="Who we are">
+    <div class="container" data-reveal>
+      <Overview client:visible />
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-label="Who we work with">
+    <div class="container" data-reveal>
+      <WhoWeWorkWith client:visible />
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section section--sage" aria-labelledby="team-title">
+    <div class="container">
+      <div class="section__intro" data-reveal>
+        <p class="eyebrow">The team</p>
+        <h2 id="team-title">You'll always deal with a name you recognise</h2>
+        <p class="lead">
+          Everyone in the team is a FreeAgent Accredited Practitioner, and you can email or book a call with
+          any of us directly. <a href="/about">Read a little more about each of us</a>.
+        </p>
+      </div>
+      <div data-reveal>
+        <TeamCards client:visible members={teamMembers} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo band -->
+  <section class="photo-band" aria-label="Our office">
+    <img src="/img/office.jpg" alt="The Focus Accountancy office in Bristol, a timber-clad garden office with a full glass front" loading="lazy" />
+    <div class="photo-band__scrim" aria-hidden="true"></div>
+    <div class="container photo-band__inner">
+      <p class="eyebrow eyebrow--light">Our office</p>
+      <h2>Bristol-based, online most of the time</h2>
+      <p>Most of our meetings are online, but you're welcome to visit by appointment. Call <a href={site.phoneHref}>{site.phone}</a> or <a href={site.calendly.barry} rel="noopener">book a free 30-minute meeting</a>.</p>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section reviews-x" aria-labelledby="reviews-title">
+    <div class="container">
+      <div class="section__intro section__intro--center" data-reveal>
+        <p class="eyebrow eyebrow--center">Reviews</p>
+        <h2 id="reviews-title">“{leadQuote.quote}”</h2>
+        <p class="lead">{leadQuote.name}, client. We're in the top 1% of the thousands of UK accountants ranked on <a href={site.freeindex} rel="noopener">FreeIndex</a>.</p>
+      </div>
+      <div data-reveal>
+        <TestimonialsSection client:visible testimonials={testimonialGrid} />
+      </div>
+      <p class="reviews-x__more"><a class="btn btn--outline" href="/reviews">All nine reviews and a client case study</a></p>
+    </div>
+  </section>
+
+  <!-- Focus App -->
+  <section class="section section--tight" aria-labelledby="app-title">
+    <div class="container app" data-reveal>
+      <figure class="app__figure"><img src="/img/focus-app.jpg" alt="A hand holding a phone showing the Focus App" loading="lazy" /></figure>
+      <div>
+        <p class="eyebrow">The Focus App</p>
+        <h2 id="app-title">Tax tips and calculators in your pocket</h2>
+        <p class="lead">
+          Get tax tips, up-to-date tax rates and a range of intelligent calculators to help you with the tough
+          decisions, like 'should I get a company car?' or 'should I be trading as a sole trader or a limited company?'.
+        </p>
+        <p><a class="btn" href={site.googlePlay} rel="noopener">Get it on Google Play</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--tint" aria-labelledby="faq-title">
+    <div class="container faq__grid" data-reveal>
+      <div>
+        <p class="eyebrow">Questions</p>
+        <h2 id="faq-title">The questions most new clients ask</h2>
+        <p class="lead">A few of the things that come up in almost every first meeting. <a href="/faq">See all our answers</a>.</p>
+      </div>
+      <div class="faq__panel">
+        <FaqAccordion client:visible items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section band band--pattern" id="contact" aria-labelledby="contact-title">
+    <div class="container grid grid--5-7" data-reveal>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Get in touch</h2>
+        <p class="lead">
+          Send us an email, use the form, or arrange a free 30-minute video call with Barry, Greg or Maria. We
+          welcome calls on <a href={site.phoneHref}>{site.phone}</a> from clients without the need for an appointment.
+        </p>
+        <dl class="contact-details contact-details--dark">
+          <div><dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
+          <div>
+            <dt>Book a video call</dt>
+            <dd>
+              <a href={site.calendly.barry} rel="noopener">Meet with Barry</a> ·
+              <a href={site.calendly.greg} rel="noopener">Meet with Greg</a> ·
+              <a href={site.calendly.maria} rel="noopener">Meet with Maria</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Visit by appointment</dt>
+            <dd>{site.offices.map((o) => <span>{o.line1}, {o.town}, {o.postcode}</span>)}</dd>
+          </div>
+        </dl>
+      </div>
+      <form class="contact-form" action={site.formAction} method="POST">
+        <input type="hidden" name="_subject" value="Message from focusaccountancy.co.uk" />
+        <p class="contact-form__hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="contact-form__row contact-form__row--2">
+          <div><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required /></div>
+          <div><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required /></div>
+        </div>
+        <div class="contact-form__row contact-form__row--2">
+          <div><label for="cf-phone">Phone <span class="muted">(optional)</span></label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" /></div>
+          <div><label for="cf-subject">Subject</label><input id="cf-subject" name="subject" type="text" /></div>
+        </div>
+        <div class="contact-form__row">
+          <div><label for="cf-message">Message</label><textarea id="cf-message" name="message" required></textarea></div>
+        </div>
+        <button class="btn" type="submit">Send message</button>
+      </form>
+    </div>
+  </section>
+  <!-- Offices / maps -->
+  <section class="section section--tight" aria-labelledby="offices-title">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Visit by appointment</p>
+      <h2 id="offices-title" class="page-section-title">Our offices</h2>
+      <div class="cards cards--2">
+        {site.offices.map((o) => (
+          <div class="card office">
+            <div class="office__map"><iframe src={mapUrl(o)} title={`Map of ${o.line1}, ${o.town}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <h3 class="card__title">{o.line1}</h3>
+            <p>{o.line1}, {o.town}, {o.postcode}</p>
+            <p class="small muted">Meetings by appointment. Most of our meetings are online, but you're welcome to visit.</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

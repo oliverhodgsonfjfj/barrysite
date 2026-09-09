@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PlanFinder from '../components/PlanFinder.astro';
+import FaqAccordion from '../components/react/FaqAccordion';
+import { plans, additionalServices, pricingNotes } from '../data/pricing';
+import services from '../data/services.json';
+import { site } from '../data/site';
+
+const title = 'Pricing: fixed monthly fees for limited companies, sole traders and landlords | Focus Accountancy';
+const description =
+  'Limited company plans from £99 a month, sole trader plans from £50 and rental accounts at £25 per property, all including FreeAgent and unlimited support.';
+
+const ltd = plans.filter((p) => p.group === 'ltd');
+const sole = plans.filter((p) => p.group === 'sole');
+const rental = plans.find((p) => p.group === 'landlord')!;
+const serviceFaq = services.map((s) => ({ q: s.q, a: s.a.map((t) => ({ text: t })) }));
+---
+<Base title={title} description={description} current="/pricing">
+  <PageHero
+    eyebrow="Pricing"
+    title="Fixed monthly fees, no hidden charges"
+    intro="Our work is based on an ongoing monthly subscription, based on how much you'd like us to do. The plans below cover most situations and will give you a ballpark guide to costs. We offer a free, no-obligation meeting to discuss what you need and give you a personal quote."
+    compact
+  >
+    <p class="page-hero__cta"><a class="btn" href={site.calendly.barry} rel="noopener">Book a free meeting</a> <a class="btn btn--outline" href="#plan-finder">Find your plan</a></p>
+  </PageHero>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Limited companies</p>
+      <h2 class="page-section-title">Fee structure for contractors, consultants and freelancers</h2>
+      <div class="cards cards--3">
+        {ltd.map((p) => (
+          <div class:list={['card', { 'card--featured': p.id === 'ltd-premium' }]}>
+            <h3 class="card__title">{p.name}</h3>
+            <p class="small muted">{p.scope}</p>
+            <p class="card__fee"><strong>£{p.fee}</strong><span>a month + VAT</span></p>
+            <ul class="card__list">{p.includes.map((i) => <li>{i}</li>)}</ul>
+            <a class="btn btn--small" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+          </div>
+        ))}
+      </div>
+      <p class="small muted" style="margin-top:1rem">{pricingNotes.poa}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Sole traders</p>
+      <h2 class="page-section-title">Sole trader plans</h2>
+      <p class="notice" style="max-width:70ch;margin-bottom:1.5rem">
+        <strong>Making Tax Digital for Income Tax is now live.</strong> From April 2026 it applies to sole traders and landlords with income over £50,000, and from April 2027 to those over £30,000. Our MTD plans include the quarterly submissions.
+      </p>
+      <div class="cards cards--3">
+        {sole.map((p) => (
+          <div class="card">
+            <h3 class="card__title">{p.name}</h3>
+            <p class="small muted">{p.scope}</p>
+            <p class="card__fee"><strong>£{p.fee}</strong><span>a month + VAT</span></p>
+            <ul class="card__list">{p.includes.map((i) => <li>{i}</li>)}</ul>
+            <a class="btn btn--small" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container grid grid--5-7" data-reveal>
+      <div class="card">
+        <p class="eyebrow">Landlords</p>
+        <h3 class="card__title">{rental.name}</h3>
+        <p class="card__fee"><strong>£{rental.fee}</strong><span>a month + VAT, {rental.unit}</span></p>
+        <ul class="card__list">{rental.includes.map((i) => <li>{i}</li>)}</ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Additional services</p>
+        <p>
+          As well as the packages above, we offer the following services that could be incorporated into your
+          monthly subscription, or paid for as a one-off service. Price on application.
+        </p>
+        <ul class="card__list" style="grid-template-columns:1fr 1fr">{additionalServices.map((s) => <li>{s}</li>)}</ul>
+        <p class="small muted">{pricingNotes.extra}</p>
+        <p class="notice"><strong>We are completely paperless.</strong> All documents must be transferred electronically.</p>
+      </div>
+    </div>
+  </section>
+
+  <PlanFinder />
+
+  <section class="section">
+    <div class="container faq__grid" data-reveal>
+      <div>
+        <p class="eyebrow">What's involved</p>
+        <h2>The work behind the fee</h2>
+        <p class="lead">What each part of the service actually covers, in our own words.</p>
+      </div>
+      <div class="faq__panel">
+        <FaqAccordion client:visible items={serviceFaq} />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+</style>

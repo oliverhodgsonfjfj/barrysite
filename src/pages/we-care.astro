@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+const title = 'We care: our customers, staff, environment and community | Focus Accountancy';
+const description = 'At Focus Accountancy we pride ourselves on being a caring company: for our customers, our staff, the environment and our community.';
+const areas = [
+  { title: 'Customers', img: '/img/we-care-customers.jpg', items: ['Dedicated help line', 'Access to a qualified accountant at all times', 'Use of FreeAgent to help save time and money', 'Friendly service', 'Competitive prices', 'Reliable and accurate'] },
+  { title: 'Staff', img: '/img/we-care-staff.jpg', items: ['Paid training', 'Flexible hours', 'Flexible working from home or office', 'Mental health support', 'Regular social events'] },
+  { title: 'Environment', img: '/img/we-care-environment.jpg', items: ['100% paperless office', 'Very well-insulated office', 'Encourage working from home', 'Recycling everything', 'Cycle to work scheme (less than 20% of the team drive to work)', "Part of the 'Plant a Tree' scheme", 'Aiming to be Net Zero by 2030', 'Member of the Centre for Alternative Technology'] },
+  { title: 'Community', img: '/img/we-care-community.jpg', items: ['Charity support', 'Sustrans', 'Centre for Alternative Technology', 'Donation to Shelter instead of Christmas cards', 'Members of the RSPB', 'Part of the Plant a Tree scheme', 'Volunteering with FareShare South West'] },
+];
+---
+<Base title={title} description={description} current="/about">
+  <PageHero
+    eyebrow="We care"
+    title="At Focus we care"
+    intro="At Focus Accountancy, we pride ourselves on being a caring company. Of course, our focus is firmly on our customers, but we also care about our staff, the environment and our community."
+    compact
+  />
+  <section class="section section--tight">
+    <div class="container cards cards--2" data-reveal>
+      {areas.map((a) => (
+        <div class="card">
+          <img class="card__img" src={a.img} alt="" loading="lazy" />
+          <h2 class="card__title">{a.title}</h2>
+          <ul class="card__list">{a.items.map((i) => <li>{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+
+const title = 'Contact us | Focus Accountancy, Bristol';
+const description = 'Call 0117 290 0007, email team@focusaccountancy.co.uk, book a free 30-minute video call, or visit our Bristol office by appointment.';
+const mapUrl = (o: { line1: string; town: string; postcode: string }) =>
+  `https://www.google.com/maps?q=${encodeURIComponent(`${o.postcode}, ${o.town}, UK`)}&z=16&output=embed`;
+---
+<Base title={title} description={description} current="/contact">
+  <PageHero
+    eyebrow="Contact"
+    title="Get in touch"
+    intro="We always encourage you to get in touch to discuss your requirements or answer any questions you might have. Send us an email, use the form, or arrange a free 30-minute video call."
+    compact
+  />
+
+  <section class="section section--tight">
+    <div class="container grid grid--5-7" data-reveal>
+      <div>
+        <dl class="contact-details">
+          <div>
+            <dt>Phone</dt>
+            <dd>
+              <a href={site.phoneHref}>{site.phone}</a>
+              <span class="small muted">{site.hours}. We welcome calls from clients without the need for an appointment.</span>
+            </dd>
+          </div>
+          <div><dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+          <div>
+            <dt>Book a free video call</dt>
+            <dd>
+              <a href={site.calendly.barry} rel="noopener">Meet with Barry</a> ·
+              <a href={site.calendly.greg} rel="noopener">Meet with Greg</a> ·
+              <a href={site.calendly.maria} rel="noopener">Meet with Maria</a>
+              <span class="small muted">Or a <a href={site.calendly.barryPhone} rel="noopener">telephone appointment with Barry</a>.</span>
+            </dd>
+          </div>
+          <div><dt>Client portal</dt><dd><a href={site.portal} rel="noopener">Sign in to the client portal</a></dd></div>
+        </dl>
+      </div>
+
+      <form class="contact-form" action={site.formAction} method="POST">
+        <input type="hidden" name="_subject" value="Message from focusaccountancy.co.uk" />
+        <p class="contact-form__hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="contact-form__row contact-form__row--2">
+          <div><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required /></div>
+          <div><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required /></div>
+        </div>
+        <div class="contact-form__row contact-form__row--2">
+          <div><label for="cf-phone">Phone <span class="muted">(optional)</span></label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" /></div>
+          <div><label for="cf-subject">Subject</label><input id="cf-subject" name="subject" type="text" /></div>
+        </div>
+        <div class="contact-form__row">
+          <div><label for="cf-message">Message</label><textarea id="cf-message" name="message" required></textarea></div>
+        </div>
+        <button class="btn" type="submit">Send message</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Visit by appointment</p>
+      <h2 class="page-section-title">Our offices</h2>
+      <div class="cards cards--2">
+        {site.offices.map((o) => (
+          <div class="card office">
+            <div class="office__map"><iframe src={mapUrl(o)} title={`Map of ${o.line1}, ${o.town}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <h3 class="card__title">{o.line1}</h3>
+            <p>{o.line1}, {o.town}, {o.postcode}</p>
+            <p class="small muted">Meetings by appointment. Most of our meetings are online, but you're welcome to visit.</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .office__map { aspect-ratio: 16 / 10; border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; background: var(--sage-2); }
+  .office__map iframe { width: 100%; height: 100%; border: 0; }
+</style>

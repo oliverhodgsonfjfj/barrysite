@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import guides from '../data/guides.json';
+import { site } from '../data/site';
+
+export function getStaticPaths() {
+  const meta: Record<string, { title: string; h1: string; eyebrow: string; description: string; intro?: string; current?: string; cta?: boolean }> = {
+    taxes: {
+      title: 'Paying your taxes | Focus Accountancy',
+      h1: 'Paying your taxes',
+      eyebrow: 'Guide',
+      description: 'A guide to paying Self Assessment, corporation tax, PAYE and NI, and VAT: deadlines, payment links, bank details and what happens if you pay late.',
+      intro: 'How and when to pay each tax, the references HMRC needs, and the penalties for paying late.',
+      current: '/resources',
+      cta: true,
+    },
+    banking: {
+      title: 'Business banking for contractors | Focus Accountancy',
+      h1: 'Banking for contractors, consultants and freelancers',
+      eyebrow: 'Guide',
+      description: 'Why you need a business bank account, how to choose one, and the banks we partner with: Mettle, Allica, NatWest and Starling.',
+      intro: 'Why you need a separate business account, what to look for, and the banks we work with.',
+      current: '/resources',
+      cta: true,
+    },
+    insurance: {
+      title: 'Contractor insurance with Kingsbridge | Focus Accountancy',
+      h1: 'Insurance',
+      eyebrow: 'Guide',
+      description: "We've partnered with insurance experts Kingsbridge to offer IR35 contract reviews, specialist contractor insurance and more.",
+      intro: 'Specialist business insurance, IR35 reviews and contract reviews for our clients through Kingsbridge.',
+      current: '/resources',
+      cta: true,
+    },
+    ir35: {
+      title: 'IR35 explained | Focus Accountancy',
+      h1: 'IR35',
+      eyebrow: 'Guide',
+      description: 'What IR35 is, how HMRC decides whether it applies, and how to get a free independent status review.',
+      intro: 'What the rules are, how status is determined, and where to get an independent review.',
+      current: '/resources',
+      cta: true,
+    },
+    pensions: {
+      title: 'Pensions | Focus Accountancy',
+      h1: 'Pensions',
+      eyebrow: 'Guide',
+      description: 'Setting up business pension contributions with Penfold, and why they can reduce personal and corporation tax.',
+      intro: 'A quick way to set up a director or personal pension and make bulk contributions.',
+      current: '/resources',
+      cta: true,
+    },
+    legal: {
+      title: 'Legal | Focus Accountancy',
+      h1: 'Legal',
+      eyebrow: 'Guide',
+      description: 'Rubric Law, the Bristol law firm we recommend for corporate, commercial, property and employment law.',
+      intro: 'When you need a solicitor, this is the Bristol firm we recommend.',
+      current: '/resources',
+      cta: true,
+    },
+    'jargon-buster': {
+      title: 'Jargon buster | Focus Accountancy',
+      h1: 'Jargon buster',
+      eyebrow: 'Guide',
+      description: 'Accounting and tax terms explained in plain English, from Accounts Office Reference to year end.',
+      intro: "We try our best to communicate financial information clearly, but here's a guide to the terms you might come across. Always talk to your accountant before taking any action.",
+      current: '/resources',
+      cta: true,
+    },
+    'client-portal-info': {
+      title: 'The client portal | Focus Accountancy',
+      h1: 'The client portal',
+      eyebrow: 'Clients',
+      description: 'How our secure client portal works: documents in one place, e-signatures, deadlines and GDPR-compliant document exchange.',
+      intro: 'All our correspondence and client documents go through a secure portal. Here is what it does for you.',
+      current: '/resources',
+      cta: true,
+    },
+    privacy: {
+      title: 'Privacy policy | Focus Accountancy',
+      h1: 'Privacy policy',
+      eyebrow: 'Legal',
+      description: 'How Focus Accountancy Ltd collects, uses and protects your personal data.',
+    },
+    terms: {
+      title: 'Terms and conditions | Focus Accountancy',
+      h1: 'Standard terms and conditions of business',
+      eyebrow: 'Legal',
+      description: 'The standard terms and conditions of business for Focus Accountancy Ltd.',
+      intro: 'These terms accompany our engagement letter and schedule of services.',
+    },
+  };
+  const slugFor = (k: string) => (k === 'client-portal-info' ? 'client-portal' : k);
+  return Object.keys(guides).map((key) => ({ params: { slug: slugFor(key) }, props: { key, ...meta[key] } }));
+}
+
+const { key, title, h1, eyebrow, description, intro, current, cta } = Astro.props as any;
+const page = (guides as Record<string, { html: string }>)[key];
+---
+<Base title={title} description={description} current={current}>
+  <PageHero eyebrow={eyebrow} title={h1} intro={intro} compact />
+  <section class="section section--tight">
+    <div class="container guide">
+      <article class="prose" set:html={page.html} />
+      {cta && (
+        <aside class="guide__aside">
+          <div class="guide__card">
+            <p class="eyebrow">Need a hand?</p>
+            <h2 class="guide__card-title">Talk it through with us</h2>
+            <p class="small">A free, no-obligation meeting, online or at our Bristol office.</p>
+            <a class="btn" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+            <p class="small muted guide__card-foot">or call <a href={site.phoneHref}>{site.phone}</a></p>
+          </div>
+          <div class="guide__card">
+            <p class="eyebrow">More guides</p>
+            <ul class="guide__links">
+              <li><a href="/taxes">Paying your taxes</a></li>
+              <li><a href="/ir35">IR35</a></li>
+              <li><a href="/banking">Banking</a></li>
+              <li><a href="/insurance">Insurance</a></li>
+              <li><a href="/pensions">Pensions</a></li>
+              <li><a href="/legal">Legal</a></li>
+              <li><a href="/jargon-buster">Jargon buster</a></li>
+              <li><a href="/faq">FAQs</a></li>
+              <li><a href="/client-portal">Client portal</a></li>
+            </ul>
+          </div>
+        </aside>
+      )}
+    </div>
+  </section>
+</Base>

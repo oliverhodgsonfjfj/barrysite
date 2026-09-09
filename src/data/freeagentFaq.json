@@ -1,0 +1,172 @@
+{
+ "considering": [
+  {
+   "q": "What is FreeAgent and what can it do for me?",
+   "a": [
+    "FreeAgent is cloud-based accounting software targeted at freelancers and contractors. It was launched back in 2007 by 3 contractors who were fed up of spending their valuable time doing bookkeeping. By 2013 they had topped Deloitte's list of fastest growing technology firms and became one of the leaders in the UK market.",
+    "It removes the need for error-prone spreadsheets or the laborious task of trawling through last year's bank statements, trying to remember what the expenses were. It not only uses technology to automate much of the bookkeeping process, it gives you relevant information about your business based on the data it has to put you in a better position to succeed."
+   ]
+  },
+  {
+   "q": "Why use cloud software?",
+   "a": [
+    "Having the software in the cloud has many benefits. From not having to update your software to not worrying about your computer getting stolen and losing all your data.",
+    "It means that you can access your data almost anywhere, with almost any device that has a web browser.",
+    "It means that you can invoice from your phone while on a client's site, or take a photo of a receipt and send it to the software in a few seconds when you're on the road rather than trying to keep 3 months' worth of receipts in your purse while you wait for a convenient time to do the books.",
+    "There's also the fact that making tax digital (MTD) is coming in the next few years for everyone! That means we'll all be submitting data to HMRC at least once a quarter through external software. If you get on board with cloud software like FreeAgent, you've got nothing to worry about."
+   ]
+  },
+  {
+   "q": "What about Xero or QuickBooks?",
+   "a": [
+    "Back in 2014, when we committed to cloud software, we ran a project trialing the major contenders on the market. After 6 months we had several clients on Xero and FreeAgent but while we still think Xero is a great bit of software, FreeAgent is easier to understand and is very intuative, making even the most IT illiterate person feel like they know what they're doing. FreeAgent feels like it was made by the end user themselves but still does everything the accountant needs it to.",
+    "We've since stopped offering Xero but continue to monitor the market to ensure FreeAgent is still the best software out there for our clients. As far as we're concerned the gap between FreeAgent and the other software is only widening as they keep adding extra features and improvements."
+   ]
+  },
+  {
+   "q": "Do I still need an accountant if I have FreeAgent?",
+   "a": [
+    "As accountants, we're probably a little biased here but we'd would definitely say yes!",
+    "FreeAgent has most of the tools you'd need to be compliant without an accountant but it can't do everything that's essential. Even the tools they do have, need to be used in the right way, and keeping up with changes in tax rates, legislation and accounting standards will take up an immense amount of time for someone without a financial background. So while it's possible, it's probably cheaper to get an accountant and have peace of mind, knowing that everything is done by the book and to a high standard."
+   ]
+  },
+  {
+   "q": "How secure is FreeAgent?",
+   "a": [
+    "Very secure!",
+    "Not even FreeAgent can look at your data unless you give them access. You can even set up two-factor authentication to make it hard for even the most experienced hackers, and in reality there is really very little value to the data you keep in FreeAgent anyway.",
+    "When the question of security comes up, most people are concerned with the bank feed, but the feeds within FreeAgent are strictly one way. When you set up the feed, you basically give the bank permission to send transactional data to FreeAgent and nothing else. It is impossible to affect the bank in any way via FreeAgent.",
+    "For the more tech savvy amongst us, the data centres FreeAgent use are ISO 27001 certified and are some of the most secure facilities in the UK. Data is replicated in real-time to a separate geographic location for Disaster Recovery and Business Continuity purposes. All data transmitted to FreeAgent services is encrypted over HTTPS using TLS protocols with minimum 128-bit keys and using SHA256."
+   ]
+  },
+  {
+   "q": "How much does FreeAgent cost?",
+   "a": [
+    "We give FreeAgent to our clients for free! This doesn't mean we just add the price of FreeAgent to our fees and claim it's free, we genuinely don't charge for it in most circumstances. Our basic package is £99 with or without FreeAgent. We are able to do this because we buy many FreeAgent subscriptions so we get a discount, but also because our FreeAgent clients are usually easier to work with because we have the ability to see live data at any time.",
+    "If you choose to pay for FreeAgent yourself, it has 3 tiers: Sole trader, Partnership or Ltd company. These are priced at £19, £24 and £29 per month respectively (not including VAT). This makes it one of the most expensive options when looking at cloud software, but in our minds, it's justified.",
+    "At the moment you would usually get a 30 day free trial, followed by 6 months half price, so your first year would work out more like £13, £16 and £19 per month (not including VAT) if you pay for the software yourself."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "q": "How do I set up a bank feed?",
+   "a": [
+    "Instead of downloading and uploading electronic statements, just connect your FreeAgent account to your online bank account and they'll import your transactions. The import will usually happen automatically but if your bank requires you to answer additional security questions, you will have to press a button to make the import happen each time.",
+    "To set it up, you need to select 'Banking' from the menu across the top of the screen, then choose the account you want to enable a Bank Feed for.",
+    "Select the 'Enable Bank Feed' button located just underneath the top menu towards the right of the screen.",
+    "Select the bank that you use and you'll be taken to the log in screen of that bank.",
+    "From here, just log in as you usually log in to your online banking (you may have to select the account to link up if there are multiple business accounts on the same log in).",
+    "After this, just click the 'Enable bank feed button and you're good to go."
+   ]
+  },
+  {
+   "q": "How do I invoice from FreeAgent?",
+   "a": [],
+   "video": "https://www.youtube.com/watch?v=ymxb_WIZcws"
+  },
+  {
+   "q": "How do I give my employees access?",
+   "a": [
+    "If you have full access to FreeAgent, you can give different users different levels of access. You might want to give your bookkeeper access to the whole of your FreeAgent account, for example, and set up other members of staff as users with access to their own payslips.",
+    "To add an employee go to Settings and then choose Users. Select New User, enter the person's details, tick the box to send the user a customised email to invite them to create a password when they first sign in, and then select the access level. The default level for a new user is 'Tax, Accounting & Users'. To change this, slide the bar along to the appropriate level of access. The further you slide the bar over to the left, the less access they will have.",
+    "Once you've finished, select 'Create New User' to save the details you've entered. Your new user is now set up and you can start recording their salary, dividends and expenses through FreeAgent."
+   ]
+  },
+  {
+   "q": "How do I correct a mistake on an invoice?",
+   "a": [
+    "Before you send an invoice it will be marked as a draft and completely customiseable but after it's sent, the edit button will dissapear but this does not mean you can't correct a mistake you've made. There are 3 scenarios listed below that should help you out:",
+    "1. If it's been sent but not paid:\nJust go into the invoice and select 'Make Draft' just above the top left corner of the invoice. You can then make the changes and either re-send it or just mark as sent if you don't want to email it to the client again.",
+    "2. If it's already been paid:\nWhen you allocate the payment to the invoice you'll no longer have the option to select the 'Make Draft' button so you'll need to select the payment from within the invoice and then select the 'Remove Explanation' button on the top right. You can then follow the steps from option 1 and re-explain the payment when you're done.",
+    "3. If you've already submitted a VAT return with the payment in:\nIn rare cases like this, the invoice will lock so you won't be able to remove the explanation from the payment and therefore can't edit the invoice. What you'll need to do instead is to create a credit note for the incorrect invoice, duplicate the invoice, make the correction and then add manual payments to the credit note and new invoice to mark them as paid."
+   ]
+  },
+  {
+   "q": "How do set up my VAT returns?",
+   "a": [],
+   "video": null
+  },
+  {
+   "q": "How do I deal with dividends?",
+   "a": [
+    "Dividends are really easy in FreeAgent as they do most of the work for you. Simply pay money from your business account to the shareholders in the correct proportion and within a day or two, the bank feed will bring it into FreeAgent.",
+    "When you see it in the banking you just select 'Money Paid to User' and then 'Dividend' and that's it.",
+    "FreeAgent will account for it correctly and even generate the dividend paperwork (above) that you could download as a PDF if you want."
+   ]
+  },
+  {
+   "q": "Should I use the reports?",
+   "a": [
+    "If you have an accountant, then you don't need to use the reporting capabilities of FreeAgent but if you don't, you may be missing out on getting some real insight into your business. There's no need to check all the reports on a regular basis but some of the reports are worth checking every few months for most business owners.",
+    "The profit and loss in FreeAgent is great because it's so flexible and allows you to compare different months. This can be valuable as a tool to analyse seasonality in your business that you hadn't noticed before or see that the project you did over the last few months has been considerably more profitable than the previous two so you should probably try to find more work like that.",
+    "The other report that is likely to help you is the aged debtors report. This will show you how long your cusomers are taking to pay you and, who owes you money and how long they've owed it for."
+   ]
+  },
+  {
+   "q": "How do I record an expense?",
+   "a": [],
+   "video": "https://www.youtube.com/watch?v=XIczOSSrHFg"
+  }
+ ],
+ "benefits": [
+  {
+   "q": "Reduce the time you spend on bookkeeping",
+   "a": [
+    "We hear new clients telling us all the time how they do their accounts once a month/quarter/year and that they dread that time. Going through old receipts and bank statements and keying in the information to a spreadsheet for the accountant. If this sounds at all familiar, then FreeAgent is going to save you a bunch of time.",
+    "FreeAgent uses secure one way bank feeds to automatically import your transactions into the software cutting down on data entry time significantly. FreeAgent will even attempt to guess what the transactions are so if you have a regular transaction like office rent or accountancy fees that have the same reference each time, FreeAgent will quickly learn what these are so the entire bookkeeping process is reduced to 1 click!",
+    "The fact that FreeAgent has an app means that you can do your accounts where and when it's most convenient. Many FreeAgent users (including us) use 'dead time' to open the app and tick of a few transactions that the bank feed has brought through. So when your waiting for a train, between meetings or in the morning starbucks queue, just spend 30 seconds on the app and you'll soon find that allocating a half day each month to do the books is a thing of the past. A great side effect of this type of bookkeeping is that your continuously engaged with the business so you're more likely to identify issues before they become major problems.",
+    "Of course you don't have to use the app, you could continue to do the books once a month and your still going to save a ton of time because the data entry is already done so all you have to do is tell FreeAgent what the transactions where for using a drop down menu (providing FreeAgent hasn't already guessed it for you)."
+   ]
+  },
+  {
+   "q": "Get paid faster",
+   "a": [
+    "While FreeAgent will work perfectly well if you don't invoice through the software, you'll be missing a trick if you don't take advantage of the tools they offer. They have a highly customisable invoice template so you can send professional looking invoices that match your branding. You can then send them to your clients via email straight from the software or download a PDF if you prefer. Where FreeAgent really comes into it's own is in it's ability to keep you informed about who hasn't paid you and you can even set automatic chasing emails to go to customers that don't pay after a determined amount of time.",
+    "From the overview page you'll see the last three months of invoicing in a simple bar graph showing what's been paid, what's due and what's overdue. This graph is also completely interactive so you can drill down into the data and see exactly whats going on.",
+    "For example if you see that half of the invoiced money for last month still hasn't come in, simply click it and it will take you to a summary of whats outstanding from that period. Then maybe you realise that it's the same client that paid late last time so you could just click the invoice and you'll have the option to send a reminder straight from FreeAgent with a customisable template. Or maybe that client hasn't paid for the month before either? Just click the clients name and it will take you to a summary of your relationship where you could send them a customizable statement in just a few clicks."
+   ]
+  },
+  {
+   "q": "Keep your employees in the loop",
+   "a": [
+    "After the admin and time around actually employing somone, business owners can often be slowed down dramatically by ongoing HR admin. The three main admin points that FreeAgent help with is payroll, timesheets and expenses. These can often be incredibly time consuming, especially if your doing any of these tasks with paper rather than electronically. FreeAgent will often remove 80%+ of the admin time from a paper system.",
+    "In many cases business owners will send the payroll details to their accountant at the end of the month and then receive the payslips a few days later. Then there's the labourious process of printing each slip and sending it to the relevant employee. There are often times where employees need a copy of last year's P60 or don't understand someting on their payslip so the busniess owner has to do act as a middle man between the accountant and and employee to figure out whats happened. This is never the case with FreeAgent.",
+    "FreeAgent has the capability to run the payroll and submit the relevant data to HMRC so whether you aould like to run your payroll or you'd like us to do it, all the information will be available to you all of the time. Better still, your employees can log in and view their payslips as soon as the payroll has been run. They can't see anything more than the transactions directly related to them (unless you want to give them more access) so you can have peice of mind even when inviting new or temporary staff to log into your FreeAgent account.",
+    "Once logged in, employees can also track time and add expenses meaning that, the whole process of develping timesheets, distributing them, receiveing them after they've been filled in and then manually entering them back into your system is",
+    "[NOTE: the text on the live site ends mid-sentence here.]"
+   ]
+  },
+  {
+   "q": "Never be suprised by a tax bill again",
+   "a": [
+    "The FreeAgent Tax Timeline displays a live projection of how much money you owe to HMRC and when you owe it, so you’ll know how much to set aside for tax bills. When you explain what a transaction is in FreeAgent, it will automatically update your corporation tax and VAT in the tax timeline so you get a constant and up to date feed of all your taxes.",
+    "You can even export the details of your tax deadlines into your Google, Outlook or iCal calendar.",
+    "Please be aware that the Tax Timeline is a calendar overview of important dates in the tax year, and it won't update automatically when you file a return or pay a bill. Entries in the Tax Timeline will remain until the due date passes."
+   ]
+  },
+  {
+   "q": "Get better value out of your accountant",
+   "a": [
+    "Because FreeAgent is cloud based, you can access it anywhere you have an internet connection. This also means that your accountant can access it at any time and help you out with any issues you may have or give you advice based on real time data.",
+    "Using non-cloud software will often mean that you get much less value out of your accountant because of the following very common scenario:",
+    "A month or 2 after your year end, your accountant will ask you for your records but your very busy and the last thing you want to do at the end of a long work week is sort out your finances so you put off for a while. The accountant might need to ask 2-3 more times before you get around to doing it so they'll have less time to actually work on your accounts (or charge you more). The accounts finally get completed 6 months after the year end but it's another month before you both have a clear day in your calendars to meet up and sign them off. This is usually where the accountant gives you some advice based on the accounts but by this time, the data he's been working on is anywhere from 7 to 19 months old!",
+    "With FreeAgent, the burden of getting your records together is heavily reduced because it's already in the system and your accountant can already see it. This means that there's much less work for you to do and we can get your accounts done sooner (in several cases we've filed accounts less than a month after the year-end!). Better still, we have more time to be proactive with our advice and live data to give you the most relevant advice possible throughout the year."
+   ]
+  },
+  {
+   "q": "Keep work time for chargable work",
+   "a": [
+    "Many FreeAgent users use the FreeAgent app so that they can do the small bookkeeping tasks on the go rather than let them pile up and end up with a few hours of work to do. Everything you do using the mobile app is immediately reflected in your FreeAgent account on desktop and the app has impressive capabilities:",
+    "- view, create and send invoices\n- view and record out-of-pocket expenses and mileage claims\n- capture photos of expense and mileage claim receipts\n- view and add to your list of contacts\n- re-bill expenses and mileage claims\n- view the balances of your bank accounts in FreeAgent\n- explain bank transactions (this feature works best once you've set up a Bank Feed in FreeAgent)\n- create timeslips manually, or with a stopwatch\n- view your profit and loss information for the current tax year\n- attach image files, PDFs, Word and Excel docs (max size 5 MB) from Dropbox, iCloud, Google Drive and other third-party storage apps to your expenses and bank transaction explanations\n- create tasks\n- create supplier bills\n- create estimates\n- create and edit CIS Invoices"
+   ]
+  },
+  {
+   "q": "Truly understand how your business is doing",
+   "a": [
+    "Once your FreeAgent account is up and running the home page or 'Overview' will become an invaluable tool for ensuring your on top of your finances. From this tab you'll see the cashflow for 3, 6 or 12 months, your bank account balance over the past 12 months, a summary of your recent and overdue invoices and much more. You can see an estimate of how much tax you owe, how much you could take in dividends or when you need to pay your next VAT bill.",
+    "The overview page not only summarises your entire business from a financial perspective but has lots of handy links in logical places so if you're suprised by something you see there's always an easy and logical route to the heart of the problem."
+   ]
+  }
+ ]
+}

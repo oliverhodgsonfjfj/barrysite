@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqAccordion from '../components/react/FaqAccordion';
+import faqAll from '../data/faqAll.json';
+import { site } from '../data/site';
+
+const title = 'Frequently asked questions | Focus Accountancy';
+const description = "Do I need an accountant? How much does one cost? Sole trader or limited company? How the fixed monthly fee works, and what working with Focus is like.";
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqAll.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.map((p) => p.text).join('\n\n') } })),
+};
+---
+<Base title={title} description={description} current="/resources">
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify(faqSchema)} />
+  <PageHero
+    eyebrow="Frequently asked questions"
+    title="The questions that come up in almost every first meeting"
+    intro="We always offer a free initial meeting to chat through your situation and give a detailed quote, and often the same types of questions crop up, so we've listed them here to give you a head start."
+    compact
+  />
+  <section class="section section--tight">
+    <div class="container guide" data-reveal>
+      <div class="faq__panel"><FaqAccordion client:load items={faqAll} /></div>
+      <aside class="guide__aside">
+        <div class="guide__card">
+          <p class="eyebrow">Still got a question?</p>
+          <h2 class="guide__card-title">Ask us in a free meeting</h2>
+          <p class="small">No obligation, online or at our Bristol office.</p>
+          <a class="btn" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+          <p class="small muted guide__card-foot">or call <a href={site.phoneHref}>{site.phone}</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>

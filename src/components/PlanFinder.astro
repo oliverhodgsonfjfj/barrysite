@@ -1,0 +1,268 @@
+---
+import { plans } from '../data/pricing';
+import { site } from '../data/site';
+
+const byId = Object.fromEntries(plans.map((p) => [p.id, p]));
+---
+<section class="band band--pattern finder" id="plan-finder" aria-labelledby="finder-title">
+  <div class="container finder__grid">
+    <div class="finder__intro" data-reveal>
+      <p class="eyebrow">Find your plan</p>
+      <h2 id="finder-title">Three quick questions, one clear monthly fee</h2>
+      <p class="lead">
+        Every plan includes a FreeAgent subscription and unlimited phone and email support. Answer the questions and
+        we'll show you where you'd fit. Your free meeting confirms the details.
+      </p>
+      <p class="finder__foot">All fees are per month, plus VAT. <a href="/pricing">See the full pricing page</a>.</p>
+    </div>
+
+    <form class="finder__form" data-finder novalidate data-reveal>
+      <fieldset class="finder__step" data-step="type">
+        <legend><span class="finder__n">1</span>I trade as</legend>
+        <div class="choices">
+          <input type="radio" name="type" id="t-ltd" value="ltd" />
+          <label for="t-ltd">A limited company</label>
+          <input type="radio" name="type" id="t-sole" value="sole" />
+          <label for="t-sole">A sole trader</label>
+          <input type="radio" name="type" id="t-land" value="landlord" />
+          <label for="t-land">A landlord</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="finder__step" data-step="band-ltd" hidden>
+        <legend><span class="finder__n">2</span>My turnover is</legend>
+        <div class="choices">
+          <input type="radio" name="band-ltd" id="bl-90" value="90" />
+          <label for="bl-90">Up to £90K</label>
+          <input type="radio" name="band-ltd" id="bl-250" value="250" />
+          <label for="bl-250">£90K to £250K</label>
+          <input type="radio" name="band-ltd" id="bl-over" value="over" />
+          <label for="bl-over">Over £250K</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="finder__step" data-step="band-sole" hidden>
+        <legend><span class="finder__n">2</span>My turnover is</legend>
+        <div class="choices">
+          <input type="radio" name="band-sole" id="bs-50" value="50" />
+          <label for="bs-50">Up to £50K</label>
+          <input type="radio" name="band-sole" id="bs-90" value="90" />
+          <label for="bs-90">£50K to £90K</label>
+          <input type="radio" name="band-sole" id="bs-over" value="over" />
+          <label for="bs-over">Over £90K</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="finder__step" data-step="extras-ltd" hidden>
+        <legend><span class="finder__n">3</span>I'd like</legend>
+        <div class="choices choices--stack">
+          <input type="radio" name="extras-ltd" id="el-basic" value="basic" />
+          <label for="el-basic">The essentials: accounts, corporation tax return, confirmation statement and payroll for one</label>
+          <input type="radio" name="extras-ltd" id="el-premium" value="premium" />
+          <label for="el-premium">Also VAT returns, payroll for two, quarterly FreeAgent reviews and salary and dividend planning</label>
+          <input type="radio" name="extras-ltd" id="el-boost" value="boost" />
+          <label for="el-boost">All of that, plus planning for income over £100K, rental or foreign income and capital gains</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="finder__step" data-step="extras-sole" hidden>
+        <legend><span class="finder__n">3</span>Bookkeeping</legend>
+        <div class="choices choices--stack">
+          <input type="radio" name="extras-sole" id="es-own" value="own" />
+          <label for="es-own">I'll keep my own books in FreeAgent</label>
+          <input type="radio" name="extras-sole" id="es-us" value="us" />
+          <label for="es-us">Please do the bookkeeping for me</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="finder__step" data-step="properties" hidden>
+        <legend><span class="finder__n">2</span>How many rental properties?</legend>
+        <div class="stepper">
+          <button type="button" class="stepper__btn" data-stepper="-1" aria-label="One fewer property">−</button>
+          <input type="number" name="properties" id="properties" min="1" max="20" value="1" inputmode="numeric" aria-label="Number of properties" />
+          <button type="button" class="stepper__btn" data-stepper="1" aria-label="One more property">+</button>
+        </div>
+      </fieldset>
+
+      <div class="finder__result" data-result hidden aria-live="polite">
+        <p class="finder__result-label">Your plan</p>
+        <p class="finder__plan" data-result-name></p>
+        <p class="finder__fee"><span data-result-fee></span> <span class="finder__fee-unit" data-result-unit></span></p>
+        <p class="finder__note" data-result-note hidden></p>
+        <ul class="finder__includes" data-result-includes></ul>
+        <div class="finder__cta">
+          <a class="btn" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+          <a class="finder__link" href="/pricing">Compare every plan</a>
+        </div>
+      </div>
+
+      <div class="finder__result" data-result-poa hidden>
+        <p class="finder__result-label">Your plan</p>
+        <p class="finder__plan">Price on application</p>
+        <p>We quote larger businesses individually. Book a free meeting and we'll give you a personalised quote.</p>
+        <div class="finder__cta">
+          <a class="btn" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+          <a class="finder__link" href="#contact">Or send us a message</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script type="application/json" data-plans set:html={JSON.stringify(byId)} />
+</section>
+
+<script>
+  type Plan = { name: string; fee: number; unit?: string; includes: string[] };
+  const form = document.querySelector<HTMLFormElement>('[data-finder]');
+  const dataEl = document.querySelector('[data-plans]');
+  if (form && dataEl) {
+    const plans: Record<string, Plan> = JSON.parse(dataEl.textContent || '{}');
+    const step = (name: string) => form.querySelector<HTMLFieldSetElement>(`[data-step="${name}"]`);
+    const val = (name: string) => form.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? null;
+    const show = (name: string, on: boolean) => {
+      const el = step(name);
+      if (!el) return;
+      if (!on && !el.hidden) el.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((i) => (i.checked = false));
+      el.hidden = !on;
+    };
+    const result = form.querySelector<HTMLElement>('[data-result]')!;
+    const poaBox = form.querySelector<HTMLElement>('[data-result-poa]')!;
+    const nameEl = form.querySelector<HTMLElement>('[data-result-name]')!;
+    const feeEl = form.querySelector<HTMLElement>('[data-result-fee]')!;
+    const unitEl = form.querySelector<HTMLElement>('[data-result-unit]')!;
+    const noteEl = form.querySelector<HTMLElement>('[data-result-note]')!;
+    const inclEl = form.querySelector<HTMLElement>('[data-result-includes]')!;
+    const propsInput = form.querySelector<HTMLInputElement>('#properties')!;
+
+    const MTD_NOTE =
+      'Making Tax Digital for Income Tax applies from April 2026 where self-employment and property income is over £50,000, and from April 2027 over £30,000, so you may not need MTD submissions yet. We check this in your free meeting.';
+
+    function render() {
+      const type = val('type');
+      show('band-ltd', type === 'ltd');
+      show('band-sole', type === 'sole');
+      show('properties', type === 'landlord');
+
+      let planId: string | null = null;
+      let poa = false;
+      let note = '';
+      let multiplier = 1;
+
+      if (type === 'ltd') {
+        const band = val('band-ltd');
+        show('extras-ltd', band === '90' || band === '250');
+        if (band === 'over') poa = true;
+        else if (band) {
+          const ex = val('extras-ltd');
+          if (ex === 'boost') planId = 'ltd-boost';
+          else if (ex === 'premium' || (ex === 'basic' && band === '250')) planId = 'ltd-premium';
+          else if (ex === 'basic') planId = 'ltd-basic';
+          if (ex === 'basic' && band === '250')
+            note = 'Turnover over £90K moves you to the Premium plan, which also covers VAT returns, payroll for two and quarterly reviews.';
+        }
+      } else if (type === 'sole') {
+        const band = val('band-sole');
+        show('extras-sole', band === '50' || band === '90');
+        if (band === 'over') poa = true;
+        else if (band) {
+          const ex = val('extras-sole');
+          if (ex === 'us') planId = 'st-book';
+          else if (ex === 'own') planId = band === '50' ? 'st-basic' : 'st-mtd';
+          if (band === '50' && ex === 'own') note = MTD_NOTE;
+          if (band === '50' && ex === 'us') note = 'MTD submissions are included for when you need them. ' + MTD_NOTE;
+        }
+      } else if (type === 'landlord') {
+        planId = 'rental';
+        multiplier = Math.min(20, Math.max(1, Number(propsInput.value) || 1));
+        note = 'If you also trade through a company or as a sole trader, rental accounts are added to that plan.';
+      } else {
+        show('extras-ltd', false);
+        show('extras-sole', false);
+      }
+
+      poaBox.hidden = !poa;
+      if (planId && plans[planId]) {
+        const p = plans[planId];
+        nameEl.textContent = p.name;
+        feeEl.textContent = `£${p.fee * multiplier}`;
+        unitEl.textContent = multiplier > 1 ? `a month + VAT for ${multiplier} properties` : p.unit ? `a month + VAT, ${p.unit}` : 'a month + VAT';
+        noteEl.textContent = note;
+        noteEl.hidden = !note;
+        inclEl.innerHTML = p.includes.map((i) => `<li>${i}</li>`).join('');
+        result.hidden = false;
+      } else {
+        result.hidden = true;
+      }
+    }
+
+    form.addEventListener('change', render);
+    form.addEventListener('input', (e) => {
+      if ((e.target as HTMLElement).id === 'properties') render();
+    });
+    form.querySelectorAll<HTMLButtonElement>('[data-stepper]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const next = Math.min(20, Math.max(1, (Number(propsInput.value) || 1) + Number(b.dataset.stepper)));
+        propsInput.value = String(next);
+        render();
+      })
+    );
+    render();
+  }
+</script>
+
+<style>
+  .finder { padding-block: var(--section); }
+  .finder__grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 900px) {
+    .finder__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2.5rem, 5vw, 5.5rem); align-items: start; }
+    .finder__intro { position: sticky; top: 6rem; }
+  }
+  .finder__intro .lead { color: var(--on-dark-2); }
+  .finder__foot { margin-top: 1.5rem; color: var(--on-dark-2); font-size: 0.92rem; }
+
+  .finder__form {
+    background: var(--surface); color: var(--ink);
+    border-radius: var(--radius-lg); padding: clamp(1.4rem, 3.5vw, 2.5rem);
+  }
+  .finder__step { border: 0; margin: 0 0 1.6rem; padding: 0; min-width: 0; }
+  .finder__step:last-of-type { margin-bottom: 0; }
+  .finder__step legend { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.85rem; font-weight: 640; font-size: 1.05rem; padding: 0; }
+  .finder__n {
+    display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem;
+    border-radius: 50%; background: var(--green); color: #fff; font-size: 0.85rem; font-weight: 650;
+  }
+
+  .choices { display: flex; flex-wrap: wrap; gap: 0.6rem; position: relative; }
+  .choices input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+  .choices label {
+    display: inline-flex; align-items: center; padding: 0.65rem 1.1rem;
+    border: 1px solid var(--line-2); border-radius: var(--pill); background: var(--surface);
+    font-weight: 540; cursor: pointer; transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .choices label:hover { border-color: var(--green); }
+  .choices input:checked + label { background: var(--green); border-color: var(--green); color: #fff; }
+  .choices input:focus-visible + label { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .choices--stack { flex-direction: column; }
+  .choices--stack label { border-radius: 14px; padding: 0.8rem 1.1rem; line-height: 1.4; }
+
+  .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line-2); border-radius: var(--pill); overflow: hidden; }
+  .stepper__btn { width: 2.6rem; height: 2.6rem; border: 0; background: var(--paper); font: inherit; font-size: 1.3rem; cursor: pointer; color: var(--green); }
+  .stepper__btn:hover { background: var(--sage-2); }
+  .stepper input { width: 3.5rem; height: 2.6rem; border: 0; text-align: center; font: inherit; font-weight: 650; font-size: 1.1rem; -moz-appearance: textfield; }
+  .stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .finder__result { margin-top: 1.75rem; padding: 1.4rem 1.5rem 1.6rem; border-radius: var(--radius); background: var(--sage-2); }
+  .finder__result-label { margin: 0 0 0.2rem; font-size: 0.72rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
+  .finder__plan { margin: 0; font-family: var(--display); font-size: 1.7rem; font-weight: 500; line-height: 1.1; }
+  .finder__fee { margin: 0.3rem 0 0.75rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+  .finder__fee > span:first-child { font-family: var(--display); font-size: 2.6rem; line-height: 1; font-weight: 500; letter-spacing: -0.02em; color: var(--green); }
+  .finder__fee-unit { color: var(--ink-3); font-size: 0.92rem; }
+  .finder__note { font-size: 0.92rem; color: var(--ink-2); margin: 0 0 0.9rem; }
+  .finder__includes { list-style: none; margin: 0 0 1.2rem; padding: 0; display: grid; gap: 0.35rem 1rem; font-size: 0.95rem; }
+  @media (min-width: 640px) { .finder__includes { grid-template-columns: 1fr 1fr; } }
+  .finder__includes li { position: relative; padding-left: 1.3rem; }
+  .finder__includes li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-right: 7px solid var(--green); }
+  .finder__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+  .finder__form a:not(.btn) { color: var(--green); text-decoration-color: color-mix(in srgb, var(--green) 40%, transparent); }
+  .finder__form a:not(.btn):hover { color: var(--green-deep); }
+  .finder__link { font-weight: 600; }
+</style>

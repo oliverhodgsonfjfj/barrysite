@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* shadcn/21st component tokens mapped to the Focus palette */
+:root {
+  --radius: 1rem;
+  --background: #ffffff;
+  --foreground: #141f10;
+  --card: #ffffff;
+  --card-foreground: #141f10;
+  --popover: #ffffff;
+  --popover-foreground: #141f10;
+  --primary: #105800;
+  --primary-foreground: #ffffff;
+  --secondary: #eef3e8;
+  --secondary-foreground: #0b3f00;
+  --muted: #efeee6;
+  --muted-foreground: #6c7467;
+  --accent: #eef3e8;
+  --accent-foreground: #0b3f00;
+  --destructive: #b42318;
+  --border: #e2e0d6;
+  --input: #cfcdc2;
+  --ring: #2b7a0b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: 'Libre Franklin Variable', 'Libre Franklin', system-ui, sans-serif;
+  --font-serif: 'Fraunces Variable', Fraunces, Georgia, serif;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  @keyframes accordion-down {
+  from {
+    height: 0;
+    }
+  to {
+    height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    }
+  to {
+    height: 0;
+    }
+  }
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+}

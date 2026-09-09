@@ -1,0 +1,158 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqAccordion from '../components/react/FaqAccordion';
+import dashboard from '../assets/freeagent-dashboard.png';
+import freeagentGold from '../assets/badges/freeagent-gold-partner.png';
+import groups from '../data/freeagentFaq.json';
+import { site } from '../data/site';
+
+const title = 'FreeAgent for contractors and freelancers | Focus Accountancy, Gold Partner';
+const description = 'Tips, video tutorials, training webinars and answers for FreeAgent users, from a FreeAgent Gold Partner that has worked with the software since 2014.';
+
+const toItems = (list: { q: string; a: string[]; video?: string }[]) =>
+  list.map((x) => ({
+    q: x.q,
+    a: x.a.length ? x.a.map((t) => ({ text: t })) : [{ text: 'This one is easiest to watch.', link: x.video ? { href: x.video, label: 'Watch the FreeAgent video' } : undefined }],
+  }));
+
+const videos = [
+  { img: '/img/fa-video-invoice.png', label: 'How to create and send an invoice (3:35)' },
+  { img: '/img/fa-video-expenses.png', label: 'Track your expenses on the go (0:28)' },
+  { img: '/img/fa-video-app.png', label: 'Introducing the FreeAgent Mobile App (0:48)' },
+];
+const webinars = [
+  { img: '/img/webinar-35e1cd.jpg', label: 'Using the FreeAgent app', href: 'https://freeagent.zoom.us/rec/share/2oPPyx3vbsF5ol3gEncT_GmS1QFA0SS3a1aqAGqvrZV3hN1u2WmHsjIygrrTO7tn.x_EmjzBlEUcpuEvC', slides: '/docs/freeagent-app-training-slides.pdf' },
+  { img: '/img/webinar-779cfc.jpg', label: 'Projects within FreeAgent', href: 'https://freeagent.zoom.us/rec/share/AwFbWVMEB6lultclFiTbGDqjuESisUjzj2WeOi7AkJ3nfO2QNClKhnVZGKAF2F2x.DNj1NSzK0LE7KPm1' },
+  { img: '/img/webinar-99831b.jpg', label: 'FreeAgent for landlords', href: 'https://freeagent.zoom.us/rec/play/F4111xnvgtBO2Ch3KJqNHYRm77f14OBdj7mYuG13rvLcy87HGuV2xdUtsS60WL3-RiMEhBoHALhjS6M7.1-sGZVxm8Oj_hx4h?canPlayFromShare=true' },
+  { img: '/img/webinar-aed92d.jpg', label: 'The Smart Capture feature', href: 'https://freeagent.zoom.us/rec/share/MZSAvKamTjhAuUcBwppEC0JXxRIHAImvXP85bCSpbvpb6JvNz7j5cc7RSzyi7RF1.ZIWIuv64xVVeLO9V' },
+];
+---
+<Base title={title} description={description} current="/freeagent">
+  <PageHero
+    eyebrow="FreeAgent Gold Partner"
+    title="Focus Accountancy and FreeAgent"
+    intro="We are a Gold Partner of FreeAgent and have worked closely with them since 2014 to make sure our clients get the most out of FreeAgent and make the financial side of their business that much easier to deal with. A FreeAgent subscription is included in every one of our monthly plans."
+    compact
+  >
+    <p class="fa-jump">
+      <a class="btn btn--outline btn--small" href="#considering">I'm considering FreeAgent</a>
+      <a class="btn btn--outline btn--small" href="#tasks">I need help with a task</a>
+      <a class="btn btn--outline btn--small" href="#benefits">Benefits of FreeAgent</a>
+    </p>
+  </PageHero>
+
+  <section class="section section--tight">
+    <div class="container fa__grid" data-reveal>
+      <div>
+        <p>
+          We've found that using FreeAgent can significantly reduce the burden of bookkeeping and accounting for
+          VAT while helping business owners take control of their finances.
+        </p>
+        <div class="fa__badge">
+          <Image src={freeagentGold} width={200} alt="FreeAgent Gold Partner badge" />
+          <p>Every member of the team is a FreeAgent Accredited Practitioner.</p>
+        </div>
+      </div>
+      <figure class="fa__figure"><Image src={dashboard} widths={[640, 960, 1283]} sizes="(min-width: 900px) 55vw, 100vw" alt="FreeAgent's overview dashboard on a laptop and phone" /></figure>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="considering">
+    <div class="container faq__grid" data-reveal>
+      <div><p class="eyebrow">Considering FreeAgent?</p><h2>The questions we're asked before people switch</h2></div>
+      <div class="faq__panel"><FaqAccordion client:visible items={toItems(groups.considering)} /></div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="tasks">
+    <div class="container faq__grid" data-reveal>
+      <div><p class="eyebrow">Help with specific tasks</p><h2>How do I…</h2><p class="lead">Bank feeds, invoices, VAT, dividends, expenses and reports.</p></div>
+      <div class="faq__panel"><FaqAccordion client:visible items={toItems(groups.tasks)} /></div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="benefits">
+    <div class="container faq__grid" data-reveal>
+      <div><p class="eyebrow">Benefits of FreeAgent</p><h2>What changes when you use it</h2></div>
+      <div class="faq__panel"><FaqAccordion client:visible items={toItems(groups.benefits)} /></div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Short videos</p>
+      <h2 class="page-section-title">Three things worth two minutes</h2>
+      <div class="cards cards--3">
+        {videos.map((v) => (
+          <a class="card fa-video" href="https://www.freeagent.com/accountants/get-started/focusaccountancy/" rel="noopener">
+            <img src={v.img} alt="" loading="lazy" />
+            <span>{v.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Training webinars</p>
+      <h2 class="page-section-title">Recorded sessions for Focus clients</h2>
+      <p class="lead" style="max-width:62ch">
+        We occasionally run free training webinars especially for our clients, to help you get the most out of the
+        software and the app. You can watch a recording by clicking on the images below, or go through the slides
+        where they are available.
+      </p>
+      <div class="cards cards--2" style="margin-top:1.5rem">
+        {webinars.map((w) => (
+          <div class="card fa-webinar">
+            <a href={w.href} rel="noopener"><img src={w.img} alt={`Recording: ${w.label}`} loading="lazy" /></a>
+            <h3>{w.label}</h3>
+            <p><a class="btn btn--small" href={w.href} rel="noopener">Watch the recording</a> {w.slides && <a class="btn btn--outline btn--small" href={w.slides}>Go through the slides</a>}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container cards cards--2" data-reveal>
+      <div class="card">
+        <p class="eyebrow">Tools</p>
+        <h3 class="card__title">FreeAgent Budget Burndown Tool</h3>
+        <p>A free app that tracks FreeAgent projects against the agreed budget, timelines and costs in timesheets, so consultants can visualise budget burndown in a graph. It runs in your browser, so none of your information is shared within the app.</p>
+        <p><a class="btn btn--outline btn--small" href="https://burndown.a2g-cyber.com/" rel="noopener">Try it out</a></p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">New in 2026</p>
+        <h3 class="card__title">FreeAgent Tap to Pay</h3>
+        <p>Tap to Pay is an easy-to-use tool that can help you get paid faster via in-person mobile phone payments. Set up a Stripe account, link it to FreeAgent and follow the steps in FreeAgent's guide.</p>
+        <p><a class="btn btn--outline btn--small" href="https://support.freeagent.com/hc/en-gb/articles/27608567454482-Set-up-Tap-to-Pay-on-mobile" rel="noopener">How to set up Tap to Pay</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band band--pattern">
+    <div class="container" data-reveal>
+      <h2>Want to see it for yourself?</h2>
+      <p class="lead">Book a FreeAgent webinar, a call with their support team, or start a free trial. Or talk to us: FreeAgent is included in all of our plans.</p>
+      <p class="fa-jump">
+        <a class="btn btn--light" href={site.calendly.barry} rel="noopener">Book a free meeting with us</a>
+        <a class="btn btn--outline btn--on-dark" href="https://www.freeagent.com/support/webinars/" rel="noopener">FreeAgent webinars</a>
+        <a class="btn btn--outline btn--on-dark" href="https://signup.freeagent.com/signup" rel="noopener">Try FreeAgent for free</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .fa-jump { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .btn--on-dark { color: #fff; border-color: rgba(255, 255, 255, 0.5); }
+  .btn--on-dark:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; }
+  .fa-video { display: grid; gap: 0.75rem; text-decoration: none; color: var(--ink); font-weight: 600; }
+  .fa-video img { width: 100%; aspect-ratio: 1; object-fit: contain; border-radius: var(--radius); background: var(--sage-2); padding: 1rem; }
+  .fa-video:hover { border-color: var(--green); color: var(--green); }
+  .fa-webinar img { width: 100%; border-radius: var(--radius); margin-bottom: 1rem; }
+  .fa-webinar h3 { font-family: var(--display); font-weight: 500; font-size: 1.4rem; }
+</style>

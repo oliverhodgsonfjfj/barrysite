@@ -1,0 +1,85 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/services",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/freeagent-gold-partner",
+      "destination": "/freeagent",
+      "permanent": true
+    },
+    {
+      "source": "/client-portal-info",
+      "destination": "/client-portal",
+      "permanent": true
+    },
+    {
+      "source": "/covid-19",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/resources/categories/:slug*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/post/:slug*",
+      "destination": "https://news.focusaccountancy.co.uk/",
+      "permanent": false
+    },
+    {
+      "source": "/_files/ugd/4df625_1532cd7a4ca44c60a4ee77018a64ba52.pdf",
+      "destination": "/docs/terms-and-conditions.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/_files/ugd/4df625_df2deab5ea24451c922537e827c784a7.docx",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/_files/ugd/454878_f4ed1789c1fa4a2085fdf86de5eb0b1a.pdf",
+      "destination": "/docs/tax-planning-2025-26.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/_files/ugd/454878_3fd29bbfe2bf4e1a8ae0da545bf7db02.pdf",
+      "destination": "/docs/freeagent-app-training-slides.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/_files/ugd/454878_81f4521d961b4a90879980f9c27563ac.pdf",
+      "destination": "/docs/rubric-law-pricelist.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/_files/ugd/58e574_aea37498bb114a5e9523c4c719be3851.pdf",
+      "destination": "/docs/kingsbridge-ir35-contract-review.pdf",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}

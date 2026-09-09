@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import acca from '../assets/badges/acca.png';
+import fsb from '../assets/badges/fsb.png';
+import freeagentGold from '../assets/badges/freeagent-gold-partner.png';
+import accredited from '../assets/badges/freeagent-accredited-2025.jpg';
+import { site } from '../data/site';
+
+const ro = site.registeredOffice;
+const year = new Date().getFullYear();
+const cols = [
+  { heading: 'Company', links: [['About the team', '/about'], ['We care', '/we-care'], ['Careers', '/vacancies'], ['Reviews', '/reviews'], ['Contact', '/contact']] },
+  { heading: 'Clients', links: [['Pricing', '/pricing'], ['FreeAgent', '/freeagent'], ['Resources', '/resources'], ['The client portal', '/client-portal'], ['Client Portal login', site.portal]] },
+  { heading: 'Guides', links: [['Paying your taxes', '/taxes'], ['IR35', '/ir35'], ['Banking', '/banking'], ['Jargon buster', '/jargon-buster'], ['FAQs', '/faq']] },
+];
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo"><Image src={logo} height={44} densities={[1, 2]} alt="Focus Accountancy Ltd" /></div>
+        <p>Accountants for contractors, consultants and freelancers. Fixed monthly fees, FreeAgent included, Bristol-based since 2007.</p>
+        <p class="site-footer__contact">
+          <a href={site.phoneHref}>{site.phone}</a><br />
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <span class="muted">{site.hours}</span>
+        </p>
+      </div>
+      {cols.map((c) => (
+        <nav class="site-footer__col" aria-label={c.heading}>
+          <h2 class="site-footer__heading">{c.heading}</h2>
+          <ul>{c.links.map(([label, href]) => <li><a href={href} rel={href.startsWith('http') ? 'noopener' : undefined}>{label}</a></li>)}</ul>
+        </nav>
+      ))}
+    </div>
+
+    <ul class="site-footer__badges" aria-label="Memberships and accreditations">
+      <li><Image src={acca} height={40} alt="ACCA registered" /></li>
+      <li><Image src={fsb} height={40} alt="FSB member" /></li>
+      <li><Image src={freeagentGold} height={48} alt="FreeAgent Gold Partner" /></li>
+      <li><Image src={accredited} height={28} alt="FreeAgent Accredited Practitioner 2025" /></li>
+    </ul>
+
+    <div class="site-footer__bottom">
+      <p>© {year} Focus Accountancy Ltd. Registered in England and Wales, company number {site.crn}. Registered office: {ro.line1}, {ro.town}, {ro.postcode}.</p>
+      <ul class="site-footer__legal">
+        <li><a href="/terms">Terms &amp; conditions</a></li>
+        <li><a href="/privacy">Privacy policy</a></li>
+      </ul>
+      <ul class="site-footer__social" aria-label="Social media">
+        <li><a href={site.social.facebook} rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg></a></li>
+        <li><a href={site.social.linkedin} rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.9 8.5H3.6V21h3.3V8.5zM5.3 3a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8zM20.4 13.3c0-3.6-1.9-5.1-4.4-5.1-2 0-2.9 1.1-3.4 1.9V8.5H9.3V21h3.3v-6.6c0-1.7.3-3.4 2.5-3.4 2.1 0 2.1 2 2.1 3.5V21h3.3v-7.7z"/></svg></a></li>
+        <li><a href={site.social.twitter} rel="noopener" aria-label="X (Twitter)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L1.8 3h6.4l4.4 5.9L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--green-ink); color: var(--on-dark); padding-block: clamp(2.5rem, 5vw, 4rem) 1.5rem; font-size: 0.95rem; }
+  .site-footer a { color: var(--on-dark); text-decoration: none; }
+  .site-footer a:hover { color: var(--lime); text-decoration: underline; }
+  .site-footer .muted { color: var(--on-dark-2); }
+  .site-footer__top { display: grid; gap: 2rem; }
+  @media (min-width: 800px) { .site-footer__top { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 2.5rem; } }
+  .site-footer__logo { display: inline-block; background: #fff; padding: 0.5rem 0.8rem; border-radius: 12px; margin-bottom: 1rem; }
+  .site-footer__logo img { height: 44px; width: auto; }
+  .site-footer__brand p { max-width: 34ch; color: var(--on-dark-2); }
+  .site-footer__contact { line-height: 1.7; }
+  .site-footer__contact a { color: #fff; font-weight: 600; }
+  .site-footer__heading { font-family: var(--font); font-size: 0.75rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-2); margin: 0 0 0.75rem; }
+  .site-footer__col ul { list-style: none; margin: 0; padding: 0; }
+  .site-footer__col li { margin-bottom: 0.45rem; }
+  .site-footer__badges { list-style: none; margin: 2.5rem 0 0; padding: 1.5rem 0 0; border-top: 1px solid rgba(255, 255, 255, 0.12); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+  .site-footer__badges li { background: #fff; border-radius: 12px; padding: 0.5rem 0.75rem; }
+  .site-footer__badges img { width: auto; }
+  .site-footer__bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 0.85rem; color: var(--on-dark-2); }
+  .site-footer__bottom p { margin: 0; flex: 1 1 420px; }
+  .site-footer__legal { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.25rem; }
+  .site-footer__social { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.4rem; }
+  .site-footer__social a { display: inline-flex; padding: 0.45rem; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: #fff; }
+  .site-footer__social a:hover { background: var(--lime); color: var(--green-ink); }
+</style>

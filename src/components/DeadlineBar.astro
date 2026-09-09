@@ -1,0 +1,109 @@
+---
+import { deadlines } from '../data/deadlines';
+---
+<section class="deadline" aria-labelledby="deadline-title">
+  <div class="container deadline__inner">
+    <div class="deadline__next">
+      <p class="deadline__label" id="deadline-title">Next tax deadline</p>
+      <p class="deadline__title">
+        <strong data-deadline-title>Key HMRC dates</strong>
+        <span class="deadline__date" data-deadline-date></span>
+      </p>
+    </div>
+    <p class="deadline__count" aria-live="polite">
+      <span class="deadline__num" data-deadline-days>–</span>
+      <span class="deadline__unit" data-deadline-unit>days away</span>
+    </p>
+    <button class="deadline__toggle" type="button" aria-expanded="false" aria-controls="deadline-list">
+      All key dates
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+  </div>
+  <div id="deadline-list" class="deadline__list" hidden>
+    <div class="container">
+      <ul class="deadline__items">
+        {deadlines.map((d) => (
+          <li data-month={d.month} data-day={d.day}>
+            <span class="deadline__when">{d.label}</span>
+            <span class="deadline__what">{d.title}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="small deadline__note">
+        These are the standard HMRC dates for individuals, sole traders and landlords. Company deadlines for accounts,
+        corporation tax and VAT depend on your year end, and we'll tell you yours.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const list = document.querySelector<HTMLUListElement>('.deadline__items');
+  const items = [...document.querySelectorAll<HTMLLIElement>('.deadline__items li')];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcoming = items
+    .map((li) => {
+      const m = Number(li.dataset.month) - 1;
+      const d = Number(li.dataset.day);
+      let date = new Date(today.getFullYear(), m, d);
+      if (date < today) date = new Date(today.getFullYear() + 1, m, d);
+      return { li, date };
+    })
+    .sort((a, b) => a.date.getTime() - b.date.getTime());
+
+  // Re-order the list so it reads forward from today
+  upcoming.forEach(({ li }) => list?.appendChild(li));
+
+  const next = upcoming[0];
+  if (next) {
+    const days = Math.round((next.date.getTime() - today.getTime()) / 86400000);
+    const set = (sel: string, text: string) => {
+      const el = document.querySelector<HTMLElement>(sel);
+      if (el) el.textContent = text;
+    };
+    set('[data-deadline-title]', next.li.querySelector('.deadline__what')?.textContent ?? '');
+    set('[data-deadline-date]', next.date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }));
+    set('[data-deadline-days]', days === 0 ? 'Today' : String(days));
+    set('[data-deadline-unit]', days === 0 ? '' : days === 1 ? 'day away' : 'days away');
+    next.li.classList.add('is-next');
+  }
+
+  const btn = document.querySelector<HTMLButtonElement>('.deadline__toggle');
+  const panel = document.getElementById('deadline-list');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    if (panel) panel.hidden = open;
+  });
+</script>
+
+<style>
+  .deadline { background: var(--surface); border-block: 1px solid var(--line); }
+  .deadline__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem; padding-block: 1rem; }
+  .deadline__next { flex: 1 1 280px; }
+  .deadline__label { margin: 0 0 0.15rem; font-size: 0.72rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
+  .deadline__title { margin: 0; line-height: 1.35; }
+  .deadline__title strong { font-weight: 640; }
+  .deadline__date { display: block; color: var(--ink-3); font-size: 0.92rem; }
+  .deadline__count { display: flex; align-items: baseline; gap: 0.5rem; margin: 0; }
+  .deadline__num { font-family: var(--display); font-size: 2.4rem; line-height: 1; font-weight: 500; color: var(--green); letter-spacing: -0.02em; }
+  .deadline__unit { font-size: 0.85rem; color: var(--ink-3); font-weight: 500; }
+  .deadline__toggle {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 1rem; font: inherit; font-size: 0.92rem; font-weight: 600; color: var(--green);
+    background: var(--sage-2); border: 0; border-radius: var(--pill); cursor: pointer;
+  }
+  .deadline__toggle:hover { background: var(--sage); }
+  .deadline__toggle svg { transition: transform 0.2s ease; }
+  .deadline__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .deadline__list { border-top: 1px solid var(--line); padding-block: 1.25rem 1.5rem; }
+  .deadline__items { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.5rem; }
+  @media (min-width: 700px) { .deadline__items { grid-template-columns: repeat(3, 1fr); gap: 0.6rem 1.25rem; } }
+  .deadline__items li { display: grid; gap: 0.1rem; padding: 0.7rem 0.9rem; border-radius: 12px; background: var(--paper); }
+  .deadline__items li.is-next { background: var(--sage-2); box-shadow: inset 0 0 0 1px var(--sage); }
+  .deadline__when { font-weight: 650; }
+  .deadline__what { font-size: 0.92rem; color: var(--ink-2); }
+  .deadline__note { margin: 0; color: var(--ink-3); }
+</style>

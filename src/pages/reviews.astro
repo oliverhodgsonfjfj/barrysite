@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import threeBest from '../assets/badges/threebest-rated-2025.png';
+import { reviews, leadQuote } from '../data/reviews';
+import { site } from '../data/site';
+
+const title = 'Reviews and case studies | Focus Accountancy';
+const description = 'See what our clients say about our services, watch client videos, and read a case study.';
+const platforms = [
+  { label: 'FreeIndex', href: site.freeindex },
+  { label: 'Google', href: 'https://www.google.co.uk/search?q=focus+accountancy+ltd+bristol' },
+  { label: 'Facebook', href: 'https://www.facebook.com/Focus-Accountancy-Ltd-245608535449183/' },
+  { label: 'LinkedIn', href: site.social.linkedin },
+  { label: 'Yell', href: 'https://www.yell.com/biz/focus-accountancy-ltd-bristol-6860492/' },
+];
+const photoFor = (name: string) => `/reviews/${name.toLowerCase().replace(/\s+/g, '-')}.jpg`;
+---
+<Base title={title} description={description} current="/reviews">
+  <PageHero
+    eyebrow="Reviews and case studies"
+    title={`“${leadQuote.quote}”`}
+    intro="We work hard to deliver results to contractors, consultants, freelancers and companies looking for an accountant. We're in the top 1% of the thousands of UK accountants ranked on FreeIndex."
+    compact
+  >
+    <p class="small muted" style="margin-top:-0.5rem">{leadQuote.name}, client</p>
+    <div class="trust-row">
+      <Image src={threeBest} height={96} alt="ThreeBest Rated: Best Business of 2025, Excellence" />
+      <img src="/img/reviewbiz.png" alt="ReviewBiz: independently validated reviews" height="48" loading="lazy" />
+    </div>
+  </PageHero>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <div class="video-grid">
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/fXv0Kx4menw" title="Client video: Focus Accountancy" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/D4uuqUkR6rk" title="Client video: Focus Accountancy" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Client testimonials</p>
+      <h2 class="page-section-title">In their words</h2>
+      <div class="cards cards--3">
+        {reviews.map((r) => (
+          <article class="quote-card">
+            <p class="quote-card__title">“{r.title}”</p>
+            <blockquote><p>{r.quote}</p></blockquote>
+            <footer>{r.photo && <img src={photoFor(r.name)} alt="" loading="lazy" />}{r.name}</footer>
+          </article>
+        ))}
+      </div>
+      <p style="margin-top:2rem">
+        If you'd like to see more reviews or leave one yourself, please click on your preferred platform:
+        {platforms.map((p, i) => <><a href={p.href} rel="noopener">{p.label}</a>{i < platforms.length - 1 ? ' · ' : ''}</>)}
+      </p>
+    </div>
+  </section>
+
+  <section class="section band band--pattern">
+    <div class="container grid grid--5-7" data-reveal>
+      <div>
+        <p class="eyebrow">Case study</p>
+        <h2>CRC Production Management Ltd</h2>
+        <p class="lead">Technical delivery of live events including festivals, conferences, sporting events, exhibitions and experiential.</p>
+      </div>
+      <div class="prose prose--dark">
+        <h3>The requirement</h3>
+        <p>The business was in need of an accountancy firm who could provide a more proactive approach in terms of the services provided, whilst at the same time reflecting the needs of the business, something that they had not enjoyed previously.</p>
+        <h3>Why did the client select Focus Accountancy?</h3>
+        <p>This is perhaps best answered by a quote from Claudia Ruth Connelly, Director:</p>
+        <blockquote>“After consulting with other business owners in the same industry and following their recommendations we spoke to three individual firms. We were immediately impressed as a result of the conversation we had with Barry of Focus Accountancy. He showed genuine interest in us and our business and gave us some excellent advice, and this was before we had even made a decision.”</blockquote>
+        <h3>What we have done for our client</h3>
+        <p>We instantly introduced the client to FreeAgent, which brings many benefits and helps them take control of their finances. On behalf of CRC we undertake the production of end of year accounts, produce and submit VAT returns and manage their payroll requirements.</p>
+        <h3>The outcome</h3>
+        <p>We are delighted to be able to provide the proactive and overall enhanced service that the client required and deserved, and to have received the following feedback:</p>
+        <blockquote>“We are absolutely delighted with the service we receive from Barry and his colleagues. The FreeAgent software is great at allowing us to see what is happening in the business from a financial point of view and plan accordingly. We feel confident we are now in control, they communicate with us on a regular basis and respond quickly to queries, furthermore they are friendly and nice people to deal with.”</blockquote>
+        <p class="small">Claudia Ruth Connelly, Director. August 2020.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .trust-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-top: 1.5rem; }
+  .trust-row img { height: auto; }
+  .video-grid { display: grid; gap: 1.25rem; }
+  @media (min-width: 800px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+  .prose--dark, .prose--dark p, .prose--dark h3 { color: var(--on-dark); }
+  .prose--dark blockquote { margin: 0 0 1.2rem; padding-left: 1.1rem; border-left: 3px solid var(--lime); font-family: var(--display); font-size: 1.15rem; color: #fff; }
+</style>

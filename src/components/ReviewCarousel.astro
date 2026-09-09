@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import threeBest from '../assets/badges/threebest-rated-2025.png';
+import { reviews, leadQuote } from '../data/reviews';
+import { site } from '../data/site';
+---
+<section class="section reviews-x" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="reviews-x__head" data-reveal>
+      <div>
+        <p class="eyebrow">Reviews</p>
+        <h2 id="reviews-title">“{leadQuote.quote}”</h2>
+        <p class="muted">{leadQuote.name}, client</p>
+      </div>
+      <div class="reviews-x__trust">
+        <Image src={threeBest} height={104} alt="ThreeBest Rated: Best Business of 2025, Excellence" />
+        <p class="small">
+          In the top 1% of the thousands of UK accountants ranked on <a href={site.freeindex} rel="noopener">FreeIndex</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="carousel" data-carousel data-reveal>
+      <div class="carousel__track" data-track tabindex="0" aria-label="Client reviews. Use the arrow buttons or scroll sideways.">
+        {reviews.map((r, i) => (
+          <article class="carousel__slide" aria-label={`Review ${i + 1} of ${reviews.length}`}>
+            <p class="carousel__title">“{r.title}”</p>
+            <blockquote><p>{r.quote}</p></blockquote>
+            <footer class="carousel__who">
+              {r.photo && <Image src={r.photo} width={96} height={96} alt="" class="carousel__photo" />}
+              <strong>{r.name}</strong>
+            </footer>
+          </article>
+        ))}
+      </div>
+      <div class="carousel__controls">
+        <button type="button" class="carousel__btn" data-prev aria-label="Previous review">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel__dots" data-dots aria-hidden="true"></div>
+        <button type="button" class="carousel__btn" data-next aria-label="Next review">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <a class="carousel__more" href="/reviews">All reviews and a client case study</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-carousel]');
+  if (root) {
+    const track = root.querySelector<HTMLElement>('[data-track]')!;
+    const slides = [...track.querySelectorAll<HTMLElement>('.carousel__slide')];
+    const dots = root.querySelector<HTMLElement>('[data-dots]')!;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'carousel__dot';
+      d.setAttribute('aria-label', `Go to review ${i + 1}`);
+      d.addEventListener('click', () => go(i, true));
+      dots.appendChild(d);
+    });
+    const dotEls = [...dots.children] as HTMLElement[];
+
+    const slideWidth = () => slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || '0');
+    const go = (i: number, user = false) => {
+      current = (i + slides.length) % slides.length;
+      track.scrollTo({ left: current * slideWidth(), behavior: reduce ? 'auto' : 'smooth' });
+      if (user) restart();
+    };
+    const paint = () => dotEls.forEach((d, i) => d.classList.toggle('is-active', i === current));
+
+    track.addEventListener('scroll', () => {
+      current = Math.round(track.scrollLeft / slideWidth());
+      paint();
+    }, { passive: true });
+
+    root.querySelector('[data-prev]')?.addEventListener('click', () => go(current - 1, true));
+    root.querySelector('[data-next]')?.addEventListener('click', () => go(current + 1, true));
+
+    let timer: number | undefined;
+    const stop = () => { if (timer) window.clearInterval(timer); timer = undefined; };
+    const start = () => { if (!reduce && !timer) timer = window.setInterval(() => go(current + 1), 7000); };
+    const restart = () => { stop(); start(); };
+    ['mouseenter', 'focusin', 'touchstart', 'pointerdown'].forEach((ev) => root.addEventListener(ev, stop, { passive: true }));
+    ['mouseleave', 'focusout'].forEach((ev) => root.addEventListener(ev, start));
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    paint();
+    start();
+  }
+</script>
+
+<style>
+  .reviews-x__head { display: grid; gap: 1.5rem; margin-bottom: 2.25rem; }
+  @media (min-width: 900px) {
+    .reviews-x__head { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: 4rem; align-items: end; }
+  }
+  .reviews-x__head h2 { max-width: 20ch; }
+  .reviews-x__trust { display: flex; align-items: center; gap: 1rem; }
+  .reviews-x__trust img { height: 104px; width: auto; }
+  .reviews-x__trust p { margin: 0; }
+
+  .carousel__track {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 100%; column-gap: 1rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel__track::-webkit-scrollbar { display: none; }
+  .carousel__track:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: 4px; }
+  @media (min-width: 680px) { .carousel__track { grid-auto-columns: calc((100% - 1rem) / 2); } }
+  @media (min-width: 1000px) { .carousel__track { grid-auto-columns: calc((100% - 2rem) / 3); } }
+  .carousel__slide {
+    scroll-snap-align: start; display: flex; flex-direction: column;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.6rem 1.6rem 1.5rem;
+  }
+  .carousel__title { margin: 0 0 0.8rem; font-family: var(--display); font-size: 1.35rem; font-weight: 500; color: var(--green); line-height: 1.2; }
+  .carousel__slide blockquote { margin: 0 0 1.25rem; flex: 1; }
+  .carousel__slide blockquote p { color: var(--ink-2); font-size: 0.98rem; }
+  .carousel__who { display: flex; align-items: center; gap: 0.75rem; }
+  .carousel__photo { width: 44px; height: 44px; border-radius: 30%; object-fit: cover; object-position: 50% 20%; }
+
+  .carousel__controls { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; }
+  .carousel__btn {
+    display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 1px solid var(--line-2);
+    border-radius: 50%; background: var(--surface); color: var(--green); cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .carousel__btn:hover { background: var(--green); border-color: var(--green); color: #fff; }
+  .carousel__dots { display: flex; gap: 0.4rem; }
+  :global(.carousel__dot) { width: 0.55rem; height: 0.55rem; border-radius: 50%; border: 0; padding: 0; background: var(--line-2); cursor: pointer; transition: background-color 0.15s ease, transform 0.15s ease; }
+  :global(.carousel__dot.is-active) { background: var(--green); transform: scale(1.3); }
+  .carousel__more { margin-left: auto; font-weight: 600; }
+</style>
