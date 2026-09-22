@@ -1,0 +1,114 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { allPosts, TOPICS, fmtDate, readMinutes } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await allPosts();
+  return posts.map((p) => ({
+    params: { slug: p.data.slug },
+    props: { post: p, related: posts.filter((q) => q.id !== p.id && q.data.topics.some((t) => p.data.topics.includes(t))).slice(0, 3) },
+  }));
+}
+
+const { post, related } = Astro.props;
+const d = post.data;
+const title = `${d.title} | Focus Accountancy`;
+const description = d.description || `${d.title}, from the Focus Accountancy team in Bristol.`;
+const url = `${site.url}/post/${d.slug}`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description,
+  datePublished: d.published,
+  dateModified: d.updated || d.published,
+  author: { '@type': d.author === 'Focus Accountancy' ? 'Organization' : 'Person', name: d.author },
+  publisher: { '@type': 'Organization', name: site.name, url: site.url, logo: { '@type': 'ImageObject', url: `${site.url}/img/logo.png` } },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  ...(d.image ? { image: `${site.url}${d.image}` } : {}),
+};
+const old = !!d.published && d.published < '2023-01-01';
+---
+<Base title={title} description={description} current="/resources" ogImage={d.image || undefined}>
+  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify(schema)} />
+  <article class="post">
+    <header class="post__head">
+      <div class="container">
+        <p class="eyebrow"><a href="/resources">Resources</a>{d.topics.length > 0 && <> · {d.topics.map((t, i) => <><a href={`/resources/categories/${t}`}>{TOPICS[t] || t}</a>{i < d.topics.length - 1 ? ', ' : ''}</>)}</>}</p>
+        <h1>{d.title}</h1>
+        <p class="post__meta">
+          <span>{d.author}</span>
+          <span>{fmtDate(d.published)}</span>
+          {d.updated && d.updated !== d.published && <span>Updated {fmtDate(d.updated)}</span>}
+          <span>{readMinutes(d.words)} min read</span>
+        </p>
+      </div>
+    </header>
+    {d.image && !d.imageInline && (
+      <div class="container post__cover"><img src={d.image} alt="" loading="eager" fetchpriority="high" /></div>
+    )}
+    <div class="container guide post__body">
+      <div>
+        {old && (
+          <p class="post__notice"><strong>Older article.</strong> Rates, thresholds and rules change every tax year. Check the current position with us before acting on anything here.</p>
+        )}
+        <div class="prose" set:html={d.html} />
+        {d.tags.length > 0 && <p class="post__tags">{d.tags.map((t) => <span>{t}</span>)}</p>}
+      </div>
+      <aside class="guide__aside">
+        <div class="guide__card">
+          <p class="eyebrow">Need a hand?</p>
+          <h2 class="guide__card-title">Talk it through with us</h2>
+          <p class="small">A free, no-obligation meeting, online or at our Bristol office.</p>
+          <a class="btn" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+          <p class="small muted guide__card-foot">or call <a href={site.phoneHref}>{site.phone}</a></p>
+        </div>
+        {related.length > 0 && (
+          <div class="guide__card">
+            <p class="eyebrow">Related</p>
+            <ul class="guide__links">
+              {related.map((r) => <li><a href={`/post/${r.data.slug}`}>{r.data.title}</a></li>)}
+            </ul>
+          </div>
+        )}
+        <div class="guide__card">
+          <p class="eyebrow">More guides</p>
+          <ul class="guide__links">
+            <li><a href="/taxes">Paying your taxes</a></li>
+            <li><a href="/ir35">IR35</a></li>
+            <li><a href="/freeagent">FreeAgent help</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/faq">FAQs</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .post__head { border-bottom: 1px solid var(--line); padding-block: clamp(2.5rem, 6vw, 4rem) clamp(1.75rem, 4vw, 2.5rem); }
+  .post__head h1 { max-width: 22ch; }
+  .post__head .eyebrow a { color: inherit; text-decoration: none; }
+  .post__head .eyebrow a:hover { text-decoration: underline; }
+  .post__meta { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; margin: 1rem 0 0; color: var(--ink-2); font-size: 0.95rem; }
+  .post__meta span:first-child { color: var(--ink); font-weight: 600; }
+  .post__cover { padding-top: 2rem; }
+  .post__cover img { width: 100%; max-height: 520px; object-fit: cover; border-radius: var(--radius); }
+  .post__body { padding-top: clamp(2rem, 5vw, 3.5rem); }
+  .post__notice { padding: 0.9rem 1.1rem; margin: 0 0 1.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); font-size: 0.95rem; color: var(--ink-2); }
+  .post__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; }
+  .post__tags span { font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); }
+  .prose figure { margin: 1.75rem 0; }
+  .prose figure img, .prose img { max-width: 100%; height: auto; border-radius: var(--radius); }
+  .prose figcaption { font-size: 0.9rem; color: var(--ink-2); margin-top: 0.5rem; }
+  .prose h4 { margin-top: 1.4rem; font-weight: 650; }
+  .prose ol { padding-left: 1.4rem; margin: 0 0 1.1em; color: var(--ink-2); }
+  .prose blockquote { margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; border-left: 3px solid var(--green); color: var(--ink-2); }
+  .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  .prose th, .prose td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .prose th { font-weight: 650; color: var(--ink); }
+  .prose hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+  .prose sup { font-size: 0.75em; }
+</style>

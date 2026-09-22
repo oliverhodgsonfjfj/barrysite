@@ -1,0 +1,23 @@
+{
+ "slug": "get-data-from-receipts-automatically",
+ "title": "Get data from receipts automatically",
+ "description": "The new auto extract feature from FreeAgent will pull information from a receipt automatically into FreeAgent.",
+ "published": "2021-08-11",
+ "updated": "2021-08-11",
+ "author": "Barry Adams",
+ "topics": [
+  "small-business",
+  "freeagent"
+ ],
+ "tags": [
+  "FreeAgent",
+  "bookkeeping",
+  "expenses",
+  "receipts"
+ ],
+ "image": "/blog/454878_fba5459c5bb34a90b4acedb2c3e78b58~mv2.jpg",
+ "imageInline": true,
+ "words": 264,
+ "legacy": true,
+ "html": "<figure><img src=\"/blog/454878_fba5459c5bb34a90b4acedb2c3e78b58~mv2.jpg\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><p>FreeAgent have launched a new time-saving feature that extracts information from your receipts automatically.</p><p>With the new <a href=\"https://support.freeagent.com/hc/en-gb/articles/4402779922834-How-to-convert-a-file-in-the-Files-area-into-an-out-of-pocket-expense-using-the-FreeAgent-mobile-app\" rel=\"noopener\"><strong>Auto Extract feature</strong></a> on the FreeAgent mobile app, you will no longer need to enter the date and total amount after taking a picture of a receipt, as this information will be <strong>pulled into FreeAgent automatically</strong>. </p><p>You can then <strong>convert a receipt into an expense</strong> or <strong>attach it to a bank transaction</strong>. </p><p>This new feature is an enhancement of the '<a href=\"https://support.freeagent.com/hc/en-gb/articles/360017908100\" rel=\"noopener\"><strong>Capture for Later</strong></a>' function that you may have been using already.</p><p>Here is a quick overview of how to use it:</p><h2>Navigate to the relevant file in the ‘Files’ area</h2><p>Open the FreeAgent mobile app, tap the three-lined 'hamburger' icon at the top-left of the screen to open your 'Settings' menu and select ‘Files’.</p><figure><img src=\"/blog/454878_47542400c7b14bd5be54e2dab9e31214~mv2.jpeg\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><p>Select the relevant file from the list. A lightning bolt icon will identify which files the ‘Auto Extract’ functionality can extract data from.</p><figure><img src=\"/blog/454878_c2112d1e728a4c43aa1509efb3c50708~mv2.png\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><h2>Convert the file to an out-of-pocket expense</h2><p>Review the file, receipt date and the total value. Once you’re ready to proceed, select ‘Convert to a new expense’.</p><figure><img src=\"/blog/454878_bc638fb628d541a8b7c07daa45e5d4c9~mv2.png\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><p>A new out-of-pocket expense will be created with the file as an attachment. The automatically extracted information is highlighted with a lightning bolt symbol.</p><figure><img src=\"/blog/454878_8ec4be5b791741c3a5dff779de325aa3~mv2.png\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><p>Next, complete any additional relevant fields for the expense.</p><figure><img src=\"/blog/454878_9fc98e43361d47afa51332db843a0f76~mv2.jpeg\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><p>Review all of the expense details and once you’re ready to proceed, select ‘Save’ in the top-right corner.</p><p>You will find more information on how to do this on the <a href=\"https://support.freeagent.com/hc/en-gb/articles/4402779922834-How-to-convert-a-file-in-the-Files-area-into-an-out-of-pocket-expense-using-the-FreeAgent-mobile-app\" rel=\"noopener\"><strong>FreeAgent website</strong></a>, or of course, you can <a href=\"https://calendly.com/focusaccountancy/30min\" rel=\"noopener\"><strong>contact us</strong></a> for any help you might need.</p>"
+}

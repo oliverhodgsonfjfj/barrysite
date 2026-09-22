@@ -63,22 +63,27 @@ import { team } from '../data/team';
 </section>
 
 <script>
-  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.team-x__face')];
-  const details = [...document.querySelectorAll<HTMLElement>('.team-x__detail')];
-  const panel = document.querySelector<HTMLElement>('.team-x__panel');
-  buttons.forEach((b) =>
-    b.addEventListener('click', () => {
-      const id = b.dataset.member;
-      buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-      details.forEach((d) => (d.hidden = d.dataset.member !== id));
-      panel?.classList.remove('is-swapping');
-      void panel?.offsetWidth;
-      panel?.classList.add('is-swapping');
-      if (panel && window.matchMedia('(max-width: 899px)').matches) {
-        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    })
-  );
+  import { onPage } from '../lib/on-page';
+
+  // Re-runs for every page the ClientRouter swaps in (elements are fresh each time, so nothing binds twice).
+  onPage(() => {
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('.team-x__face')];
+    const details = [...document.querySelectorAll<HTMLElement>('.team-x__detail')];
+    const panel = document.querySelector<HTMLElement>('.team-x__panel');
+    buttons.forEach((b) =>
+      b.addEventListener('click', () => {
+        const id = b.dataset.member;
+        buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        details.forEach((d) => (d.hidden = d.dataset.member !== id));
+        panel?.classList.remove('is-swapping');
+        void panel?.offsetWidth;
+        panel?.classList.add('is-swapping');
+        if (panel && window.matchMedia('(max-width: 899px)').matches) {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      })
+    );
+  });
 </script>
 
 <style>

@@ -134,9 +134,9 @@ p:last-child { margin-bottom: 0; }
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.btn:hover { background: var(--green-deep); border-color: var(--green-deep); color: #fff; transform: translateY(-1px); }
+.btn:hover { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
 .btn--small { padding: 0.6rem 1.1rem; font-size: 0.95rem; }
 .btn--outline { background: transparent; color: var(--green); }
 .btn--outline:hover { background: var(--sage-2); color: var(--green-deep); border-color: var(--green); }
@@ -166,18 +166,75 @@ p:last-child { margin-bottom: 0; }
 }
 .skip-link:focus { top: 1rem; }
 
-/* Page-load reveal for the hero, scroll reveal for everything else */
-.reveal { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.reveal[data-delay="1"] { animation-delay: 0.08s; }
-.reveal[data-delay="2"] { animation-delay: 0.16s; }
-.reveal[data-delay="3"] { animation-delay: 0.26s; }
-@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-html.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
-html.js [data-reveal].is-visible { opacity: 1; transform: none; }
+/* ---------- Motion ----------
+   One easing for every entrance (a slow "expo out": quick start, long settle), transforms and
+   opacity only. Everything in this block sits inside prefers-reduced-motion: no-preference, so
+   with reduced motion none of it exists and every element is simply visible. Scroll reveals are
+   also gated on html.js (set inline in Base.astro) so a page without JS is never blank. */
+:root { --ease: cubic-bezier(0.16, 1, 0.3, 1); --rise: 28px; --rise-time: 0.9s; }
+@keyframes rise { from { opacity: 0; transform: translateY(var(--rise)); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Page-load rise */
+  .reveal { animation: rise var(--rise-time) var(--ease) both; }
+  .reveal[data-delay="1"] { animation-delay: 0.08s; }
+  .reveal[data-delay="2"] { animation-delay: 0.16s; }
+  .reveal[data-delay="3"] { animation-delay: 0.26s; }
+
+  /* Scroll reveal: a block rises as one when it enters the viewport (observer in Base.astro) */
+  html.js [data-reveal] { opacity: 0; transform: translateY(var(--rise)); transition: opacity var(--rise-time) var(--ease), transform var(--rise-time) var(--ease); }
+  html.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+  /* Staggered scroll reveal: the container stays put and its items rise in 70ms apart.
+     Items are the container's direct children, the cards of a grid nested directly inside it
+     (.cards, .grid, .link-grid), or the cards of a React island's grid. The observer numbers each
+     item with --i; island cards are numbered here instead (below) because React owns their
+     attributes and would flag a hydration mismatch if the script wrote to them. A keyframe
+     animation rather than a transition so it also wins over the inline transforms framer-motion
+     puts on the team cards, then hands them back once it has finished (fill: backwards). */
+  html.js [data-reveal-stagger] > :where(:not(astro-island, .cards, .grid, .link-grid)),
+  html.js [data-reveal-stagger] > :where(.cards, .grid, .link-grid) > *,
+  html.js [data-reveal-stagger] > astro-island .grid > * { opacity: 0; }
+  html.js [data-reveal-stagger].is-visible > :where(:not(astro-island, .cards, .grid, .link-grid)),
+  html.js [data-reveal-stagger].is-visible > :where(.cards, .grid, .link-grid) > *,
+  html.js [data-reveal-stagger].is-visible > astro-island .grid > * {
+    opacity: 1;
+    animation: rise var(--rise-time) var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(2) { --i: 1; }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(3) { --i: 2; }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(4) { --i: 3; }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(5) { --i: 4; }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(6) { --i: 5; }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(7) { --i: 6; }
+  html.js [data-reveal-stagger] > astro-island .grid > :nth-child(n + 8) { --i: 7; }
+
+  /* Home hero entrance (aero-hero.tsx references these classes; the component is rendered
+     statically, so the keyframes live here). The photo settles from 1.08 to 1 over 1.6s, then
+     drifts between 1 and 1.04 every 18s for as long as the page is open. Copy rises 80ms apart. */
+  @keyframes hero-photo-in { from { transform: scale(1.08); } to { transform: scale(1); } }
+  @keyframes hero-photo-drift { from { transform: scale(1); } to { transform: scale(1.04); } }
+  .hero-a__photo { animation: hero-photo-in 1.6s var(--ease) both, hero-photo-drift 18s ease-in-out 1.6s infinite alternate; }
+  .hero-a__in { animation: rise var(--rise-time) var(--ease) both; animation-delay: calc(0.12s + var(--i, 0) * 80ms); }
+
+  /* Buttons lift 2px with a soft shadow */
+  .btn { transition: background-color 0.22s ease-out, border-color 0.22s ease-out, color 0.22s ease-out, transform 0.22s ease-out, box-shadow 0.22s ease-out; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -14px rgba(11, 63, 0, 0.55); }
+  .btn--outline:hover { box-shadow: 0 12px 24px -16px rgba(20, 31, 16, 0.3); }
+
+  /* Cards lift 4px. The shadow is a pseudo-element whose opacity fades, so hovering never
+     repaints a box-shadow; only transform and opacity change. */
+  .card, .link-grid li { position: relative; transition: transform 0.3s var(--ease), border-color 0.22s ease-out; }
+  .card::after, .link-grid li::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    box-shadow: 0 24px 48px -28px rgba(20, 31, 16, 0.35); opacity: 0; transition: opacity 0.3s var(--ease);
+  }
+  .card:hover, .link-grid li:hover { transform: translateY(-4px); }
+  .card:hover::after, .link-grid li:hover::after { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal { animation: none; }
-  html.js [data-reveal] { opacity: 1; transform: none; transition: none; }
-  .btn:hover { transform: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -257,12 +314,11 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
 /* ---------- Home: resources ---------- */
 .link-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
 @media (min-width: 600px) { .link-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem 0.75rem; } }
-.link-grid li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.15s ease, transform 0.15s ease; }
-.link-grid li:hover { border-color: var(--green); transform: translateY(-2px); }
+.link-grid li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.15s ease; }
+.link-grid li:hover { border-color: var(--green); }
 .link-grid a { display: block; padding: 0.9rem 1rem 0.95rem; font-weight: 650; color: var(--ink); text-decoration: none; }
 .link-grid li:hover a { color: var(--green); }
 .link-grid span { display: block; font-weight: 450; margin-top: 0.15rem; }
-@media (prefers-reduced-motion: reduce) { .link-grid li:hover { transform: none; } }
 
 /* ---------- Home: contact ---------- */
 .contact-details { margin: 1.5rem 0 0; }
@@ -408,6 +464,11 @@ body:not(.has-overlay) main { padding-top: 84px; }
 .section--tint { background: var(--surface-2); }
 .photo-band { position: relative; min-height: 440px; display: flex; align-items: center; color: #fff; overflow: hidden; background: var(--green-ink); }
 .photo-band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+/* Parallax (script in Base.astro): the photo is 40px taller than the band top and bottom so it can
+   drift up to 40px against the scroll without showing an edge. Fine pointers only, never with reduced motion. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.js .photo-band img { top: -40px; bottom: -40px; height: calc(100% + 80px); will-change: transform; }
+}
 .photo-band__scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10, 25, 5, 0.82) 0%, rgba(10, 25, 5, 0.45) 55%, rgba(10, 25, 5, 0.15) 100%); }
 .photo-band__inner { position: relative; z-index: 2; padding-block: clamp(3rem, 7vw, 5rem); max-width: var(--container); }
 .photo-band__inner h2 { color: #fff; max-width: 16ch; }

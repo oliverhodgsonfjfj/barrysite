@@ -1,0 +1,18 @@
+{
+ "slug": "open-banking-and-freeagent",
+ "title": "Open banking and FreeAgent",
+ "description": "What is open banking and how it effects FreeAgent usersAlmost every client we’ve worked with loves FreeAgent but if there is ever an issue it’s likely to be something related to the bank feed. Bank feeds usually work brilliantly but established banks with old systems and the requirement for third-pa",
+ "published": "2019-07-18",
+ "updated": "2020-02-07",
+ "author": "Mike Evans",
+ "topics": [
+  "freeagent",
+  "small-business"
+ ],
+ "tags": [],
+ "image": "/blog/4df625_8769eec2189a4e62ae66f484e551cf69~mv2_d_2087_1250_s_2.png",
+ "imageInline": false,
+ "words": 352,
+ "legacy": true,
+ "html": "<h2>What is open banking and how it effects FreeAgent users</h2><p>Almost every client we’ve worked with loves FreeAgent but if there is ever an issue it’s likely to be something related to the bank feed. Bank feeds usually work brilliantly but established banks with old systems and the requirement for third-party apps like Yodlee to make connections mean that from time to time, something goes wrong. The issues are usually very minor like a duplicated or missed transaction but if not caught early these issues can take a long time to resolve. Luckily open banking is allowing FreeAgent to take more control over bank feeds, cut out the third-party apps and make more secure and reliable connections with the bank.</p><p>New open banking feeds are in the pipeline but as of July 2019, the following banks have open banking feeds to FreeAgent available:</p><p>NatWest</p><p>Royal Bank of Scotland</p><p>Ulster Bank</p><p>Lloyds</p><p>Barclays</p><p>HSBC</p><p>Halifax</p><p>Bank of Scotland</p><p>First Direct</p><p>Danske Bank</p><p>Switch to an open banking feed</p><p>If you are currently with one of the banks listed and would like to switch to a more secure and reliable open banking feed then make sure you’re set up for online banking and then follow these steps:</p><p>1. Open FreeAgent, click the ‘Banking’ tab and then click on the appropriate account;</p><p>2. Near the top right of the page, you should see a drop-down menu called ‘More’. Click this to open the menu and select ‘Disable Bank Feed’;</p><p>3. You’ll be taken back to the bank account where a new button will have appeared close to the ‘More’ drop-down menu labelled ‘Enable Bank Feed’. Click this to proceed to the list of banks;</p><p>4. Select your bank from the list, select the type of account you have and then click the</p><p>‘Connect your bank account’ button at the bottom of the screen;</p><p>5. This will take you through to your online banking log in to establish the connection that will vary based on who you bank with;</p><p>6. Once you’ve successfully established the connection, the feed should be up and running within 24 hours.</p>"
+}

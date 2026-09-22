@@ -33,11 +33,11 @@ export default function AeroHero({
       className={cn('relative flex min-h-[min(100svh,960px)] w-full items-center justify-center overflow-hidden bg-[#0a2b00]', className)}
       aria-label="Introduction"
     >
-      {/* photo */}
+      {/* photo: hero-a__photo (global.css) settles it from a slight zoom, then drifts very slowly */}
       <img
         src={image}
         alt={imageAlt}
-        className="absolute inset-0 h-full w-full object-cover object-[62%_50%]"
+        className="hero-a__photo absolute inset-0 h-full w-full object-cover object-[62%_50%]"
         style={{ width: '100%', height: '100%' }}
         fetchPriority="high"
         decoding="async"
@@ -56,22 +56,22 @@ export default function AeroHero({
         </div>
       </div>
 
-      {/* copy */}
+      {/* copy: each block carries hero-a__in and an index, so it rises in sequence (keyframes in global.css) */}
       <div className="relative z-20 flex max-w-5xl flex-col items-center px-6 pt-24 pb-16 text-center text-white">
         {eyebrow && (
-          <p className="mb-6 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-white/85">{eyebrow}</p>
+          <p className="hero-a__in mb-6 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-white/85" style={{ '--i': 0 } as React.CSSProperties}>{eyebrow}</p>
         )}
         <h1
-          className="text-balance text-center text-[2.6rem] leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[5.4rem]"
-          style={{ fontFamily: 'var(--display)', fontWeight: 560, letterSpacing: '-0.03em' }}
+          className="hero-a__in text-balance text-center text-[2.6rem] leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[5.4rem]"
+          style={{ fontFamily: 'var(--display)', fontWeight: 560, letterSpacing: '-0.03em', '--i': 1 } as React.CSSProperties}
         >
           {title}
         </h1>
-        <p className="mx-auto mt-7 mb-10 max-w-2xl text-center text-lg font-light leading-relaxed text-white/90 md:text-xl">
+        <p className="hero-a__in mx-auto mt-7 mb-10 max-w-2xl text-center text-lg font-light leading-relaxed text-white/90 md:text-xl" style={{ '--i': 2 } as React.CSSProperties}>
           {text}
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        <div className="hero-a__in flex flex-wrap items-center justify-center gap-x-8 gap-y-4" style={{ '--i': 3 } as React.CSSProperties}>
           <a
             href={ctaHref}
             rel="noopener"

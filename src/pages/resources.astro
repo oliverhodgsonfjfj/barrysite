@@ -1,87 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
-import DeadlineBar from '../components/DeadlineBar.astro';
-import { site } from '../data/site';
+import ResourcesShell from '../components/ResourcesShell.astro';
+import { allPosts } from '../lib/posts';
 
-const title = 'Resources: guides, news and factsheets | Focus Accountancy';
-const description = 'Guides on paying your taxes, IR35, banking, insurance, pensions and legal, a jargon buster, FAQs, and our news site with articles and factsheets.';
-
-const guides = [
-  { href: '/taxes', label: 'Paying your taxes', note: 'Deadlines, payment links, bank details and what happens if you pay late.' },
-  { href: '/ir35', label: 'IR35', note: 'What it is, how status is decided, and a free independent review.' },
-  { href: '/banking', label: 'Banking', note: 'Choosing a business bank account, and the banks we partner with.' },
-  { href: '/insurance', label: 'Insurance', note: 'Contractor insurance and IR35 reviews with Kingsbridge.' },
-  { href: '/pensions', label: 'Pensions', note: 'Setting up director or personal pension contributions.' },
-  { href: '/legal', label: 'Legal', note: 'The Bristol law firm we recommend.' },
-  { href: '/jargon-buster', label: 'Jargon buster', note: 'Accounting terms explained, A to Z.' },
-  { href: '/faq', label: 'Frequently asked questions', note: 'The questions most new clients ask us.' },
-  { href: '/client-portal', label: 'The client portal', note: 'How our secure document portal works.' },
-  { href: '/freeagent', label: 'FreeAgent help', note: 'Tips, videos, webinars and answers for FreeAgent users.' },
-];
+const posts = await allPosts();
+const title = 'Resources: articles, guides and factsheets | Focus Accountancy';
+const description = 'Articles on tax, FreeAgent, IR35, Making Tax Digital and running a small business, plus guides, factsheets and the client portal, from Focus Accountancy in Bristol.';
 ---
 <Base title={title} description={description} current="/resources">
-  <PageHero
-    eyebrow="Resources"
-    title="Guides, news and straight answers"
-    intro="We regularly write articles on a wide range of relevant topics so that contractors, consultants and freelancers can be better informed to make the right choices."
-    compact
-  />
-
-  <DeadlineBar />
-
-  <section class="section section--tight">
-    <div class="container" data-reveal>
-      <p class="eyebrow">Guides</p>
-      <h2 class="page-section-title">Our guides</h2>
-      <ul class="link-grid link-grid--3">
-        {guides.map((g) => (
-          <li><a href={g.href}>{g.label}<span class="small muted">{g.note}</span></a></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section--tight">
-    <div class="container cards cards--3" data-reveal>
-      <div class="card">
-        <p class="eyebrow">News</p>
-        <h3 class="card__title">Articles and updates</h3>
-        <p>Budgets, tax changes, FreeAgent features and practical tips, on our news site.</p>
-        <p><a class="btn btn--outline btn--small" href={site.news} rel="noopener">Read the news</a></p>
-      </div>
-      <div class="card">
-        <p class="eyebrow">Factsheets</p>
-        <h3 class="card__title">Reference factsheets</h3>
-        <p>Plain-English factsheets on tax and business topics, kept up to date each tax year.</p>
-        <p><a class="btn btn--outline btn--small" href={site.factsheets} rel="noopener">Browse factsheets</a></p>
-      </div>
-      <div class="card">
-        <p class="eyebrow">Infozone</p>
-        <h3 class="card__title">Tax rates and calculators</h3>
-        <p>Current rates, allowances and thresholds, plus useful calculators.</p>
-        <p><a class="btn btn--outline btn--small" href={site.infozone} rel="noopener">Open the infozone</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tight">
-    <div class="container grid grid--7-5" data-reveal>
-      <div class="card">
-        <p class="eyebrow">Tax planning</p>
-        <h3 class="card__title">Tax planning for 2025 to 2026</h3>
-        <p>Tax planning is an easy way to save yourself thousands in taxes every year. This document has all the information you need about tax planning for the 2025 to 2026 tax year.</p>
-        <p><a class="btn btn--small" href="/docs/tax-planning-2025-26.pdf">Download the guide (PDF)</a></p>
-      </div>
-      <div class="card">
-        <p class="eyebrow">The Focus App</p>
-        <p>Tax tips, up-to-date tax rates and calculators to help with decisions like 'should I get a company car?' or 'should I be a sole trader or a limited company?'.</p>
-        <p><a class="btn btn--outline btn--small" href={site.googlePlay} rel="noopener">Get it on Google Play</a></p>
-      </div>
-    </div>
-  </section>
+  <ResourcesShell posts={posts} all={posts} />
 </Base>
-
-<style>
-  @media (min-width: 900px) { .link-grid--3 { grid-template-columns: repeat(3, 1fr); } }
-</style>

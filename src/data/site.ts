@@ -14,7 +14,7 @@ export const site = {
     maria: 'https://calendly.com/maria-focusaccountancy/30min',
     marianna: 'https://calendly.com/marianna-focusaccountancy/30min',
   },
-  news: 'https://news.focusaccountancy.co.uk',
+  news: '/news',
   factsheets: 'https://news.focusaccountancy.co.uk/factsheets',
   infozone: 'https://news.focusaccountancy.co.uk/component/infozone/?view=infozone&Itemid=119',
   social: {
@@ -35,11 +35,32 @@ export const site = {
   founded: 2007,
 };
 
-export const nav = [
-  { href: '/about', label: 'About' },
+export type NavItem = { href: string; label: string; external?: boolean; children?: NavItem[] };
+
+// Same structure as the live Wix site's menu (About us, Pricing, Reviews, Resources, Contact, FreeAgent).
+export const nav: NavItem[] = [
+  { href: '/about', label: 'About us', children: [
+    { href: '/vacancies', label: 'Vacancies' },
+    { href: '/we-care', label: 'We care' },
+  ] },
   { href: '/pricing', label: 'Pricing' },
   { href: '/reviews', label: 'Reviews' },
-  { href: '/freeagent', label: 'FreeAgent' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/resources', label: 'Resources', children: [
+    { href: '/pensions', label: 'Pensions' },
+    { href: '/news', label: 'News' },
+    { href: 'https://news.focusaccountancy.co.uk/factsheets', label: 'Factsheets', external: true },
+    { href: 'https://news.focusaccountancy.co.uk/component/infozone/?view=infozone&Itemid=119', label: 'Infozone', external: true },
+    { href: '/ir35', label: 'IR35' },
+    { href: '/insurance', label: 'Insurance' },
+    { href: '/taxes', label: 'Taxes' },
+    { href: '/banking', label: 'Banking' },
+    { href: '/legal', label: 'Legal' },
+    { href: '/jargon-buster', label: 'Jargon buster' },
+    { href: '/faq', label: "FAQ's" },
+    { href: '/client-portal', label: 'Client Portal' },
+  ] },
   { href: '/contact', label: 'Contact' },
+  { href: '/freeagent', label: 'FreeAgent', children: [
+    { href: '/freeagent', label: 'FreeAgent Gold Partner' },
+  ] },
 ];

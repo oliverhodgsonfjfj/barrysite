@@ -1,0 +1,23 @@
+{
+ "slug": "how-to-re-register-for-vat",
+ "title": "How to re-register for VAT",
+ "description": "How to re-register for VAT from within FreeAgent, after you have previously deregistered for VAT.",
+ "published": "2021-07-05",
+ "updated": "2021-07-06",
+ "author": "Barry Adams",
+ "topics": [
+  "small-business",
+  "taxes",
+  "freeagent"
+ ],
+ "tags": [
+  "FreeAgent",
+  "Tax",
+  "VAT"
+ ],
+ "image": "/blog/454878_f72c132ce4ee4e9d80c20b2f74c6d689~mv2.jpg",
+ "imageInline": true,
+ "words": 312,
+ "legacy": true,
+ "html": "<figure><img src=\"/blog/454878_f72c132ce4ee4e9d80c20b2f74c6d689~mv2.jpg\" alt=\"\" loading=\"lazy\" decoding=\"async\"></figure><p>If you have previously de-registered for VAT after dropping below the threshold, and you are now approaching the threshold again, you will need to re-register for VAT with HMRC. Previously you would have had to create a new copy of FreeAgent, but now you can use the same copy of FreeAgent as before.</p><p>This <a href=\"https://support.freeagent.com/hc/en-gb/articles/4402695620882-How-to-update-your-VAT-registration-settings-when-you-re-register-your-business-for-VAT\" rel=\"noopener\"><strong>article from FreeAgent</strong></a> explains the process in detail, and here is a quick summary:</p><h2>Before you start</h2><p>Before you can set up an additional VAT registration period, you will need to have set the previous VAT registration period as <a href=\"https://support.freeagent.com/hc/en-gb/articles/115001220150-How-to-update-your-VAT-settings-when-you-de-register-your-business-for-VAT\" rel=\"noopener\">de-registered for VAT</a> and entered a de-registration date. You will also need to ensure that the final VAT return for the previous VAT registration period has been <a href=\"https://support.freeagent.com/hc/en-gb/articles/115001220190-How-to-file-a-VAT-return-through-FreeAgent\" rel=\"noopener\">filed to HMRC</a> or <a href=\"https://support.freeagent.com/hc/en-gb/articles/360004185960-How-to-mark-a-VAT-return-as-filed\" rel=\"noopener\">marked as filed</a>.</p><p>You’ll need to have <a href=\"https://support.freeagent.com/hc/en-gb/articles/115001223444-User-access-levels-in-FreeAgent\" rel=\"noopener\">full (level 8) access</a> to your FreeAgent account to create an additional VAT registration period.</p><p>Please note that once you set up your new VAT registration period, any changes you make to transactions in your previous VAT registration period won’t be included on a VAT return in your new VAT registration period. For more information, please see <a href=\"https://support.freeagent.com/hc/en-gb/articles/115001220130-How-to-make-corrections-in-a-VAT-locked-period#h_01F8SKRN65PP5PMZEZAK4Y6WFT\" rel=\"noopener\">this article</a>.</p><p>The process within FreeAgent is fairly simple:</p><ol><li><p>Change your VAT registration status</p></li><li><p>Enter your new VAT settings</p></li><li><p>Enter your new VAT registration details</p></li><li><p>Enter your new VAT return details</p></li></ol><h2>What happens next?</h2><p>After creating an additional VAT registration period, FreeAgent will start preparing your VAT returns for the new period. These will appear on your VAT ‘Statement of Account’, which can be accessed by navigating to the ‘Taxes’ tab at the top of the screen and selecting ‘VAT’ from the drop-down menu.</p><h2>How to view previous VAT registration periods</h2><p>To view details of your previous VAT registration periods, select 'Settings' from the drop-down menu in the top-right corner and then select 'VAT Registration' from the 'Accounting, Tax &amp; VAT' section.</p>"
+}

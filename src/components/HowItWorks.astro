@@ -35,23 +35,28 @@ import { steps } from '../data/howItWorks';
 </section>
 
 <script>
-  const tabs = [...document.querySelectorAll<HTMLButtonElement>('.how__tablist [role="tab"]')];
-  const panels = [...document.querySelectorAll<HTMLElement>('.how__panel')];
-  const select = (i: number) => {
-    tabs.forEach((t, k) => {
-      t.setAttribute('aria-selected', String(k === i));
-      t.tabIndex = k === i ? 0 : -1;
-    });
-    panels.forEach((p, k) => (p.hidden = k !== i));
-    tabs[i].focus();
-  };
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => select(i));
-    t.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); select((i + 1) % tabs.length); }
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); select((i - 1 + tabs.length) % tabs.length); }
-      if (e.key === 'Home') { e.preventDefault(); select(0); }
-      if (e.key === 'End') { e.preventDefault(); select(tabs.length - 1); }
+  import { onPage } from '../lib/on-page';
+
+  // Re-runs for every page the ClientRouter swaps in (elements are fresh each time, so nothing binds twice).
+  onPage(() => {
+    const tabs = [...document.querySelectorAll<HTMLButtonElement>('.how__tablist [role="tab"]')];
+    const panels = [...document.querySelectorAll<HTMLElement>('.how__panel')];
+    const select = (i: number) => {
+      tabs.forEach((t, k) => {
+        t.setAttribute('aria-selected', String(k === i));
+        t.tabIndex = k === i ? 0 : -1;
+      });
+      panels.forEach((p, k) => (p.hidden = k !== i));
+      tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i));
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); select((i + 1) % tabs.length); }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); select((i - 1 + tabs.length) % tabs.length); }
+        if (e.key === 'Home') { e.preventDefault(); select(0); }
+        if (e.key === 'End') { e.preventDefault(); select(tabs.length - 1); }
+      });
     });
   });
 </script>

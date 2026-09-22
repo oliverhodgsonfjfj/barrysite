@@ -3,6 +3,7 @@ import '@fontsource-variable/libre-franklin';
 import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/tailwind.css';
 import '../styles/global.css';
+import { ClientRouter, fade } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
@@ -18,9 +19,11 @@ interface Props {
 const { title, description, current, ogImage, overlayHeader = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname, site.url).href;
 const og = ogImage ? new URL(ogImage, site.url).href : undefined;
+// Client-side navigation (ClientRouter) with a short whole-page crossfade; transition:name="root"
+// on <html> below keeps the browser's default page target so the fade applies to the whole page.
 ---
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" transition:name="root" transition:animate={fade({ duration: '0.22s' })}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,6 +40,7 @@ const og = ogImage ? new URL(ogImage, site.url).href : undefined;
     {og && <meta property="og:image" content={og} />}
     <meta name="twitter:card" content={og ? 'summary_large_image' : 'summary'} />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body class:list={[{ 'has-overlay': overlayHeader }]}>
@@ -47,23 +51,101 @@ const og = ogImage ? new URL(ogImage, site.url).href : undefined;
     </main>
     <Footer />
     <script>
-      const targets = document.querySelectorAll('[data-reveal]');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      import { onPage } from '../lib/on-page';
+
+      // The ClientRouter replaces every <html> attribute on navigation, which would drop the
+      // .js class the reveal CSS is gated on. Put it back before the new page paints.
+      document.addEventListener('astro:after-swap', () => document.documentElement.classList.add('js'));
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      /* ---- Scroll reveal ----
+         [data-reveal] blocks rise as one; [data-reveal-stagger] groups rise item by item. The
+         stagger delay comes from --i, set here on each item. Items are the container's direct
+         children, or the cards of a grid nested directly inside it. React islands are skipped:
+         their cards are numbered in CSS (global.css) so nothing is written to React-owned DOM. */
+      const GRID = '.cards, .grid, .link-grid';
+      const staggerItems = (container: Element): HTMLElement[] =>
+        [...container.children].flatMap((child) => {
+          if (child.tagName === 'ASTRO-ISLAND') return [];
+          return (child.matches(GRID) ? [...child.children] : [child]) as HTMLElement[];
+        });
+
+      let io: IntersectionObserver | undefined;
+      let pending = new Set<Element>();
+      const reveal = (el: Element) => {
+        el.classList.add('is-visible');
+        pending.delete(el);
+        io?.unobserve(el);
+      };
+      // The observer only reports changes, so a block that jumps from below the viewport to above
+      // it between two frames (fast flick, smooth-scrolled anchor, restored scroll position on
+      // reload or back) never fires. Anything already scrolled past is shown at once instead.
+      const revealPassed = () => {
+        for (const el of pending) if (el.getBoundingClientRect().bottom < 0) reveal(el);
+      };
+      function initReveal() {
+        io?.disconnect();
+        const targets = document.querySelectorAll('[data-reveal], [data-reveal-stagger]');
+        targets.forEach((el) => {
+          if (el.hasAttribute('data-reveal-stagger')) staggerItems(el).forEach((item, i) => item.style.setProperty('--i', String(i)));
+        });
+        pending = new Set(targets);
+        if (!('IntersectionObserver' in window) || reduceMotion.matches) {
+          targets.forEach(reveal);
+          return;
+        }
+        io = new IntersectionObserver(
+          // threshold 0 as well as 0.08: a block taller than the viewport (the 100-post feed) can never
+          // reach 8% visible, so any intersection reveals it once it is on screen.
+          (entries) => entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            if (entry.intersectionRatio >= 0.08 || entry.boundingClientRect.height > window.innerHeight * 0.6) reveal(entry.target);
+          }),
+          { rootMargin: '0px 0px -8% 0px', threshold: [0, 0.08] }
         );
-        targets.forEach((el) => io.observe(el));
-      } else {
-        targets.forEach((el) => el.classList.add('is-visible'));
+        revealPassed();
+        pending.forEach((el) => io!.observe(el));
       }
+
+      /* ---- Photo-band parallax ----
+         The band's image drifts up to 40px against the scroll (transform only, one rAF per scroll
+         event). Fine pointers with motion allowed only; the matching CSS makes the image 40px
+         taller top and bottom so the drift never shows an edge. */
+      const canParallax = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+      let bands: HTMLImageElement[] = [];
+      const paintParallax = () => {
+        const vh = window.innerHeight;
+        for (const img of bands) {
+          const r = img.parentElement!.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) continue;
+          // -1 when the band has just left the top of the viewport, +1 as it enters at the bottom
+          const progress = (r.top + r.height / 2 - vh / 2) / ((vh + r.height) / 2);
+          img.style.transform = `translate3d(0, ${(-progress * 40).toFixed(1)}px, 0)`;
+        }
+      };
+      // One rAF per scroll event for both the parallax and the passed-reveal sweep.
+      let queued = false;
+      const onScroll = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          revealPassed();
+          paintParallax();
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      function initParallax() {
+        bands = canParallax.matches ? [...document.querySelectorAll<HTMLImageElement>('.photo-band > img')] : [];
+        paintParallax();
+      }
+
+      onPage(() => {
+        initReveal();
+        initParallax();
+      });
     </script>
   </body>
 </html>

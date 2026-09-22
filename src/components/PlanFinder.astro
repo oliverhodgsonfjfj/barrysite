@@ -111,102 +111,107 @@ const byId = Object.fromEntries(plans.map((p) => [p.id, p]));
 </section>
 
 <script>
-  type Plan = { name: string; fee: number; unit?: string; includes: string[] };
-  const form = document.querySelector<HTMLFormElement>('[data-finder]');
-  const dataEl = document.querySelector('[data-plans]');
-  if (form && dataEl) {
-    const plans: Record<string, Plan> = JSON.parse(dataEl.textContent || '{}');
-    const step = (name: string) => form.querySelector<HTMLFieldSetElement>(`[data-step="${name}"]`);
-    const val = (name: string) => form.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? null;
-    const show = (name: string, on: boolean) => {
-      const el = step(name);
-      if (!el) return;
-      if (!on && !el.hidden) el.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((i) => (i.checked = false));
-      el.hidden = !on;
-    };
-    const result = form.querySelector<HTMLElement>('[data-result]')!;
-    const poaBox = form.querySelector<HTMLElement>('[data-result-poa]')!;
-    const nameEl = form.querySelector<HTMLElement>('[data-result-name]')!;
-    const feeEl = form.querySelector<HTMLElement>('[data-result-fee]')!;
-    const unitEl = form.querySelector<HTMLElement>('[data-result-unit]')!;
-    const noteEl = form.querySelector<HTMLElement>('[data-result-note]')!;
-    const inclEl = form.querySelector<HTMLElement>('[data-result-includes]')!;
-    const propsInput = form.querySelector<HTMLInputElement>('#properties')!;
+  import { onPage } from '../lib/on-page';
 
-    const MTD_NOTE =
-      'Making Tax Digital for Income Tax applies from April 2026 where self-employment and property income is over £50,000, and from April 2027 over £30,000, so you may not need MTD submissions yet. We check this in your free meeting.';
+  // Re-runs for every page the ClientRouter swaps in (elements are fresh each time, so nothing binds twice).
+  onPage(() => {
+    type Plan = { name: string; fee: number; unit?: string; includes: string[] };
+    const form = document.querySelector<HTMLFormElement>('[data-finder]');
+    const dataEl = document.querySelector('[data-plans]');
+    if (form && dataEl) {
+      const plans: Record<string, Plan> = JSON.parse(dataEl.textContent || '{}');
+      const step = (name: string) => form.querySelector<HTMLFieldSetElement>(`[data-step="${name}"]`);
+      const val = (name: string) => form.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? null;
+      const show = (name: string, on: boolean) => {
+        const el = step(name);
+        if (!el) return;
+        if (!on && !el.hidden) el.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((i) => (i.checked = false));
+        el.hidden = !on;
+      };
+      const result = form.querySelector<HTMLElement>('[data-result]')!;
+      const poaBox = form.querySelector<HTMLElement>('[data-result-poa]')!;
+      const nameEl = form.querySelector<HTMLElement>('[data-result-name]')!;
+      const feeEl = form.querySelector<HTMLElement>('[data-result-fee]')!;
+      const unitEl = form.querySelector<HTMLElement>('[data-result-unit]')!;
+      const noteEl = form.querySelector<HTMLElement>('[data-result-note]')!;
+      const inclEl = form.querySelector<HTMLElement>('[data-result-includes]')!;
+      const propsInput = form.querySelector<HTMLInputElement>('#properties')!;
 
-    function render() {
-      const type = val('type');
-      show('band-ltd', type === 'ltd');
-      show('band-sole', type === 'sole');
-      show('properties', type === 'landlord');
+      const MTD_NOTE =
+        'Making Tax Digital for Income Tax applies from April 2026 where self-employment and property income is over £50,000, and from April 2027 over £30,000, so you may not need MTD submissions yet. We check this in your free meeting.';
 
-      let planId: string | null = null;
-      let poa = false;
-      let note = '';
-      let multiplier = 1;
+      function render() {
+        const type = val('type');
+        show('band-ltd', type === 'ltd');
+        show('band-sole', type === 'sole');
+        show('properties', type === 'landlord');
 
-      if (type === 'ltd') {
-        const band = val('band-ltd');
-        show('extras-ltd', band === '90' || band === '250');
-        if (band === 'over') poa = true;
-        else if (band) {
-          const ex = val('extras-ltd');
-          if (ex === 'boost') planId = 'ltd-boost';
-          else if (ex === 'premium' || (ex === 'basic' && band === '250')) planId = 'ltd-premium';
-          else if (ex === 'basic') planId = 'ltd-basic';
-          if (ex === 'basic' && band === '250')
-            note = 'Turnover over £90K moves you to the Premium plan, which also covers VAT returns, payroll for two and quarterly reviews.';
+        let planId: string | null = null;
+        let poa = false;
+        let note = '';
+        let multiplier = 1;
+
+        if (type === 'ltd') {
+          const band = val('band-ltd');
+          show('extras-ltd', band === '90' || band === '250');
+          if (band === 'over') poa = true;
+          else if (band) {
+            const ex = val('extras-ltd');
+            if (ex === 'boost') planId = 'ltd-boost';
+            else if (ex === 'premium' || (ex === 'basic' && band === '250')) planId = 'ltd-premium';
+            else if (ex === 'basic') planId = 'ltd-basic';
+            if (ex === 'basic' && band === '250')
+              note = 'Turnover over £90K moves you to the Premium plan, which also covers VAT returns, payroll for two and quarterly reviews.';
+          }
+        } else if (type === 'sole') {
+          const band = val('band-sole');
+          show('extras-sole', band === '50' || band === '90');
+          if (band === 'over') poa = true;
+          else if (band) {
+            const ex = val('extras-sole');
+            if (ex === 'us') planId = 'st-book';
+            else if (ex === 'own') planId = band === '50' ? 'st-basic' : 'st-mtd';
+            if (band === '50' && ex === 'own') note = MTD_NOTE;
+            if (band === '50' && ex === 'us') note = 'MTD submissions are included for when you need them. ' + MTD_NOTE;
+          }
+        } else if (type === 'landlord') {
+          planId = 'rental';
+          multiplier = Math.min(20, Math.max(1, Number(propsInput.value) || 1));
+          note = 'If you also trade through a company or as a sole trader, rental accounts are added to that plan.';
+        } else {
+          show('extras-ltd', false);
+          show('extras-sole', false);
         }
-      } else if (type === 'sole') {
-        const band = val('band-sole');
-        show('extras-sole', band === '50' || band === '90');
-        if (band === 'over') poa = true;
-        else if (band) {
-          const ex = val('extras-sole');
-          if (ex === 'us') planId = 'st-book';
-          else if (ex === 'own') planId = band === '50' ? 'st-basic' : 'st-mtd';
-          if (band === '50' && ex === 'own') note = MTD_NOTE;
-          if (band === '50' && ex === 'us') note = 'MTD submissions are included for when you need them. ' + MTD_NOTE;
+
+        poaBox.hidden = !poa;
+        if (planId && plans[planId]) {
+          const p = plans[planId];
+          nameEl.textContent = p.name;
+          feeEl.textContent = `£${p.fee * multiplier}`;
+          unitEl.textContent = multiplier > 1 ? `a month + VAT for ${multiplier} properties` : p.unit ? `a month + VAT, ${p.unit}` : 'a month + VAT';
+          noteEl.textContent = note;
+          noteEl.hidden = !note;
+          inclEl.innerHTML = p.includes.map((i) => `<li>${i}</li>`).join('');
+          result.hidden = false;
+        } else {
+          result.hidden = true;
         }
-      } else if (type === 'landlord') {
-        planId = 'rental';
-        multiplier = Math.min(20, Math.max(1, Number(propsInput.value) || 1));
-        note = 'If you also trade through a company or as a sole trader, rental accounts are added to that plan.';
-      } else {
-        show('extras-ltd', false);
-        show('extras-sole', false);
       }
 
-      poaBox.hidden = !poa;
-      if (planId && plans[planId]) {
-        const p = plans[planId];
-        nameEl.textContent = p.name;
-        feeEl.textContent = `£${p.fee * multiplier}`;
-        unitEl.textContent = multiplier > 1 ? `a month + VAT for ${multiplier} properties` : p.unit ? `a month + VAT, ${p.unit}` : 'a month + VAT';
-        noteEl.textContent = note;
-        noteEl.hidden = !note;
-        inclEl.innerHTML = p.includes.map((i) => `<li>${i}</li>`).join('');
-        result.hidden = false;
-      } else {
-        result.hidden = true;
-      }
+      form.addEventListener('change', render);
+      form.addEventListener('input', (e) => {
+        if ((e.target as HTMLElement).id === 'properties') render();
+      });
+      form.querySelectorAll<HTMLButtonElement>('[data-stepper]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const next = Math.min(20, Math.max(1, (Number(propsInput.value) || 1) + Number(b.dataset.stepper)));
+          propsInput.value = String(next);
+          render();
+        })
+      );
+      render();
     }
-
-    form.addEventListener('change', render);
-    form.addEventListener('input', (e) => {
-      if ((e.target as HTMLElement).id === 'properties') render();
-    });
-    form.querySelectorAll<HTMLButtonElement>('[data-stepper]').forEach((b) =>
-      b.addEventListener('click', () => {
-        const next = Math.min(20, Math.max(1, (Number(propsInput.value) || 1) + Number(b.dataset.stepper)));
-        propsInput.value = String(next);
-        render();
-      })
-    );
-    render();
-  }
+  });
 </script>
 
 <style>

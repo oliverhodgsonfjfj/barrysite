@@ -1,0 +1,18 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ResourcesShell from '../../../components/ResourcesShell.astro';
+import { allPosts, TOPICS } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await allPosts();
+  return Object.keys(TOPICS).map((slug) => ({ params: { slug }, props: { posts: posts.filter((p) => p.data.topics.includes(slug)), all: posts } }));
+}
+const { slug } = Astro.params;
+const { posts, all } = Astro.props;
+const label = TOPICS[slug!];
+const title = `${label} | Resources | Focus Accountancy`;
+const description = `${posts.length} articles on ${label} from the Focus Accountancy team in Bristol: practical guidance for contractors, consultants and freelancers.`;
+---
+<Base title={title} description={description} current="/resources">
+  <ResourcesShell posts={posts} all={all} active={slug} />
+</Base>

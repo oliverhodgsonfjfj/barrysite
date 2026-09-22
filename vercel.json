@@ -3,6 +3,2928 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "26856"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/ir35-tax-rules-a-guide-to-compliance",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "26857"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/unlocking-tax-benefits-with-the-enterprise-investment-scheme-eis-and-seed-enterp",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31962"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/five-ways-ai-can-save-you-hours-every-week",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31963"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-your-business-survive-a-cyber-attack",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31969"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-maximising-tax-relief-on-company-losses",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31970"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-you-claim-tax-relief-for-property-repairs",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31971"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-spouse-paying-more-tax-than-necessary",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31972"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-your-business-recover-more-vat",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31973"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-does-a-hobby-become-a-taxable-business",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31974"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/do-you-know-who-must-register-for-vat",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31994"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/has-a-pay-rise-quietly-increased-your-tax-bill",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31995"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-new-vat-rules-change-how-you-sell-online",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32004"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/does-your-business-need-to-register-as-an-employer",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32005"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/self-employed-are-your-business-records-in-order",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32006"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/advising-hmrc-of-change-in-circumstances",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32007"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-hmrc-holding-money-that-belongs-to-you",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32008"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-using-the-best-vat-scheme-for-your-business",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32009"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/claiming-tax-relief-on-business-insurance",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32019"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/don-t-let-discrimination-lead-to-resignation-or-risk-facing-career-compensation",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32037"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/late-payments-still-threaten-small-business-cash-flow",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32038"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/rising-employment-costs-are-changing-business-decisions",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32040"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/payroll-compliance-what-is-full-payment-submission",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32041"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/have-you-checked-your-state-pension-forecast-recently",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32043"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-benefits-of-giving-assets-to-charity",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32044"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/do-you-need-to-pay-tax-on-money-received-from-family",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32045"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/claiming-tax-relief-on-professional-training",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32046"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-free-childcare-are-you-missing-out",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32077"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-ai-delivering-real-value-for-small-businesses",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32079"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/why-uncertain-times-make-business-planning-more-important",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32084"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/five-practical-ways-to-reduce-business-energy-costs",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32085"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/will-your-next-finance-application-succeed",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32095"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/claiming-the-correct-tax-relief-for-work-mileage",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32096"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/averaging-profits-if-income-fluctuates",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32097"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-paying-unnecessary-tax-on-foreign-income",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32098"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/budget-date-announced-for-2026",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32099"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-relief-if-replacing-tools-or-equipment",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32100"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/records-you-should-keep-after-submitting-your-tax-return",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32101"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/making-the-most-of-the-employment-allowance",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32110"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-you-save-tax-by-making-a-deed-of-variation",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32112"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-do-you-pay-stamp-duty-land-tax",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32114"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-business-eligible-to-use-cash-basis-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32115"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/making-the-most-of-the-1-000-property-allowance",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32116"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-breaks-for-company-bikes",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32117"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/amending-a-mistake-on-your-tax-return",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32126"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-diary-september-october-2026",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32127"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/take-care-when-painting-non-compete-clauses-with-a-broad-brush",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32157"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-better-digital-skills-transform-your-business",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32158"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/why-successful-businesses-prepare-before-conditions-improve",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32189"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-relief-on-pension-contributions-for-employees",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32190"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/hmrc-penalties-for-failing-to-notify-a-tax-liability",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32191"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/incorporation-relief-may-reduce-your-cgt-bill",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32192"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/official-rate-of-interest-for-beneficial-loans",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32193"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/benefits-of-seis-and-eis-advance-assurance",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32194"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-to-register-for-corporation-tax",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32251"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/all-online-harassment-is-unacceptable-in-any-context",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32260"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-your-business-survive-a-cyberattack",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32261"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-your-employment-policies-ready-for-workplace-reforms",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32262"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/recovering-vat-on-pre-registration-costs",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32263"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/what-is-a-reasonable-excuse-for-missing-a-tax-deadline",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32264"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-relief-for-uniforms-and-protective-clothing",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32265"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/benefits-of-claiming-the-annual-investment-allowance",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32266"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/have-you-reviewed-your-workers-employment-status",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32267"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/evidence-required-to-support-business-expense-claims",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32297"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/how-is-your-business-performing",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32298"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/company-accounts-are-going-fully-digital",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32302"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/summer-vat-relief-has-ended",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32303"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/received-a-p800-from-hmrc",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32304"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/uk-employers-with-overseas-employees",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32305"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/predevelopment-costs-on-major-developments",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32306"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-company-distribution-rules-change",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32307"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-vat-control-system-strong-enough",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32326"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-a-discretionary-bonus-becomes-enforceable",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32363"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/nearly-660-employers-named-for-minimum-wage-failures",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32364"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-company-dividend-rules-be-changing",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32366"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-company-paying-corporation-tax-at-the-right-rate",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32367"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-can-a-trading-loss-generate-a-tax-refund",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32368"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-is-a-company-dormant-for-corporation-tax",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32369"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-paying-your-staff-the-correct-minimum-wage",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32370"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-simplified-expenses-save-you-time-and-money",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32371"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/business-expenses-when-costs-have-a-private-element",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32389"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-diary-october-and-november-2026",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32394"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-simpler-reporting-reduce-business-paperwork",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32395"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/new-funding-opens-for-growing-businesses",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32403"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/new-self-assessment-registration-service-launched",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32404"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/hmrc-targets-persistent-tax-debts",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32405"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/new-duty-on-vaping-products-starts-in-october",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32406"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-rules-for-cryptoassets-set-to-change",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32407"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/winter-fuel-payment-opt-out-deadline-approaches",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32408"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/money-and-property-after-divorce",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32419"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/training-clawbacks-can-constitute-an-unlawful-restraint-of-trade",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "26856"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/ir35-tax-rules-a-guide-to-compliance",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "26857"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/unlocking-tax-benefits-with-the-enterprise-investment-scheme-eis-and-seed-enterp",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31962"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/five-ways-ai-can-save-you-hours-every-week",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31963"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-your-business-survive-a-cyber-attack",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31969"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-maximising-tax-relief-on-company-losses",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31970"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-you-claim-tax-relief-for-property-repairs",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31971"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-spouse-paying-more-tax-than-necessary",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31972"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-your-business-recover-more-vat",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31973"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-does-a-hobby-become-a-taxable-business",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31974"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/do-you-know-who-must-register-for-vat",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31994"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/has-a-pay-rise-quietly-increased-your-tax-bill",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "31995"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-new-vat-rules-change-how-you-sell-online",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32004"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/does-your-business-need-to-register-as-an-employer",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32005"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/self-employed-are-your-business-records-in-order",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32006"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/advising-hmrc-of-change-in-circumstances",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32007"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-hmrc-holding-money-that-belongs-to-you",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32008"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-using-the-best-vat-scheme-for-your-business",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32009"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/claiming-tax-relief-on-business-insurance",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32019"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/don-t-let-discrimination-lead-to-resignation-or-risk-facing-career-compensation",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32037"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/late-payments-still-threaten-small-business-cash-flow",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32038"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/rising-employment-costs-are-changing-business-decisions",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32040"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/payroll-compliance-what-is-full-payment-submission",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32041"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/have-you-checked-your-state-pension-forecast-recently",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32043"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-benefits-of-giving-assets-to-charity",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32044"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/do-you-need-to-pay-tax-on-money-received-from-family",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32045"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/claiming-tax-relief-on-professional-training",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32046"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-free-childcare-are-you-missing-out",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32077"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-ai-delivering-real-value-for-small-businesses",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32079"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/why-uncertain-times-make-business-planning-more-important",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32084"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/five-practical-ways-to-reduce-business-energy-costs",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32085"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/will-your-next-finance-application-succeed",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32095"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/claiming-the-correct-tax-relief-for-work-mileage",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32096"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/averaging-profits-if-income-fluctuates",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32097"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-paying-unnecessary-tax-on-foreign-income",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32098"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/budget-date-announced-for-2026",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32099"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-relief-if-replacing-tools-or-equipment",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32100"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/records-you-should-keep-after-submitting-your-tax-return",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32101"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/making-the-most-of-the-employment-allowance",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32110"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-you-save-tax-by-making-a-deed-of-variation",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32112"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-do-you-pay-stamp-duty-land-tax",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32114"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-business-eligible-to-use-cash-basis-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32115"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/making-the-most-of-the-1-000-property-allowance",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32116"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-breaks-for-company-bikes",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32117"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/amending-a-mistake-on-your-tax-return",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32126"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-diary-september-october-2026",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32127"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/take-care-when-painting-non-compete-clauses-with-a-broad-brush",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32157"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-better-digital-skills-transform-your-business",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32158"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/why-successful-businesses-prepare-before-conditions-improve",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32189"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-relief-on-pension-contributions-for-employees",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32190"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/hmrc-penalties-for-failing-to-notify-a-tax-liability",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32191"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/incorporation-relief-may-reduce-your-cgt-bill",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32192"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/official-rate-of-interest-for-beneficial-loans",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32193"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/benefits-of-seis-and-eis-advance-assurance",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32194"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-to-register-for-corporation-tax",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32251"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/all-online-harassment-is-unacceptable-in-any-context",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32260"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-your-business-survive-a-cyberattack",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32261"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-your-employment-policies-ready-for-workplace-reforms",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32262"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/recovering-vat-on-pre-registration-costs",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32263"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/what-is-a-reasonable-excuse-for-missing-a-tax-deadline",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32264"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-relief-for-uniforms-and-protective-clothing",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32265"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/benefits-of-claiming-the-annual-investment-allowance",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32266"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/have-you-reviewed-your-workers-employment-status",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32267"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/evidence-required-to-support-business-expense-claims",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32297"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/how-is-your-business-performing",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32298"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/company-accounts-are-going-fully-digital",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32302"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/summer-vat-relief-has-ended",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32303"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/received-a-p800-from-hmrc",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32304"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/uk-employers-with-overseas-employees",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32305"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/predevelopment-costs-on-major-developments",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32306"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-company-distribution-rules-change",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32307"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-vat-control-system-strong-enough",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32326"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-a-discretionary-bonus-becomes-enforceable",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32363"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/nearly-660-employers-named-for-minimum-wage-failures",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32364"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-company-dividend-rules-be-changing",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32366"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/is-your-company-paying-corporation-tax-at-the-right-rate",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32367"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-can-a-trading-loss-generate-a-tax-refund",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32368"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/when-is-a-company-dormant-for-corporation-tax",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32369"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/are-you-paying-your-staff-the-correct-minimum-wage",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32370"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-simplified-expenses-save-you-time-and-money",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32371"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/business-expenses-when-costs-have-a-private-element",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32389"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-diary-october-and-november-2026",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32394"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/could-simpler-reporting-reduce-business-paperwork",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32395"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/new-funding-opens-for-growing-businesses",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32403"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/new-self-assessment-registration-service-launched",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32404"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/hmrc-targets-persistent-tax-debts",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32405"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/new-duty-on-vaping-products-starts-in-october",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32406"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/tax-rules-for-cryptoassets-set-to-change",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32407"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/winter-fuel-payment-opt-out-deadline-approaches",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32408"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/money-and-property-after-divorce",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "id",
+          "value": "32419"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news/training-clawbacks-can-constitute-an-unlawful-restraint-of-trade",
+      "permanent": true
+    },
+    {
+      "source": "/component/infozone/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/resources",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/news",
+      "permanent": true
+    },
+    {
+      "source": "/post",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/post/we-re-going-paperless",
+      "destination": "/post/we-are-paperless",
+      "permanent": true
+    },
+    {
+      "source": "/resources/tags/:slug*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/blog-feed.xml",
+      "destination": "/rss.xml",
+      "permanent": true
+    },
+    {
       "source": "/services",
       "destination": "/pricing",
       "permanent": true
@@ -21,16 +2943,6 @@
       "source": "/covid-19",
       "destination": "/resources",
       "permanent": true
-    },
-    {
-      "source": "/resources/categories/:slug*",
-      "destination": "/resources",
-      "permanent": true
-    },
-    {
-      "source": "/post/:slug*",
-      "destination": "https://news.focusaccountancy.co.uk/",
-      "permanent": false
     },
     {
       "source": "/_files/ugd/4df625_1532cd7a4ca44c60a4ee77018a64ba52.pdf",
@@ -60,6 +2972,41 @@
     {
       "source": "/_files/ugd/58e574_aea37498bb114a5e9523c4c719be3851.pdf",
       "destination": "/docs/kingsbridge-ir35-contract-review.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/post/automated-debt-collection",
+      "destination": "/post/invoicing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/make-sure-you-claim-all-of-your-travel-and-accommodation-expenses",
+      "destination": "/post/when-is-a-workplace-temporary",
+      "permanent": true
+    },
+    {
+      "source": "/make-sure-you-claim-all-of-your-travel-and-accommodation-expenses/",
+      "destination": "/post/when-is-a-workplace-temporary",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2015/12/pay-your-self-assessment-tax-bill-gov-uk.jpg",
+      "destination": "/taxes",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2016/08/how-to-make-a-cashflow-forecast-freeagent.jpg",
+      "destination": "/post/get-the-most-out-of-freeagent",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2015/12/self-assessment-checklist-freeagent.jpg",
+      "destination": "/post/payments-on-account-for-self-assessment",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/:path*",
+      "destination": "/resources",
       "permanent": true
     }
   ],

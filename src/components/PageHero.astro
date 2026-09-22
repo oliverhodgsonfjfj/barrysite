@@ -33,4 +33,15 @@ const { eyebrow, title, intro, image, imageAlt = '', compact = false } = Astro.p
   .page-hero--image .page-hero__intro { color: rgba(255, 255, 255, 0.9); }
   .page-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .page-hero__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 25, 5, 0.85) 0%, rgba(10, 25, 5, 0.35) 55%, rgba(10, 25, 5, 0.25) 100%); }
+
+  /* Entrance: eyebrow, h1, intro and anything slotted after them rise in 80ms apart, and the
+     photo settles from a slight zoom. Keyframes and --ease are shared with the home hero
+     (global.css). :global() so the rule also reaches slotted content from the page. */
+  @media (prefers-reduced-motion: no-preference) {
+    .page-hero__inner > :global(*) { animation: rise var(--rise-time) var(--ease) both; animation-delay: calc(0.1s + var(--i, 0) * 80ms); }
+    .page-hero__inner > :global(:nth-child(2)) { --i: 1; }
+    .page-hero__inner > :global(:nth-child(3)) { --i: 2; }
+    .page-hero__inner > :global(:nth-child(n + 4)) { --i: 3; }
+    .page-hero__img { animation: hero-photo-in 1.6s var(--ease) both; }
+  }
 </style>

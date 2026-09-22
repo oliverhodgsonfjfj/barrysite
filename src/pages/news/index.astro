@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { allNews, fmtDate } from '../../lib/posts';
+
+const items = await allNews();
+const title = 'News: tax and business updates | Focus Accountancy';
+const description = 'The latest tax, HMRC and business news, updated regularly, from Focus Accountancy in Bristol.';
+const years = [...new Set(items.map((i) => i.data.published.slice(0, 4)))];
+---
+<Base title={title} description={description} current="/resources">
+  <PageHero eyebrow="News" title="Tax and business news" intro="Short, regular updates on tax changes, HMRC announcements and business news that affect contractors, freelancers and small companies." compact />
+  <section class="section section--tight">
+    <div class="container news">
+      <div class="news__list" data-reveal>
+        {years.map((y) => (
+          <section class="news__year" aria-labelledby={`y-${y}`}>
+            <h2 id={`y-${y}`} class="news__year-title">{y}</h2>
+            <ul class="news__items">
+              {items.filter((i) => i.data.published.startsWith(y)).map((i) => (
+                <li class="news__item">
+                  <a href={`/news/${i.data.slug}`}>
+                    {i.data.image && <img class="news__thumb" src={i.data.image} alt="" loading="lazy" decoding="async" />}
+                    <time datetime={i.data.published}>{fmtDate(i.data.published)}</time>
+                    <span class="news__item-title">{i.data.title}</span>
+                    {i.data.summary && <span class="news__item-summary">{i.data.summary}</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+      <aside class="guide__aside">
+        <div class="guide__card">
+          <p class="eyebrow">Our articles</p>
+          <p class="small">Longer, practical guides written by the team are in <a href="/resources">Resources</a>.</p>
+        </div>
+        <div class="guide__card">
+          <p class="eyebrow">Need a hand?</p>
+          <h2 class="guide__card-title">Talk it through with us</h2>
+          <p class="small">A free, no-obligation meeting, online or at our Bristol office.</p>
+          <a class="btn" href="https://calendly.com/focusaccountancy" rel="noopener">Book a free meeting</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  .news { display: grid; gap: 2.5rem; }
+  @media (min-width: 900px) { .news { grid-template-columns: minmax(0, 1fr) 300px; gap: 4rem; align-items: start; } }
+  .news__year { margin-bottom: 2.5rem; }
+  .news__year-title { font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--green); border-bottom: 1px solid var(--line); padding-bottom: 0.5rem; margin: 0 0 0.5rem; }
+  .news__items { list-style: none; margin: 0; padding: 0; }
+  .news__item a { display: grid; grid-template-columns: 96px 1fr; grid-template-rows: auto auto auto; column-gap: 1rem; row-gap: 0.15rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }
+  .news__thumb { grid-row: 1 / span 3; width: 96px; height: 72px; object-fit: cover; border-radius: 8px; background: #e6ecdf; }
+  .news__item a > :not(.news__thumb) { grid-column: 2; }
+  .news__item time { font-size: 0.82rem; color: var(--ink-2); }
+  .news__item-title { font-weight: 620; font-size: 1.05rem; line-height: 1.3; transition: color 0.15s ease; }
+  .news__item a:hover .news__item-title { color: var(--green); }
+  .news__item-summary { font-size: 0.93rem; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+</style>

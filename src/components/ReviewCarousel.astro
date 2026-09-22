@@ -48,6 +48,14 @@ import { site } from '../data/site';
 </section>
 
 <script>
+  import { onPage } from '../lib/on-page';
+
+  // Re-runs for every page the ClientRouter swaps in. The previous page's carousel is torn down
+  // first so its auto-advance timer and document listener don't outlive it.
+  let teardown: (() => void) | undefined;
+  onPage(() => {
+  teardown?.();
+  teardown = undefined;
   const root = document.querySelector<HTMLElement>('[data-carousel]');
   if (root) {
     const track = root.querySelector<HTMLElement>('[data-track]')!;
@@ -88,10 +96,13 @@ import { site } from '../data/site';
     const restart = () => { stop(); start(); };
     ['mouseenter', 'focusin', 'touchstart', 'pointerdown'].forEach((ev) => root.addEventListener(ev, stop, { passive: true }));
     ['mouseleave', 'focusout'].forEach((ev) => root.addEventListener(ev, start));
-    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    const onVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVisibility);
+    teardown = () => { stop(); document.removeEventListener('visibilitychange', onVisibility); };
     paint();
     start();
   }
+  });
 </script>
 
 <style>

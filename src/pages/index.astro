@@ -108,7 +108,7 @@ const schema = {
           any of us directly. <a href="/about">Read a little more about each of us</a>.
         </p>
       </div>
-      <div data-reveal>
+      <div data-reveal-stagger>
         <TeamCards client:visible members={teamMembers} />
       </div>
     </div>
@@ -133,7 +133,7 @@ const schema = {
         <h2 id="reviews-title">“{leadQuote.quote}”</h2>
         <p class="lead">{leadQuote.name}, client. We're in the top 1% of the thousands of UK accountants ranked on <a href={site.freeindex} rel="noopener">FreeIndex</a>.</p>
       </div>
-      <div data-reveal>
+      <div data-reveal-stagger>
         <TestimonialsSection client:visible testimonials={testimonialGrid} />
       </div>
       <p class="reviews-x__more"><a class="btn btn--outline" href="/reviews">All nine reviews and a client case study</a></p>
@@ -217,7 +217,7 @@ const schema = {
   </section>
   <!-- Offices / maps -->
   <section class="section section--tight" aria-labelledby="offices-title">
-    <div class="container" data-reveal>
+    <div class="container" data-reveal-stagger>
       <p class="eyebrow">Visit by appointment</p>
       <h2 id="offices-title" class="page-section-title">Our offices</h2>
       <div class="cards cards--2">

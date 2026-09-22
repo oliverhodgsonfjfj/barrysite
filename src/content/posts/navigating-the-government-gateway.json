@@ -1,0 +1,17 @@
+{
+ "slug": "navigating-the-government-gateway",
+ "title": "Navigating the Government Gateway",
+ "description": "A short guide on HMRC's online services and how to get your Government Gateway credentials.",
+ "published": "2019-09-11",
+ "updated": "2020-02-07",
+ "author": "Mike Evans",
+ "topics": [
+  "small-business"
+ ],
+ "tags": [],
+ "image": "/blog/4df625_4320057f72d24bbba3620e793a11eec9~mv2_d_2087_1250_s_2.png",
+ "imageInline": false,
+ "words": 308,
+ "legacy": true,
+ "html": "<h2>Government Gateway guide</h2><p>HMRC’s online services can sometimes seem like a labyrinth due to the various tax departments working independently and often in very different ways so we’ve set out a guide to help you navigate.</p><p>Government Gateway Credentials</p><p>You’ll need Government Gateway credentials to access any of HMRC’s online services but you will likely have different credentials for you as an individual and for your company. The credentials will include a 12 digit Government Gateway user ID and a password. If you’ve never registered for HMRC’s online services you can do so <a href=\"https://www.access.service.gov.uk/registration/email\" rel=\"noopener\">here</a>. If you’ve already registered but forgotten your credentials, you can recover a lost ID <a href=\"https://www.tax.service.gov.uk/account-recovery/choose-account-type/lost-userid?state=5dc13afd1e00000537b45110&amp;ui_locales=en-GB\" rel=\"noopener\">here</a> or reset your password <a href=\"https://www.access.service.gov.uk/account-recovery/forgot-password\" rel=\"noopener\">here</a>.</p><p>Adding a tax to your HMRC business account</p><p>When you log in to your online account you should have a section called ‘Your taxes, duties and schemes’. At the bottom of the section, you should see a link to ‘Add a tax, duty or scheme’. Following this link will give you the option to add Corporation tax, self assessment, VAT, PAYE or CIS.</p><p>Using your personal tax account</p><p>You can use your personal tax account to look at details of your PAYE, NI, tax credits, child benefit, marriage allowance or state pension. Several useful features that may be of interest to you:</p><ul><li>You can update HMRC on what you expect to earn from various employers in order to change tax codes;</li><li>See an estimate of your tax bill for the year (this is solely based on the information you give HMRC and your employment records);</li><li>View your national insurance record to see how many more years you need to contribute before you’re entitled to a full state pension;</li><li>View a forecast of your state pension including when you’ll start to receive it and how much you’d get if you stopped working now.</li></ul>"
+}

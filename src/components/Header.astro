@@ -3,7 +3,8 @@ import { site, nav } from '../data/site';
 
 interface Props { current?: string; overlay?: boolean }
 const { current, overlay = false } = Astro.props;
-const links = nav.filter((n) => n.href !== '/freeagent');
+const links = nav;
+const isCurrent = (item: { href: string; children?: { href: string }[] }) => current === item.href || !!item.children?.some((c) => c.href === current);
 ---
 <header class:list={['site-header', { 'site-header--overlay': overlay }]} data-header style="--p:0">
   <div class="site-header__row">
@@ -15,7 +16,18 @@ const links = nav.filter((n) => n.href !== '/freeagent');
       <nav class="site-header__nav" aria-label="Main">
         <ul>
           {links.map((item) => (
-            <li><a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a></li>
+            <li class:list={{ 'has-menu': !!item.children }}>
+              <a href={item.href} aria-current={isCurrent(item) ? 'page' : undefined} aria-haspopup={item.children ? 'true' : undefined}>
+                {item.label}{item.children && <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              </a>
+              {item.children && (
+                <ul class:list={['nav-menu', { 'nav-menu--wide': item.children.length > 5 }]}>
+                  {item.children.map((c) => (
+                    <li><a href={c.href} rel={c.external ? 'noopener' : undefined} aria-current={current === c.href ? 'page' : undefined}>{c.label}</a></li>
+                  ))}
+                </ul>
+              )}
+            </li>
           ))}
         </ul>
       </nav>
@@ -29,10 +41,16 @@ const links = nav.filter((n) => n.href !== '/freeagent');
   <div id="site-nav" class="mobile-panel" hidden>
     <ul class="mobile-panel__list">
       {links.map((item) => (
-        <li><a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a></li>
+        <li>
+          <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>
+          {item.children && (
+            <ul class="mobile-panel__sub">
+              {item.children.map((c) => <li><a href={c.href} rel={c.external ? 'noopener' : undefined}>{c.label}</a></li>)}
+            </ul>
+          )}
+        </li>
       ))}
-      <li><a href="/freeagent">FreeAgent</a></li>
-      <li><a href={site.portal} rel="noopener">Client Portal</a></li>
+      <li><a href={site.portal} rel="noopener">Client Portal login</a></li>
     </ul>
     <div class="mobile-panel__utils">
       <a class="site-header__cta site-header__cta--inline" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
@@ -42,23 +60,31 @@ const links = nav.filter((n) => n.href !== '/freeagent');
 </header>
 
 <script>
-  const header = document.querySelector<HTMLElement>('[data-header]');
-  const btn = document.querySelector<HTMLButtonElement>('.nav-toggle');
-  const panel = document.getElementById('site-nav');
-  btn?.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    if (panel) panel.hidden = open;
-    header?.classList.toggle('is-menu-open', !open);
-  });
+  import { onPage } from '../lib/on-page';
+
+  // One scroll listener for the session; `header` is re-pointed at each page's header by onPage,
+  // so nothing is bound twice under ClientRouter navigation.
+  let header: HTMLElement | null = null;
   const update = () => {
     if (!header) return;
     const p = Math.min(1, Math.max(0, (window.scrollY - 20) / 260));
     header.style.setProperty('--p', p.toFixed(3));
     header.classList.toggle('is-scrolled', p > 0.5);
   };
-  update();
   window.addEventListener('scroll', update, { passive: true });
+
+  onPage(() => {
+    header = document.querySelector<HTMLElement>('[data-header]');
+    const btn = document.querySelector<HTMLButtonElement>('.nav-toggle');
+    const panel = document.getElementById('site-nav');
+    btn?.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      if (panel) panel.hidden = open;
+      header?.classList.toggle('is-menu-open', !open);
+    });
+    update();
+  });
 </script>
 
 <style>
@@ -92,11 +118,40 @@ const links = nav.filter((n) => n.href !== '/freeagent');
   .brand__colour { transition: opacity 0.25s ease; }
   
   .site-header__nav { display: none; }
-  .site-header__nav ul { display: flex; gap: 0.15rem; list-style: none; margin: 0; padding: 0; }
-  .site-header__nav a { display: inline-block; padding: 0.5rem 0.85rem; border-radius: 999px; color: inherit; font-weight: 540; font-size: 0.95rem; text-decoration: none; transition: background-color 0.15s ease, color 0.15s ease; }
-  .site-header--overlay:not(.is-scrolled) .site-header__nav a:hover { background: rgba(255, 255, 255, 0.14); }
-  .is-scrolled .site-header__nav a:hover, .site-header:not(.site-header--overlay) .site-header__nav a:hover { background: var(--sage-2); color: var(--green); }
-  .site-header__nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+  .site-header__nav > ul { display: flex; gap: 0.15rem; list-style: none; margin: 0; padding: 0; }
+  .site-header__nav a { position: relative; display: inline-block; white-space: nowrap; padding: 0.5rem 0.85rem; color: inherit; font-weight: 540; font-size: 0.95rem; text-decoration: none; transition: color 0.2s ease; }
+  .is-scrolled .site-header__nav a:hover, .site-header:not(.site-header--overlay) .site-header__nav a:hover { color: var(--green); }
+  /* Underline slides in from the left on hover and out to the right on leave (transform-origin
+     swaps with the state); the current page keeps it drawn. */
+  .site-header__nav a::after {
+    content: ""; position: absolute; left: 0.85rem; right: 0.85rem; bottom: 0.25rem; height: 1.5px;
+    background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.35s var(--ease);
+  }
+  .site-header__nav a:hover::after, .site-header__nav a:focus-visible::after, .site-header__nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+  @media (prefers-reduced-motion: reduce) { .site-header__nav a::after { transition: none; } }
+  .site-header__nav > ul > li { position: relative; }
+  .nav-caret { margin-left: 0.25rem; vertical-align: 1px; opacity: 0.6; transition: transform 0.25s var(--ease); }
+  .has-menu:hover .nav-caret, .has-menu:focus-within .nav-caret { transform: rotate(180deg); }
+  /* Dropdown: a compact card under the link. Opens on hover and on keyboard focus within;
+     the ::before strip bridges the gap so the pointer can travel down without it closing. */
+  .nav-menu {
+    display: grid; position: absolute; top: calc(100% + 6px); left: 0.35rem; z-index: 50;
+    margin: 0; padding: 0.4rem; list-style: none; gap: 0;
+    background: #fff; color: var(--ink); border: 1px solid rgba(20, 31, 16, 0.08); border-radius: 14px;
+    box-shadow: 0 20px 44px -20px rgba(20, 31, 16, 0.4), 0 2px 6px -2px rgba(20, 31, 16, 0.12);
+    opacity: 0; visibility: hidden; transform: translateY(4px) scale(0.98); transform-origin: top left;
+    transition: opacity 0.18s ease, transform 0.22s var(--ease), visibility 0s linear 0.18s;
+  }
+  .nav-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; }
+  .has-menu:hover > .nav-menu, .has-menu:focus-within > .nav-menu { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .nav-menu--wide { grid-template-columns: repeat(2, minmax(150px, 1fr)); column-gap: 0.25rem; }
+  .site-header__nav > ul > li:last-child > .nav-menu { left: auto; right: 0.35rem; transform-origin: top right; }
+  .nav-menu li a { display: block; padding: 0.42rem 0.75rem; border-radius: 8px; font-size: 0.88rem; font-weight: 500; line-height: 1.25; color: var(--ink); white-space: nowrap; }
+  .nav-menu li a::after { display: none; }
+  .nav-menu li a:hover, .nav-menu li a:focus-visible { color: var(--green); background: var(--sage-2, #eef4ea); }
+  .nav-menu li a[aria-current="page"] { color: var(--green); font-weight: 650; }
+  .nav-menu li a[rel="noopener"]::before { content: "↗"; float: right; margin-left: 0.6rem; font-size: 0.75em; opacity: 0.5; }
+  @media (prefers-reduced-motion: reduce) { .nav-menu, .nav-caret { transition: none; } }
 
   /* CTA sits outside the bar, pinned to the right edge of the container */
   .site-header__cta {
@@ -114,6 +169,8 @@ const links = nav.filter((n) => n.href !== '/freeagent');
   .mobile-panel { pointer-events: auto; max-width: 880px; margin: 8px auto 0; background: #fff; border: 1px solid rgba(20, 31, 16, 0.08); border-radius: 24px; padding: 0.5rem 1.25rem 1.25rem; box-shadow: 0 20px 40px -20px rgba(20, 31, 16, 0.4); }
   .mobile-panel__list { list-style: none; margin: 0; padding: 0; }
   .mobile-panel__list a { display: block; padding: 0.8rem 0; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 560; text-decoration: none; }
+  .mobile-panel__sub { list-style: none; margin: 0; padding: 0 0 0.4rem 1rem; display: grid; grid-template-columns: 1fr 1fr; column-gap: 1rem; }
+  .mobile-panel__sub a { padding: 0.45rem 0; border-bottom: 0; font-weight: 480; font-size: 0.95rem; color: var(--ink-2); }
   .mobile-panel__utils { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; padding-top: 1rem; }
   .mobile-panel__phone { font-weight: 650; color: var(--ink); text-decoration: none; }
 
