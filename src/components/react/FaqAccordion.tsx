@@ -22,7 +22,7 @@ export default function FaqAccordion({ items }: { items: FaqEntry[] }) {
           </AccordionTrigger>
           <AccordionContent
             forceMount={hydrated ? undefined : true}
-            className={`text-[0.98rem] leading-relaxed text-[#465042]${hydrated ? '' : ' data-[state=closed]:hidden'}`}
+            className={`text-[0.98rem] leading-relaxed text-[#465042]${hydrated ? '' : ' in-data-[state=closed]:hidden'}`}
           >
             {f.a.map((p, k) => (
               <p key={k} className="mb-3 last:mb-0">

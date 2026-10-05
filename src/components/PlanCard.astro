@@ -1,0 +1,56 @@
+---
+// One pricing plan. Used on /pricing, the niche landing pages and /making-tax-digital.
+// The button sits directly under the price, so it lines up across a row of cards whatever the
+// length of each list. Long lists show their first items and fold the rest into a native <details>,
+// which keeps every inclusion in the HTML.
+import type { Plan } from '../data/pricing';
+import { site } from '../data/site';
+
+interface Props {
+  plan: Plan;
+  featured?: boolean;
+  badge?: string;
+  visible?: number;
+}
+const { plan: p, featured = false, badge, visible = 8 } = Astro.props;
+const shown = p.includes.slice(0, visible);
+const rest = p.includes.slice(visible);
+---
+<div class:list={['card plan', { 'card--featured': featured }]}>
+  {badge && <p class="plan__badge">{badge}</p>}
+  <h3 class="card__title">{p.name}</h3>
+  <p class="small muted plan__scope">{p.scope}</p>
+  <p class="card__fee"><strong>£{p.fee}</strong><span>a month + VAT{p.unit ? `, ${p.unit}` : ''}</span></p>
+  <a class:list={['btn btn--small plan__cta', { 'btn--outline': !featured }]} href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+  <p class="plan__label">What's included</p>
+  <ul class="card__list">{shown.map((i) => <li>{i}</li>)}</ul>
+  {rest.length > 0 && (
+    <details class="plan__more">
+      <summary><span class="plan__more-open">+ {rest.length} more included</span><span class="plan__more-close">Show less</span></summary>
+      <ul class="card__list">{rest.map((i) => <li>{i}</li>)}</ul>
+    </details>
+  )}
+</div>
+
+<style>
+  .plan { display: flex; flex-direction: column; }
+  .plan__badge {
+    align-self: flex-start; margin: 0 0 0.75rem; padding: 0.2rem 0.7rem; border-radius: var(--pill);
+    background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 640; letter-spacing: 0.02em;
+  }
+  .plan__scope { min-height: 1.5em; margin: 0; }
+  .plan .card__fee { margin: 0.9rem 0 1.1rem; }
+  .plan__cta { justify-content: center; width: 100%; }
+  .plan__label {
+    margin: 1.4rem 0 0.7rem; padding-top: 1.1rem; border-top: 1px solid var(--line);
+    font-size: 0.78rem; font-weight: 640; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .plan .card__list { margin-bottom: 0; }
+  .plan__more { margin-top: 0.35rem; }
+  .plan__more > .card__list { margin-top: 0.35rem; }
+  .plan__more summary { list-style: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; color: var(--green); padding: 0.3rem 0; }
+  .plan__more summary::-webkit-details-marker { display: none; }
+  .plan__more summary:hover { color: var(--green-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .plan__more-close, .plan__more[open] .plan__more-open { display: none; }
+  .plan__more[open] .plan__more-close { display: inline; }
+</style>

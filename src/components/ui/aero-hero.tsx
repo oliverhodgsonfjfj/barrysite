@@ -13,6 +13,12 @@ export interface AeroHeroProps {
   ctaHref: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  /** Short proof points shown as a row of ticks under the buttons (niche landing pages). */
+  points?: string[];
+  /** Optional muted background loop; `image` stays as its poster and as the still for reduced motion. */
+  video?: string;
+  /** CSS object-position for the photo, so the subject stays clear of the centred headline. */
+  position?: string;
   className?: string;
 }
 
@@ -26,6 +32,9 @@ export default function AeroHero({
   ctaHref,
   secondaryLabel,
   secondaryHref,
+  points,
+  video,
+  position = '62% 50%',
   className,
 }: AeroHeroProps) {
   return (
@@ -37,11 +46,26 @@ export default function AeroHero({
       <img
         src={image}
         alt={imageAlt}
-        className="hero-a__photo absolute inset-0 h-full w-full object-cover object-[62%_50%]"
-        style={{ width: '100%', height: '100%' }}
+        className="hero-a__photo absolute inset-0 h-full w-full object-cover"
+        style={{ width: '100%', height: '100%', objectPosition: position }}
         fetchPriority="high"
         decoding="async"
       />
+      {video && (
+        // No src in the HTML: on-page.ts attaches data-src only when motion is allowed and data saver is off,
+        // then the clip fades in over the still once it is playing (.hero-a__video in global.css).
+        <video
+          className="hero-a__video absolute inset-0 h-full w-full object-cover"
+          style={{ width: '100%', height: '100%', objectPosition: position }}
+          data-src={video}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          data-hero-video
+        />
+      )}
       <div className="absolute inset-0 bg-black/45" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-black/60 to-transparent" aria-hidden="true" />
 
@@ -95,6 +119,19 @@ export default function AeroHero({
             </a>
           )}
         </div>
+
+        {points && points.length > 0 && (
+          <ul className="hero-a__in hero-a__points mt-10 flex list-none flex-wrap justify-center gap-x-6 gap-y-2 p-0 text-[0.9rem] text-white/85" style={{ '--i': 4 } as React.CSSProperties}>
+            {points.map((p) => (
+              <li key={p} className="flex items-center gap-2">
+                <span className="grid h-4 w-4 place-items-center rounded-full bg-[#b9e2a0] text-[#0a2b00]" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" width="10" height="10" style={{ display: 'block' }}><path d="M4 8.5l2.5 2.5L12 5.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </span>
+                {p}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

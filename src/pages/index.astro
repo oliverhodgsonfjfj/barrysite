@@ -1,4 +1,5 @@
 ---
+import ContactBand from '../components/ContactBand.astro';
 import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import TestimonialsSection from '../components/ui/testimonials-3';
@@ -171,50 +172,7 @@ const schema = {
   </section>
 
   <!-- Contact -->
-  <section class="section band band--pattern" id="contact" aria-labelledby="contact-title">
-    <div class="container grid grid--5-7" data-reveal>
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h2 id="contact-title">Get in touch</h2>
-        <p class="lead">
-          Send us an email, use the form, or arrange a free 30-minute video call with Barry, Greg or Maria. We
-          welcome calls on <a href={site.phoneHref}>{site.phone}</a> from clients without the need for an appointment.
-        </p>
-        <dl class="contact-details contact-details--dark">
-          <div><dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
-          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
-          <div>
-            <dt>Book a video call</dt>
-            <dd>
-              <a href={site.calendly.barry} rel="noopener">Meet with Barry</a> ·
-              <a href={site.calendly.greg} rel="noopener">Meet with Greg</a> ·
-              <a href={site.calendly.maria} rel="noopener">Meet with Maria</a>
-            </dd>
-          </div>
-          <div>
-            <dt>Visit by appointment</dt>
-            <dd>{site.offices.map((o) => <span>{o.line1}, {o.town}, {o.postcode}</span>)}</dd>
-          </div>
-        </dl>
-      </div>
-      <form class="contact-form" action={site.formAction} method="POST">
-        <input type="hidden" name="_subject" value="Message from focusaccountancy.co.uk" />
-        <p class="contact-form__hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></p>
-        <div class="contact-form__row contact-form__row--2">
-          <div><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required /></div>
-          <div><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required /></div>
-        </div>
-        <div class="contact-form__row contact-form__row--2">
-          <div><label for="cf-phone">Phone <span class="muted">(optional)</span></label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" /></div>
-          <div><label for="cf-subject">Subject</label><input id="cf-subject" name="subject" type="text" /></div>
-        </div>
-        <div class="contact-form__row">
-          <div><label for="cf-message">Message</label><textarea id="cf-message" name="message" required></textarea></div>
-        </div>
-        <button class="btn" type="submit">Send message</button>
-      </form>
-    </div>
-  </section>
+  <ContactBand />
   <!-- Offices / maps -->
   <section class="section section--tight" aria-labelledby="offices-title">
     <div class="container" data-reveal-stagger>

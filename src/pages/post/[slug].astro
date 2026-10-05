@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { site } from '../../data/site';
-import { allPosts, TOPICS, fmtDate, readMinutes } from '../../lib/posts';
+import { allPosts, TOPICS, TOPIC_HUBS, fmtDate, readMinutes } from '../../lib/posts';
 
 export async function getStaticPaths() {
   const posts = await allPosts();
@@ -35,7 +35,7 @@ const old = !!d.published && d.published < '2023-01-01';
   <article class="post">
     <header class="post__head">
       <div class="container">
-        <p class="eyebrow"><a href="/resources">Resources</a>{d.topics.length > 0 && <> · {d.topics.map((t, i) => <><a href={`/resources/categories/${t}`}>{TOPICS[t] || t}</a>{i < d.topics.length - 1 ? ', ' : ''}</>)}</>}</p>
+        <p class="eyebrow"><a href="/resources">Resources</a>{d.topics.length > 0 && <> · {d.topics.map((t, i) => <><a href={TOPIC_HUBS[t] ?? `/resources/categories/${t}`}>{TOPICS[t] || t}</a>{i < d.topics.length - 1 ? ', ' : ''}</>)}</>}</p>
         <h1>{d.title}</h1>
         <p class="post__meta">
           <span>{d.author}</span>

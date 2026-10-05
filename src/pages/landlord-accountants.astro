@@ -1,0 +1,7 @@
+---
+import NicheLanding from '../components/NicheLanding.astro';
+import { niches } from '../data/niches';
+
+const niche = niches.find((n) => n.slug === 'landlord-accountants')!;
+---
+<NicheLanding niche={niche} />

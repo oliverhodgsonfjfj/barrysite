@@ -1,11 +1,11 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import ResourcesShell from '../../../components/ResourcesShell.astro';
-import { allPosts, TOPICS } from '../../../lib/posts';
+import { allPosts, TOPICS, TOPIC_HUBS } from '../../../lib/posts';
 
 export async function getStaticPaths() {
   const posts = await allPosts();
-  return Object.keys(TOPICS).map((slug) => ({ params: { slug }, props: { posts: posts.filter((p) => p.data.topics.includes(slug)), all: posts } }));
+  return Object.keys(TOPICS).filter((slug) => !(slug in TOPIC_HUBS) && posts.some((p) => p.data.topics.includes(slug))).map((slug) => ({ params: { slug }, props: { posts: posts.filter((p) => p.data.topics.includes(slug)), all: posts } }));
 }
 const { slug } = Astro.params;
 const { posts, all } = Astro.props;

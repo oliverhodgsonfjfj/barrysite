@@ -1,5 +1,20 @@
 ---
-import { faqs } from '../data/faq';
+import { faqs as defaultFaqs, type Faq } from '../data/faq';
+
+interface Props {
+  items?: Faq[];
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  showAllLink?: boolean;
+}
+const {
+  items: faqs = defaultFaqs,
+  eyebrow = 'Questions',
+  title = 'The questions most new clients ask',
+  lead = 'A few of the things that come up in almost every first meeting.',
+  showAllLink = true,
+} = Astro.props;
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -17,9 +32,9 @@ const faqSchema = {
 <section class="section faq" aria-labelledby="faq-title">
   <div class="container faq__grid">
     <div data-reveal>
-      <p class="eyebrow">Questions</p>
-      <h2 id="faq-title">The questions most new clients ask</h2>
-      <p class="lead">A few of the things that come up in almost every first meeting. <a href="/faq">See all our answers</a>.</p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id="faq-title">{title}</h2>
+      <p class="lead">{lead}{showAllLink && <> <a href="/faq">See all our answers</a>.</>}</p>
     </div>
     <div class="faq__list" data-reveal>
       {faqs.map((f) => (

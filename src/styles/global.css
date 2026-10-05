@@ -174,6 +174,9 @@ p:last-child { margin-bottom: 0; }
 :root { --ease: cubic-bezier(0.16, 1, 0.3, 1); --rise: 28px; --rise-time: 0.9s; }
 @keyframes rise { from { opacity: 0; transform: translateY(var(--rise)); } to { opacity: 1; transform: none; } }
 
+/* Outside the motion block so a reduced-motion visitor never sees a frame of video. */
+.hero-a__video { opacity: 0; }
+
 @media (prefers-reduced-motion: no-preference) {
   /* Page-load rise */
   .reveal { animation: rise var(--rise-time) var(--ease) both; }
@@ -217,6 +220,9 @@ p:last-child { margin-bottom: 0; }
   @keyframes hero-photo-drift { from { transform: scale(1); } to { transform: scale(1.04); } }
   .hero-a__photo { animation: hero-photo-in 1.6s var(--ease) both, hero-photo-drift 18s ease-in-out 1.6s infinite alternate; }
   .hero-a__in { animation: rise var(--rise-time) var(--ease) both; animation-delay: calc(0.12s + var(--i, 0) * 80ms); }
+  /* Landing-page hero loops (Higgsfield image-to-video): invisible until on-page.ts sees them playing. */
+  .hero-a__video { opacity: 0; transition: opacity 1.2s var(--ease); }
+  .hero-a__video.is-playing { opacity: 1; }
 
   /* Buttons lift 2px with a soft shadow */
   .btn { transition: background-color 0.22s ease-out, border-color 0.22s ease-out, color 0.22s ease-out, transform 0.22s ease-out, box-shadow 0.22s ease-out; }

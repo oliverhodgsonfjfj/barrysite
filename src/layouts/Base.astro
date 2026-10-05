@@ -142,9 +142,29 @@ const og = ogImage ? new URL(ogImage, site.url).href : undefined;
         paintParallax();
       }
 
+      /* ---- Hero video loops ----
+         The <video> ships without a src, so the still is all a reduced-motion or data-saver visitor
+         ever downloads. Otherwise the clip is attached, and fades in over the still once playing. */
+      function initHeroVideo() {
+        const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+        document.querySelectorAll<HTMLVideoElement>('video[data-hero-video]').forEach((v) => {
+          if (reduceMotion.matches || saveData || !v.dataset.src) return;
+          v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true });
+          // React's server render drops the `muted` attribute, and browsers only autoplay muted video.
+          v.muted = true;
+          v.autoplay = true;
+          v.src = v.dataset.src;
+          const tryPlay = () => v.play().catch(() => {});
+          tryPlay();
+          // Browsers hold back playback in background tabs; start it when the tab comes forward.
+          document.addEventListener('visibilitychange', () => { if (!document.hidden && v.paused) tryPlay(); });
+        });
+      }
+
       onPage(() => {
         initReveal();
         initParallax();
+        initHeroVideo();
       });
     </script>
   </body>

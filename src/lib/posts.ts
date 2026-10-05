@@ -10,10 +10,24 @@ export const TOPICS: Record<string, string> = {
   brexit: 'Brexit',
 };
 
+// Topics whose category URL 301s to a static hub page (see vercel.json); chips link straight there.
+export const TOPIC_HUBS: Record<string, string> = { mtd: '/making-tax-digital' };
+
 export type Post = CollectionEntry<'posts'>;
 
+// Posts folded into a static page. They are not built; vercel.json 301s each one to its page.
+export const MERGED_POSTS: Record<string, string> = {
+  'understanding-mtd-for-income-tax-key-dates-thresholds-and-filing-rules': '/making-tax-digital',
+  'making-tax-digital-for-income-tax': '/making-tax-digital',
+  'mtd-for-vat': '/making-tax-digital',
+  'how-and-when-to-register-for-mtd-for-vat': '/making-tax-digital',
+  'mtd-for-landlords': '/making-tax-digital',
+  'changes-to-mtd': '/making-tax-digital',
+  'vat-returns-only-digital-now': '/making-tax-digital',
+};
+
 export async function allPosts(): Promise<Post[]> {
-  const posts = await getCollection('posts');
+  const posts = (await getCollection('posts')).filter((p) => !(p.data.slug in MERGED_POSTS));
   return posts.sort((a, b) => (b.data.published || '').localeCompare(a.data.published || ''));
 }
 

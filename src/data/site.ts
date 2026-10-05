@@ -37,14 +37,18 @@ export const site = {
 
 export type NavItem = { href: string; label: string; external?: boolean; children?: NavItem[] };
 
-// Same structure as the live Wix site's menu (About us, Pricing, Reviews, Resources, Contact, FreeAgent).
+// Six top-level items (Oct 2026). Reviews and Contact sit under About us; the header CTA covers booking.
 export const nav: NavItem[] = [
-  { href: '/about', label: 'About us', children: [
-    { href: '/vacancies', label: 'Vacancies' },
-    { href: '/we-care', label: 'We care' },
+  { href: '/contractor-accountants', label: 'Who we help', children: [
+    { href: '/contractor-accountants', label: 'Contractors' },
+    { href: '/it-contractor-accountants', label: 'IT contractors' },
+    { href: '/freelancer-accountants', label: 'Freelancers and consultants' },
+    { href: '/sole-trader-accountants', label: 'Sole traders' },
+    { href: '/landlord-accountants', label: 'Landlords' },
   ] },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/reviews', label: 'Reviews' },
+  { href: '/making-tax-digital', label: 'MTD' },
+  { href: '/freeagent', label: 'FreeAgent' },
   { href: '/resources', label: 'Resources', children: [
     { href: '/pensions', label: 'Pensions' },
     { href: '/news', label: 'News' },
@@ -59,8 +63,11 @@ export const nav: NavItem[] = [
     { href: '/faq', label: "FAQ's" },
     { href: '/client-portal', label: 'Client Portal' },
   ] },
-  { href: '/contact', label: 'Contact' },
-  { href: '/freeagent', label: 'FreeAgent', children: [
-    { href: '/freeagent', label: 'FreeAgent Gold Partner' },
+  { href: '/about', label: 'About us', children: [
+    { href: '/about', label: 'Our team' },
+    { href: '/reviews', label: 'Reviews' },
+    { href: '/we-care', label: 'We care' },
+    { href: '/vacancies', label: 'Vacancies' },
+    { href: '/contact', label: 'Contact' },
   ] },
 ];

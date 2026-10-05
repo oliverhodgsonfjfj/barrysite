@@ -3005,6 +3005,51 @@
       "permanent": true
     },
     {
+      "source": "/post/understanding-mtd-for-income-tax-key-dates-thresholds-and-filing-rules",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/post/making-tax-digital-for-income-tax",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/post/mtd-for-vat",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/post/how-and-when-to-register-for-mtd-for-vat",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/post/mtd-for-landlords",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/post/changes-to-mtd",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/post/vat-returns-only-digital-now",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/resources/categories/mtd",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2016/01/:file(petition-scrap-plans-forcing-self-employed.*)",
+      "destination": "/making-tax-digital",
+      "permanent": true
+    },
+    {
       "source": "/wp-content/uploads/:path*",
       "destination": "/resources",
       "permanent": true

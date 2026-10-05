@@ -7,22 +7,22 @@ const categories = [
   {
     icon: <Code2 size={24} />,
     title: 'IT and software',
-    items: [{ text: 'IT professionals' }, { text: 'Software developers' }, { text: 'Information workers' }],
+    items: [{ text: 'IT contractors', href: '/it-contractor-accountants' }, { text: 'Software developers' }, { text: 'Information workers' }],
   },
   {
     icon: <Palette size={24} />,
     title: 'Design and creative',
-    items: [{ text: 'Graphic designers' }, { text: 'Designers and programmers' }, { text: 'Publishers' }],
+    items: [{ text: 'Freelance graphic designers', href: '/freelancer-accountants' }, { text: 'Designers and programmers' }, { text: 'Publishers' }],
   },
   {
     icon: <Briefcase size={24} />,
     title: 'Consultants',
-    items: [{ text: 'Management consultants' }, { text: 'Medical consultants' }, { text: 'Advertising, marketing and PR' }],
+    items: [{ text: 'Management consultants', href: '/freelancer-accountants' }, { text: 'Medical consultants' }, { text: 'Advertising, marketing and PR' }],
   },
   {
     icon: <HardHat size={24} />,
     title: 'Engineering and architecture',
-    items: [{ text: 'Engineers' }, { text: 'Architects' }, { text: 'Contractors inside and outside IR35', href: '/ir35' }],
+    items: [{ text: 'Engineers' }, { text: 'Architects' }, { text: 'Contractors inside and outside IR35', href: '/contractor-accountants' }],
   },
   {
     icon: <HeartPulse size={24} />,
@@ -33,9 +33,9 @@ const categories = [
     icon: <KeyRound size={24} />,
     title: 'How you trade',
     items: [
-      { text: 'Limited companies', href: '/pricing' },
-      { text: 'Sole traders, including MTD', href: '/pricing' },
-      { text: 'Landlords with rental income', href: '/pricing' },
+      { text: 'Limited company contractors', href: '/contractor-accountants' },
+      { text: 'Sole traders, including MTD', href: '/sole-trader-accountants' },
+      { text: 'Landlords with rental income', href: '/landlord-accountants' },
     ],
   },
 ];

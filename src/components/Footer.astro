@@ -12,7 +12,8 @@ const year = new Date().getFullYear();
 const cols = [
   { heading: 'Company', links: [['About the team', '/about'], ['We care', '/we-care'], ['Careers', '/vacancies'], ['Reviews', '/reviews'], ['Contact', '/contact']] },
   { heading: 'Clients', links: [['Pricing', '/pricing'], ['FreeAgent', '/freeagent'], ['Resources', '/resources'], ['The client portal', '/client-portal'], ['Client Portal login', site.portal]] },
-  { heading: 'Guides', links: [['Paying your taxes', '/taxes'], ['IR35', '/ir35'], ['Banking', '/banking'], ['Jargon buster', '/jargon-buster'], ['FAQs', '/faq']] },
+  { heading: 'Who we help', links: [['Contractors', '/contractor-accountants'], ['IT contractors', '/it-contractor-accountants'], ['Freelancers', '/freelancer-accountants'], ['Sole traders', '/sole-trader-accountants'], ['Landlords', '/landlord-accountants']] },
+  { heading: 'Guides', links: [['Making Tax Digital', '/making-tax-digital'], ['Paying your taxes', '/taxes'], ['IR35', '/ir35'], ['Banking', '/banking'], ['Jargon buster', '/jargon-buster'], ['FAQs', '/faq']] },
 ];
 ---
 <footer class="site-footer">
@@ -63,7 +64,7 @@ const cols = [
   .site-footer a:hover { color: var(--lime); text-decoration: underline; }
   .site-footer .muted { color: var(--on-dark-2); }
   .site-footer__top { display: grid; gap: 2rem; }
-  @media (min-width: 800px) { .site-footer__top { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 2.5rem; } }
+  @media (min-width: 800px) { .site-footer__top { grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap: 2rem; } }
   .site-footer__logo { display: inline-block; background: #fff; padding: 0.5rem 0.8rem; border-radius: 12px; margin-bottom: 1rem; }
   .site-footer__logo img { height: 44px; width: auto; }
   .site-footer__brand p { max-width: 34ch; color: var(--on-dark-2); }

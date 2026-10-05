@@ -1,0 +1,220 @@
+---
+// Shared layout for the niche landing pages (IT contractors, freelancers, landlords...).
+// Each page passes one entry from src/data/niches.ts.
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { getImage } from 'astro:assets';
+import AeroHero from './ui/aero-hero';
+import Faq from './Faq.astro';
+import ContactBand from './ContactBand.astro';
+import PlanCard from './PlanCard.astro';
+import freeagentGold from '../assets/badges/freeagent-gold-partner.png';
+import { plans } from '../data/pricing';
+import { reviews } from '../data/reviews';
+import { niches, type Niche } from '../data/niches';
+import { site } from '../data/site';
+
+interface Props {
+  niche: Niche;
+}
+const { niche: n } = Astro.props;
+const url = `${site.url}/${n.slug}`;
+const nichePlans = n.plans.map((id) => plans.find((p) => p.id === id)!).filter(Boolean);
+const nicheReviews = n.reviews.map((name) => reviews.find((r) => r.name === name)!).filter(Boolean);
+const siblings = niches.filter((x) => x.slug !== n.slug);
+const heroImg = await getImage({ src: n.hero.image, width: 1920, format: 'webp', quality: 78 });
+// The hero photo doubles as the social share image.
+const ogImg = await getImage({ src: n.hero.image, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: n.serviceName,
+  serviceType: 'Accounting',
+  description: n.description,
+  url,
+  areaServed: [{ '@type': 'City', name: 'Bristol' }, { '@type': 'Country', name: 'United Kingdom' }],
+  audience: { '@type': 'BusinessAudience', name: n.audience },
+  provider: {
+    '@type': 'AccountingService',
+    name: site.name,
+    url: site.url,
+    telephone: '+441172900007',
+    address: { '@type': 'PostalAddress', streetAddress: site.registeredOffice.line1, addressLocality: 'Bristol', postalCode: site.registeredOffice.postcode, addressCountry: 'GB' },
+  },
+  offers: nichePlans.map((p) => ({
+    '@type': 'Offer',
+    name: p.name,
+    price: p.fee,
+    priceCurrency: 'GBP',
+    priceSpecification: { '@type': 'UnitPriceSpecification', price: p.fee, priceCurrency: 'GBP', unitText: p.unit ? `month, ${p.unit}` : 'month', valueAddedTaxIncluded: false },
+  })),
+};
+const crumbs = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: n.crumb, item: url },
+  ],
+};
+---
+<Base title={n.title} description={n.description} current={`/${n.slug}`} ogImage={ogImg.src} overlayHeader>
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(crumbs)} />
+
+  <AeroHero
+    image={heroImg.src}
+    imageAlt={n.hero.alt}
+    position={n.hero.position}
+    video={n.hero.video}
+    eyebrow={n.eyebrow}
+    title={n.h1}
+    text={n.hero.text}
+    ctaLabel="Book a free meeting"
+    ctaHref={site.calendly.barry}
+    secondaryLabel={n.feeButton}
+    secondaryHref="#fees"
+    points={n.proof}
+  />
+
+  <section class="section section--tight" aria-labelledby="why-title">
+    <div class="container" data-reveal-stagger>
+      <div class="nl-intro">
+        <div>
+          <p class="eyebrow">{n.why.eyebrow}</p>
+          <h2 id="why-title">{n.why.title}</h2>
+        </div>
+        <p class="lead">{n.intro}</p>
+      </div>
+      <div class="cards cards--3 nl-why">
+        {n.why.points.map((p) => (
+          <div class="card">
+            <h3 class="card__title">{p.title}</h3>
+            <p>{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {n.sections.map((s, i) => (
+    <section class:list={['section section--tight', { 'section--tint': i % 2 === 0 }]} id={s.id} aria-labelledby={`${s.id}-title`}>
+      <div class="container grid grid--5-7" data-reveal>
+        <div>
+          <p class="eyebrow">{s.eyebrow}</p>
+          <h2 id={`${s.id}-title`}>{s.title}</h2>
+        </div>
+        <div class="nl-prose">
+          {s.paras.map((p) => <p set:html={p} />)}
+          {s.list && <ul class="nl-ticks">{s.list.map((l) => <li set:html={l} />)}</ul>}
+          {s.after && s.after.map((p) => <p set:html={p} />)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section--tight" id="bristol" aria-labelledby="bristol-title">
+    <div class="container grid grid--5-7" data-reveal>
+      <div>
+        <p class="eyebrow">Bristol and UK-wide</p>
+        <h2 id="bristol-title">{n.local.title}</h2>
+      </div>
+      <div class="nl-prose">
+        <p>{n.local.text}</p>
+        <p>
+          Meetings are by appointment at {site.offices.map((o, i) => <>{i > 0 && ' or '}{o.line1}, {o.postcode}</>)}, or
+          on a video call. Clients are welcome to ring us on <a href={site.phoneHref}>{site.phone}</a> without an
+          appointment, {site.hours.replace('8am', 'from 8am')}.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--sage" id="fees" aria-labelledby="fees-title">
+    <div class="container" data-reveal-stagger>
+      <div class="nl-fees-head">
+        <div>
+          <p class="eyebrow">Fixed monthly fees</p>
+          <h2 id="fees-title">{n.fees.title}</h2>
+          <p class="lead">{n.fees.lead}</p>
+        </div>
+        <div class="fa__badge">
+          <Image src={freeagentGold} width={150} alt="FreeAgent Gold Partner badge" />
+          <p class="small">FreeAgent is included in every plan. <a href="/freeagent">Why we use FreeAgent</a></p>
+        </div>
+      </div>
+      <div class:list={['cards', nichePlans.length < 3 ? 'cards--2' : 'cards--3']}>
+        {nichePlans.map((p) => <PlanCard plan={p} featured={p.id === n.fees.featured} />)}
+      </div>
+      <p class="small muted" style="margin-top:1rem">{n.fees.note} <a href="/pricing">See all our prices</a>.</p>
+    </div>
+  </section>
+
+  {nicheReviews.length > 0 && (
+    <section class="section section--tight" aria-labelledby="reviews-title">
+      <div class="container" data-reveal-stagger>
+        <p class="eyebrow">Reviews</p>
+        <h2 id="reviews-title" class="page-section-title">{n.reviewsTitle}</h2>
+        <div class="cards cards--3">
+          {nicheReviews.map((r) => (
+            <figure class="card nl-review">
+              <blockquote><p>“{r.quote}”</p></blockquote>
+              <figcaption>
+                {r.photo && <Image src={r.photo} width={44} height={44} alt="" />}
+                <span><strong>{r.name}</strong><span class="small muted">{r.title}</span></span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="small" style="margin-top:1rem"><a href="/reviews">Read more reviews</a></p>
+      </div>
+    </section>
+  )}
+
+  <Faq items={n.faqs} eyebrow="Questions" title={n.faqTitle} lead={n.faqLead} showAllLink={false} />
+
+  <section class="section section--tight" aria-labelledby="related-title">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Further reading</p>
+      <h2 id="related-title" class="page-section-title">Guides for {n.audienceShort}</h2>
+      <ul class="nl-links">
+        {n.related.map((r) => <li><a href={r.href}>{r.label}</a></li>)}
+      </ul>
+      {siblings.length > 0 && (
+        <p class="small muted nl-siblings">We also work with {siblings.map((s, i) => <>{i > 0 && (i === siblings.length - 1 ? ' and ' : ', ')}<a href={`/${s.slug}`}>{s.audienceShort}</a></>)}.</p>
+      )}
+    </div>
+  </section>
+
+  <ContactBand eyebrow="Talk to us" title={n.contact.title} lead={n.contact.lead} subject={`${n.crumb} enquiry from focusaccountancy.co.uk`} />
+</Base>
+
+<style>
+  .nl-intro { display: grid; gap: 1rem 4rem; margin-bottom: 2.25rem; }
+  @media (min-width: 900px) { .nl-intro { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); align-items: end; } }
+  .nl-intro .lead { margin: 0; }
+
+  .nl-why .card__title { font-size: 1.15rem; margin-bottom: 0.5rem; }
+  .nl-prose { max-width: 66ch; }
+  .nl-prose :global(p) { color: var(--ink-2); }
+  .nl-ticks { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.65rem; }
+  .nl-ticks li { position: relative; padding-left: 1.9rem; color: var(--ink-2); }
+  .nl-ticks li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat; }
+
+  .nl-fees-head { display: grid; gap: 1.5rem; margin-bottom: 2rem; }
+  @media (min-width: 900px) { .nl-fees-head { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: end; column-gap: 4rem; } }
+  .nl-fees-head .fa__badge p { margin: 0.5rem 0 0; }
+
+  .nl-review { margin: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; }
+  .nl-review blockquote { margin: 0; }
+  .nl-review blockquote p { color: var(--ink); }
+  .nl-review figcaption { display: flex; align-items: center; gap: 0.75rem; }
+  .nl-review figcaption img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .nl-review figcaption > span { display: flex; flex-direction: column; }
+
+  .nl-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem 2rem; }
+  @media (min-width: 760px) { .nl-links { grid-template-columns: 1fr 1fr; } }
+  .nl-links a { font-weight: 560; }
+  .nl-siblings { margin-top: 1.5rem; }
+</style>

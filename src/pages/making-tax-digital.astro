@@ -1,0 +1,351 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import AeroHero from '../components/ui/aero-hero';
+import heroPhoto from '../assets/heroes/making-tax-digital.jpg';
+import Faq from '../components/Faq.astro';
+import ContactBand from '../components/ContactBand.astro';
+import PlanCard from '../components/PlanCard.astro';
+import freeagentGold from '../assets/badges/freeagent-gold-partner.png';
+import { plans } from '../data/pricing';
+import { site } from '../data/site';
+import type { Faq as FaqItem } from '../data/faq';
+
+// Facts, dates, thresholds and penalties below are Barry's (MTD section brief, Oct 2026).
+const title = 'Making Tax Digital for Income Tax | Focus Accountancy';
+const description =
+  'MTD for Income Tax explained: who it applies to, the £50,000, £30,000 and £20,000 thresholds, quarterly deadlines, penalty points and how we can help.';
+const updated = '2026-10-05';
+// Hero generated in Higgsfield (GPT Image 2.5 still, Kling 3.0 loop); original in old-site/images/named/hero-mtd-generated.png.
+const heroImg = await getImage({ src: heroPhoto, width: 1920, format: 'webp', quality: 78 });
+const ogImg = await getImage({ src: heroPhoto, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+
+const thresholds = [
+  { from: 'April 2026', year: 2026, amount: '£50,000', basis: 'Based on your 2024/25 Self Assessment return' },
+  { from: 'April 2027', year: 2027, amount: '£30,000', basis: 'Based on your 2025/26 Self Assessment return' },
+  { from: 'April 2028', year: 2028, amount: '£20,000', basis: 'Based on your 2026/27 Self Assessment return' },
+];
+// The stage in force at build time: the latest April that has passed.
+const now = new Date();
+const taxYearStart = now.getMonth() >= 3 ? now.getFullYear() : now.getFullYear() - 1;
+const currentStage = thresholds.findLastIndex((t) => t.year <= taxYearStart);
+
+const quarters = [
+  { q: 'Q1', calendar: '01/04 – 30/06', standard: '06/04 – 05/07', deadline: '7 August' },
+  { q: 'Q2', calendar: '01/04 – 30/09', standard: '06/04 – 05/10', deadline: '7 November' },
+  { q: 'Q3', calendar: '01/04 – 31/12', standard: '06/04 – 05/01', deadline: '7 February' },
+  { q: 'Q4', calendar: '01/04 – 31/03', standard: '06/04 – 05/04', deadline: '7 May' },
+];
+
+const mtdPlans = plans.filter((p) => ['st-mtd', 'st-book', 'rental'].includes(p.id));
+
+const faqs: FaqItem[] = [
+  {
+    q: 'Is the threshold based on my profit or my turnover?',
+    a: [{ text: 'Your turnover. Qualifying income is your gross, combined turnover from self-employment and rental income, before any expenses are taken off. So a sole trader taking £55,000 with £20,000 of costs is still over the £50,000 threshold.' }],
+  },
+  {
+    q: 'I have a business and a rental property. Do I add them together?',
+    a: [{ text: 'Yes. If you are self-employed and a landlord, the gross income from both counts towards the threshold. Neither has to be over the threshold on its own.' }],
+  },
+  {
+    q: 'Do I still need to file a Self Assessment tax return?',
+    a: [{ text: "Not in the old form. Once you are in MTD for Income Tax, the Final Declaration replaces the traditional Self Assessment tax return. You'll send four quarterly updates and an End of Year Update first, then the Final Declaration." }],
+  },
+  {
+    q: 'I run a limited company. Does MTD for Income Tax apply to me?',
+    a: [{ text: "MTD for Income Tax covers self-employment and rental income, so your company's own accounts are not part of it. If you personally have rental income, or a sideline as a sole trader, and that income is over the threshold, then it applies to that income." }],
+  },
+  {
+    q: 'My income has dropped below the threshold. Can I leave MTD?',
+    a: [{ text: "Once you have crossed the threshold you must stay in MTD for at least 3 years. If your qualifying income stops altogether during the year, you still need to send quarterly updates up to the date it stopped, and you still need to submit the Final Declaration." }],
+  },
+  {
+    q: 'What software do I need?',
+    a: [
+      { text: 'Quarterly updates must be sent using HMRC-recognised software. FreeAgent is recognised for MTD for Income Tax, and a FreeAgent subscription is included in every one of our plans, so you do not need to buy anything else.' },
+    ],
+  },
+  {
+    q: 'What happens if I miss a deadline?',
+    a: [{ text: 'Each late quarterly update or Final Declaration earns one penalty point. At 4 points you get a £200 penalty, and another £200 for every late submission after that. Points below the threshold expire 24 months after the deadline they relate to, as long as you file nothing else late.' }],
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Understanding MTD for Income Tax: key dates, thresholds and filing rules',
+  description,
+  dateModified: updated,
+  author: { '@type': 'Person', name: 'Barry Adams', jobTitle: 'Managing Director', worksFor: { '@type': 'Organization', name: site.name } },
+  publisher: { '@type': 'Organization', name: site.name, url: site.url, logo: { '@type': 'ImageObject', url: `${site.url}/img/logo.png` } },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.url}/making-tax-digital` },
+};
+const crumbs = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Making Tax Digital', item: `${site.url}/making-tax-digital` },
+  ],
+};
+---
+<Base title={title} description={description} current="/making-tax-digital" ogImage={ogImg.src} overlayHeader>
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(crumbs)} />
+
+  <AeroHero
+    image={heroImg.src}
+    imageAlt="A couple at their kitchen table in Bristol going through their quarterly figures on a laptop and phone, with colourful terraced houses outside the window"
+    position="72% 50%"
+    video="/video/making-tax-digital.mp4"
+    eyebrow="Making Tax Digital"
+    title="Making Tax Digital for Income Tax"
+    text="From April 2026, sole traders and landlords with qualifying income above the threshold must keep digital records, submit quarterly updates to HMRC, and complete a Final Declaration at the end of every tax year."
+    ctaLabel="Book a free MTD check"
+    ctaHref={site.calendly.barry}
+    secondaryLabel="MTD plans from £75 a month"
+    secondaryHref="#plans"
+    points={['£50,000 from April 2026', '£30,000 from April 2027', '£20,000 from April 2028']}
+  />
+
+  <nav class="section section--tight mtd-toc" aria-label="On this page">
+    <div class="container mtd-toc__inner">
+      <p class="small muted mtd-toc__by">By Barry Adams FCCA, Managing Director · Updated <time datetime={updated}>5 October 2026</time></p>
+      <ul>
+        <li><a href="#thresholds">Thresholds</a></li>
+        <li><a href="#who">Who it applies to</a></li>
+        <li><a href="#deadlines">Deadlines</a></li>
+        <li><a href="#leaving">Leaving MTD</a></li>
+        <li><a href="#penalties">Penalties</a></li>
+        <li><a href="#plans">How we help</a></li>
+        <li><a href="#faq-title">Questions</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section section--tight" id="thresholds" aria-labelledby="thresholds-title">
+    <div class="container" data-reveal>
+      <p class="eyebrow">The thresholds</p>
+      <h2 id="thresholds-title" class="page-section-title">When MTD applies to you</h2>
+      <p class="lead mtd-measure">
+        The threshold comes down in three steps. Whether you're in depends on the gross income on your Self
+        Assessment return from two tax years earlier.
+      </p>
+      <ol class="mtd-steps">
+        {thresholds.map((t, i) => (
+          <li class:list={['mtd-step', { 'is-current': i === currentStage, 'is-past': i < currentStage }]}>
+            <p class="mtd-step__from">From {t.from}{i === currentStage && <span class="mtd-step__now">In force now</span>}</p>
+            <p class="mtd-step__amount"><span class="small">Income over</span> {t.amount}</p>
+            <p class="small muted">{t.basis}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--tight section--tint" id="who" aria-labelledby="who-title">
+    <div class="container grid grid--7-5" data-reveal>
+      <div>
+        <p class="eyebrow">Who it applies to</p>
+        <h2 id="who-title">Who needs to comply with MTD for Income Tax</h2>
+        <ul class="mtd-ticks">
+          <li><strong>Self-employed individuals</strong> (sole traders)</li>
+          <li><strong>Landlords</strong></li>
+          <li><strong>Individuals with combined self-employment and rental income</strong> above the thresholds</li>
+        </ul>
+      </div>
+      <div class="card mtd-callout">
+        <p class="eyebrow">What is qualifying income?</p>
+        <p class="mtd-callout__big">Your gross (combined) turnover from self-employment and/or rental income.</p>
+        <p class="small muted">It's turnover before expenses, not profit. Income from both sources is added together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="deadlines" aria-labelledby="deadlines-title">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Deadlines and reporting periods</p>
+      <h2 id="deadlines-title" class="page-section-title">Four quarterly updates, same four deadlines</h2>
+      <p class="lead mtd-measure">
+        Quarterly updates must be submitted to HMRC using HMRC-recognised software. Depending on whether your
+        accounting period ends on 31 March or 5 April, different reporting period end dates may be used. The
+        filing deadlines are the same whichever you choose.
+      </p>
+      <div class="mtd-table-wrap">
+        <table class="mtd-table">
+          <caption class="visually-hidden">MTD for Income Tax quarterly reporting periods and deadlines</caption>
+          <thead>
+            <tr><th scope="col">Quarter</th><th scope="col">Calendar reporting period</th><th scope="col">Standard reporting period</th><th scope="col">Deadline</th></tr>
+          </thead>
+          <tbody>
+            {quarters.map((r) => (
+              <tr><th scope="row">{r.q}</th><td>{r.calendar}</td><td>{r.standard}</td><td><strong>{r.deadline}</strong></td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">Each reporting period runs from the start of the tax year, so every update covers the year to date.</p>
+
+      <div class="cards cards--2 mtd-after">
+        <div class="card">
+          <p class="eyebrow">After Q4</p>
+          <h3 class="card__title">End of Year Update</h3>
+          <p>In addition to the four quarterly updates, an End of Year Update must be submitted. This includes any accounting adjustments and tax allowances that need to be reported before the Final Declaration is filed.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">To finish the year</p>
+          <h3 class="card__title">Final Declaration</h3>
+          <p>The Final Declaration replaces the traditional Self Assessment tax return for individuals within the scope of Making Tax Digital for Income Tax.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--tint" id="leaving" aria-labelledby="leaving-title">
+    <div class="container grid grid--5-7" data-reveal>
+      <div>
+        <p class="eyebrow">Leaving MTD</p>
+        <h2 id="leaving-title">Ceasing to be eligible for MTD</h2>
+      </div>
+      <ul class="mtd-ticks">
+        <li>Once you have crossed the MTD threshold, you must stay in MTD for a <strong>minimum of 3 years</strong>.</li>
+        <li>If you become eligible for MTD and your qualifying income then stops during the year, you still need to submit quarterly updates up to the date it stopped, and you still need to submit the Final Declaration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="penalties" aria-labelledby="penalties-title">
+    <div class="container" data-reveal>
+      <p class="eyebrow">Penalty points</p>
+      <h2 id="penalties-title" class="page-section-title">Late submissions earn points, not fines (at first)</h2>
+      <div class="mtd-points" aria-hidden="true">
+        <span class="mtd-dot"></span><span class="mtd-dot"></span><span class="mtd-dot"></span><span class="mtd-dot mtd-dot--last">4</span>
+        <span class="mtd-points__arrow"></span><span class="mtd-points__fine">£200</span>
+      </div>
+      <div class="mtd-table-wrap">
+        <table class="mtd-table">
+          <caption class="visually-hidden">MTD for Income Tax late submission penalty points</caption>
+          <thead><tr><th scope="col">What happens</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><td>A quarterly update or Final Declaration is filed late</td><td><strong>One penalty point</strong></td></tr>
+            <tr><td>Point threshold reached (4 points)</td><td><strong>£200 penalty</strong></td></tr>
+            <tr><td>Every further late submission after the threshold</td><td><strong>Additional £200 penalty each time</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cards cards--2 mtd-after">
+        <div class="card"><h3 class="card__title">Below the threshold</h3><p>If you have penalty points below the threshold and make no further late submissions, each point automatically expires 24 months after the relevant filing deadline.</p></div>
+        <div class="card"><h3 class="card__title">At the threshold</h3><p>If you have reached the penalty threshold, your points are reset only once you have completed 12 months of compliant filing and submitted all outstanding returns.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--sage" id="plans" aria-labelledby="plans-title">
+    <div class="container" data-reveal>
+      <div class="mtd-help">
+        <div>
+          <p class="eyebrow">How we help</p>
+          <h2 id="plans-title">We send the updates, you get on with your work</h2>
+          <p class="lead">
+            Our MTD plans include every quarterly update, the End of Year Update and the Final Declaration, done in
+            FreeAgent, which is HMRC-recognised and included in your fee. We review your figures each quarter, so
+            nothing waits until January.
+          </p>
+        </div>
+        <div class="fa__badge">
+          <Image src={freeagentGold} width={160} alt="FreeAgent Gold Partner badge" />
+          <p class="small">FreeAgent Gold Partner. Every member of the team is a FreeAgent Accredited Practitioner. <a href="/freeagent">More about FreeAgent</a></p>
+        </div>
+      </div>
+      <div class="cards cards--3">
+        {mtdPlans.map((p) => <PlanCard plan={p} featured={p.id === 'st-mtd'} />)}
+      </div>
+      <p class="small muted" style="margin-top:1rem">Not on MTD yet? Our Sole Trader plan is £50 a month. <a href="/pricing">See all our prices</a>.</p>
+    </div>
+  </section>
+
+  <Faq items={faqs} eyebrow="MTD questions" title="What people ask us about MTD" lead="The questions we hear most from sole traders and landlords getting ready." showAllLink={false} />
+
+  <ContactBand
+    eyebrow="Get ready for MTD"
+    title="Not sure if MTD applies to you?"
+    lead="We'll check your income against the thresholds and tell you when your first update is due."
+    subject="MTD enquiry from focusaccountancy.co.uk"
+  />
+</Base>
+
+<style>
+  .mtd-measure { max-width: 64ch; }
+
+  .mtd-toc { padding-block: 1rem; border-bottom: 1px solid var(--line); }
+  .mtd-toc__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 2rem; }
+  .mtd-toc__by { margin: 0; }
+  .mtd-toc ul { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; list-style: none; margin: 0; padding: 0; font-size: 0.95rem; }
+  .mtd-toc a { text-decoration: none; color: var(--ink-2); }
+  .mtd-toc a:hover { color: var(--green); }
+
+  .mtd-steps { list-style: none; padding: 0; margin: 2.75rem 0 0; display: grid; gap: 1rem; counter-reset: step; }
+  @media (min-width: 760px) { .mtd-steps { grid-template-columns: repeat(3, 1fr); } }
+  .mtd-step { position: relative; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.5rem; background: var(--surface); }
+  .mtd-step p { margin: 0; }
+  .mtd-step.is-current { border-color: var(--green); box-shadow: 0 0 0 1px var(--green) inset; background: var(--sage-2); }
+  .mtd-step.is-past { opacity: 0.7; }
+  .mtd-step__from { font-weight: 640; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+  .mtd-step__now { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; color: #fff; background: var(--green); border-radius: var(--pill); padding: 0.2rem 0.6rem; }
+  .mtd-step__amount { font-family: var(--display); font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 600; color: var(--green-ink); line-height: 1.1; margin: 0.6rem 0 0.4rem !important; }
+  .mtd-step__amount .small { display: block; font-family: var(--font); font-size: 0.85rem; font-weight: 500; color: var(--ink-3); }
+
+  .mtd-ticks { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: 0.8rem; }
+  .mtd-ticks li { position: relative; padding-left: 2rem; color: var(--ink-2); }
+  .mtd-ticks li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat; }
+  .mtd-callout { align-self: start; }
+  .mtd-callout__big { font-family: var(--display); font-size: 1.3rem; line-height: 1.35; color: var(--green-ink); }
+
+  .mtd-table-wrap { overflow-x: auto; margin: 1.75rem 0 0.75rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .mtd-table { width: 100%; border-collapse: collapse; font-size: 0.98rem; min-width: 520px; }
+  .mtd-table th, .mtd-table td { text-align: left; padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--line); }
+  .mtd-table thead th { background: var(--sage-2); font-weight: 640; color: var(--green-ink); font-size: 0.9rem; }
+  .mtd-table tbody tr:last-child > * { border-bottom: 0; }
+  .mtd-table tbody th { font-weight: 640; }
+  .mtd-after { margin-top: 1.75rem; }
+
+  .mtd-points { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; }
+  .mtd-dot { width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--sage); border: 2px solid var(--green); }
+  .mtd-dot--last { display: grid; place-items: center; background: var(--green); color: #fff; font-size: 0.8rem; font-weight: 700; }
+  .mtd-points__arrow { width: 2.5rem; height: 2px; background: var(--line-2); margin-inline: 0.25rem; }
+  .mtd-points__fine { font-family: var(--display); font-weight: 600; font-size: 1.2rem; color: #fff; background: var(--green-ink); border-radius: var(--pill); padding: 0.25rem 0.9rem; }
+
+  /* Motion: when the block scrolls in (Base.astro adds .is-visible), the three threshold steps rise
+     in turn while a line draws across them, the current step's badge pulses once, and the penalty
+     dots fill one by one before the £200 lands. Transform and opacity only; nothing with reduced motion. */
+  @media (min-width: 760px) {
+    .mtd-steps { position: relative; }
+    .mtd-steps::before { content: ""; position: absolute; left: 1.5rem; right: 1.5rem; top: -1rem; height: 2px; background: linear-gradient(90deg, var(--green), var(--lime)); border-radius: 2px; transform-origin: left; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js) [data-reveal] .mtd-steps::before { transform: scaleX(0); transition: transform 1.4s var(--ease) 0.3s; }
+    :global(html.js) [data-reveal].is-visible .mtd-steps::before { transform: scaleX(1); }
+    :global(html.js) [data-reveal] .mtd-step { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    :global(html.js) [data-reveal].is-visible .mtd-step { opacity: 1; transform: none; }
+    :global(html.js) [data-reveal].is-visible .mtd-step:nth-child(2) { transition-delay: 0.35s; }
+    :global(html.js) [data-reveal].is-visible .mtd-step:nth-child(3) { transition-delay: 0.7s; }
+    :global(html.js) [data-reveal].is-visible .mtd-step__now { animation: mtd-pulse 1.6s var(--ease) 0.6s 2; }
+    @keyframes mtd-pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 88, 0, 0.45); } 100% { box-shadow: 0 0 0 10px rgba(16, 88, 0, 0); } }
+
+    :global(html.js) [data-reveal] .mtd-dot { transform: scale(0.4); opacity: 0.2; transition: transform 0.5s var(--ease), opacity 0.5s var(--ease); }
+    :global(html.js) [data-reveal] .mtd-points__arrow { transform: scaleX(0); transform-origin: left; transition: transform 0.6s var(--ease) 1.3s; }
+    :global(html.js) [data-reveal] .mtd-points__fine { opacity: 0; transform: scale(0.6); transition: opacity 0.5s var(--ease) 1.75s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.75s; }
+    :global(html.js) [data-reveal].is-visible .mtd-dot { transform: none; opacity: 1; }
+    :global(html.js) [data-reveal].is-visible .mtd-dot:nth-child(2) { transition-delay: 0.3s; }
+    :global(html.js) [data-reveal].is-visible .mtd-dot:nth-child(3) { transition-delay: 0.6s; }
+    :global(html.js) [data-reveal].is-visible .mtd-dot:nth-child(4) { transition-delay: 0.9s; }
+    :global(html.js) [data-reveal].is-visible .mtd-points__arrow { transform: none; }
+    :global(html.js) [data-reveal].is-visible .mtd-points__fine { opacity: 1; transform: none; }
+  }
+
+  .mtd-help { display: grid; gap: 1.5rem; margin-bottom: 2rem; }
+  @media (min-width: 900px) { .mtd-help { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: end; column-gap: 4rem; } }
+  .mtd-help .fa__badge p { margin: 0.5rem 0 0; }
+</style>

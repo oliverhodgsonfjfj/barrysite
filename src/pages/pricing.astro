@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import PlanFinder from '../components/PlanFinder.astro';
+import PlanCard from '../components/PlanCard.astro';
 import FaqAccordion from '../components/react/FaqAccordion';
 import { plans, additionalServices, pricingNotes } from '../data/pricing';
 import services from '../data/services.json';
@@ -31,15 +32,7 @@ const serviceFaq = services.map((s) => ({ q: s.q, a: s.a.map((t) => ({ text: t }
       <p class="eyebrow">Limited companies</p>
       <h2 class="page-section-title">Fee structure for contractors, consultants and freelancers</h2>
       <div class="cards cards--3">
-        {ltd.map((p) => (
-          <div class:list={['card', { 'card--featured': p.id === 'ltd-premium' }]}>
-            <h3 class="card__title">{p.name}</h3>
-            <p class="small muted">{p.scope}</p>
-            <p class="card__fee"><strong>£{p.fee}</strong><span>a month + VAT</span></p>
-            <ul class="card__list">{p.includes.map((i) => <li>{i}</li>)}</ul>
-            <a class="btn btn--small" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
-          </div>
-        ))}
+        {ltd.map((p) => <PlanCard plan={p} featured={p.id === 'ltd-premium'} />)}
       </div>
       <p class="small muted" style="margin-top:1rem">{pricingNotes.poa}</p>
     </div>
@@ -50,30 +43,17 @@ const serviceFaq = services.map((s) => ({ q: s.q, a: s.a.map((t) => ({ text: t }
       <p class="eyebrow">Sole traders</p>
       <h2 class="page-section-title">Sole trader plans</h2>
       <p class="notice" style="max-width:70ch;margin-bottom:1.5rem">
-        <strong>Making Tax Digital for Income Tax is now live.</strong> From April 2026 it applies to sole traders and landlords with income over £50,000, and from April 2027 to those over £30,000. Our MTD plans include the quarterly submissions.
+        <strong>Making Tax Digital for Income Tax is now live.</strong> From April 2026 it applies to sole traders and landlords with income over £50,000, and from April 2027 to those over £30,000. Our MTD plans include the quarterly submissions. <a href="/making-tax-digital">How MTD works</a>.
       </p>
       <div class="cards cards--3">
-        {sole.map((p) => (
-          <div class="card">
-            <h3 class="card__title">{p.name}</h3>
-            <p class="small muted">{p.scope}</p>
-            <p class="card__fee"><strong>£{p.fee}</strong><span>a month + VAT</span></p>
-            <ul class="card__list">{p.includes.map((i) => <li>{i}</li>)}</ul>
-            <a class="btn btn--small" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
-          </div>
-        ))}
+        {sole.map((p) => <PlanCard plan={p} featured={p.id === 'st-mtd'} />)}
       </div>
     </div>
   </section>
 
   <section class="section section--tight">
     <div class="container grid grid--5-7" data-reveal>
-      <div class="card">
-        <p class="eyebrow">Landlords</p>
-        <h3 class="card__title">{rental.name}</h3>
-        <p class="card__fee"><strong>£{rental.fee}</strong><span>a month + VAT, {rental.unit}</span></p>
-        <ul class="card__list">{rental.includes.map((i) => <li>{i}</li>)}</ul>
-      </div>
+      <PlanCard plan={rental} />
       <div class="card">
         <p class="eyebrow">Additional services</p>
         <p>
