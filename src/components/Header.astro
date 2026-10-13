@@ -11,7 +11,7 @@ const isCurrent = (item: { href: string; children?: { href: string }[] }) => cur
     <div class="site-header__bar">
       <a class="brand" href="/" aria-label="Focus Accountancy, home">
         <img class="brand__colour" src="/img/logo.png" alt="Focus Accountancy Ltd" width="5279" height="2618" decoding="async" fetchpriority="high" />
-        <img class="brand__white" src="/img/logo-white.png" alt="" aria-hidden="true" width="1200" height="595" decoding="async" fetchpriority="high" />
+        <img class="brand__hero" src="/img/logo-hero.png" alt="" aria-hidden="true" width="1200" height="595" decoding="async" fetchpriority="high" />
       </a>
       <nav class="site-header__nav" aria-label="Main">
         <ul>
@@ -31,7 +31,7 @@ const isCurrent = (item: { href: string; children?: { href: string }[] }) => cur
           ))}
         </ul>
       </nav>
-      <a class="site-header__cta" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+      <a class="site-header__cta" href={site.bookMeeting}>Book a free meeting</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
@@ -69,7 +69,7 @@ const isCurrent = (item: { href: string; children?: { href: string }[] }) => cur
         })}
       </ul>
       <div class="mnav__foot" style={`--i:${links.length}`}>
-        <a class="btn mnav__cta" href={site.calendly.barry} rel="noopener">Book a free meeting</a>
+        <a class="btn mnav__cta" href={site.bookMeeting}>Book a free meeting</a>
         <p class="mnav__contact">
           <a href={site.phoneHref}>{site.phone}</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
@@ -147,9 +147,9 @@ const isCurrent = (item: { href: string; children?: { href: string }[] }) => cur
 
   .brand { position: relative; display: flex; align-items: center; flex-shrink: 0; margin-right: auto; }
   .brand img { height: calc(60px - 22px * var(--p)); width: auto; }
-  .brand__white { display: none; position: absolute; inset: 0; opacity: 0; transition: opacity 0.25s ease; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45)) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35)); }
-  .site-header--overlay .brand__white { display: block; }
-  .site-header--overlay:not(.is-scrolled):not(.is-menu-open) .brand__white { opacity: 1; }
+  .brand__hero { display: none; position: absolute; inset: 0; opacity: 0; transition: opacity 0.25s ease; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45)) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35)); }
+  .site-header--overlay .brand__hero { display: block; }
+  .site-header--overlay:not(.is-scrolled):not(.is-menu-open) .brand__hero { opacity: 1; }
   .site-header--overlay:not(.is-scrolled):not(.is-menu-open) .brand__colour { opacity: 0; }
   .brand__colour { transition: opacity 0.25s ease; }
   

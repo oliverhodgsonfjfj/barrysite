@@ -76,13 +76,13 @@ const schema = {
   <AeroHero
     image={heroImg.src}
     imageAlt="A freelance consultant working on a laptop at a kitchen table by a window, with Bristol's colourful terraced houses outside"
-    eyebrow="The Focus is on you"
+    tagline="The Focus on you"
     title="Accountants for contractors, consultants and freelancers"
     text="Fixed monthly fees, FreeAgent included, unlimited support, and a small Bristol team you'll know by name."
     ctaLabel="Book a free meeting"
-    ctaHref={site.calendly.barry}
+    ctaHref={site.bookMeeting}
     secondaryLabel="Find your plan"
-    secondaryHref="#plan-finder"
+    secondaryHref="/pricing#plan-finder"
   />
 
   <!-- Overview -->
@@ -122,7 +122,7 @@ const schema = {
     <div class="container photo-band__inner">
       <p class="eyebrow eyebrow--light">Our office</p>
       <h2>Bristol-based, online most of the time</h2>
-      <p>Most of our meetings are online, but you're welcome to visit by appointment. Call <a href={site.phoneHref}>{site.phone}</a> or <a href={site.calendly.barry} rel="noopener">book a free 30-minute meeting</a>.</p>
+      <p>Most of our meetings are online, but you're welcome to visit by appointment. Call <a href={site.phoneHref}>{site.phone}</a> or <a href={site.bookMeeting}>book a free 30-minute meeting</a>.</p>
     </div>
   </section>
 

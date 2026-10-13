@@ -22,6 +22,8 @@
   --on-dark-2: #c3d2b8;
   --focus: #2b7a0b;
   --font: 'Libre Franklin Variable', 'Libre Franklin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --script: 'Dancing Script', 'Brush Script MT', cursive;
+  --tagline-green: #27570f; /* the old site's tagline green (Wix color_42) */
   --display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Libre Franklin Variable', system-ui, sans-serif;
   --container: 1180px;
   --gutter: clamp(20px, 4vw, 40px);
@@ -491,3 +493,25 @@ body:not(.has-overlay) main { padding-top: 84px; }
 /* ---------- Office map cards (shared) ---------- */
 .office__map { aspect-ratio: 16 / 10; border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; background: var(--sage-2); }
 .office__map iframe { width: 100%; height: 100%; border: 0; }
+
+/* ---- Brand tagline: "The Focus on you", script face in the old site's green ---- */
+.tagline { font-family: var(--script); font-weight: 600; color: var(--tagline-green); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); line-height: 1.1; letter-spacing: 0; text-transform: none; }
+.tagline--pill { display: inline-block; padding: 0.2em 0.85em 0.3em; border-radius: var(--pill); background: rgba(255, 255, 255, 0.94); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); }
+
+/* ---- Book a meeting: Barry, Greg and Maria's diaries (MeetingHosts.astro) ---- */
+.hosts { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.host { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.host__photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.host__text { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem; min-width: 0; }
+.host__name { margin: 0; font-family: var(--display); font-weight: 650; color: var(--ink); }
+.host__letters { font-weight: 500; color: var(--ink-3); font-size: 0.85em; }
+.host__role { margin: 0 0 0.6rem; color: var(--ink-2); font-size: 0.92rem; }
+.host__alt { margin-top: 0.4rem; }
+.hosts__note { margin-top: 1.25rem; }
+
+.book-dialog { margin: auto; width: min(960px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: clamp(1.4rem, 4vw, 2.4rem); border: 0; border-radius: var(--radius-lg); background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px rgba(10, 43, 0, 0.3); }
+.book-dialog::backdrop { background: rgba(10, 43, 0, 0.55); backdrop-filter: blur(3px); }
+.book-dialog h2 { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem); margin: 0 2.5rem 0.4rem 0; }
+.book-dialog__lead { color: var(--ink-2); margin: 0 0 1.4rem; }
+.book-dialog__close { position: absolute; top: 0.9rem; right: 0.9rem; width: 2.5rem; height: 2.5rem; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--ink); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.book-dialog__close:hover { background: var(--sage-2); }

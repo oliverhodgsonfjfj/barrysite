@@ -1,11 +1,13 @@
 ---
 import '@fontsource-variable/libre-franklin';
 import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource/dancing-script/600.css';
 import '../styles/tailwind.css';
 import '../styles/global.css';
 import { ClientRouter, fade } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import MeetingHosts from '../components/MeetingHosts.astro';
 import { site } from '../data/site';
 
 interface Props {
@@ -50,8 +52,30 @@ const og = ogImage ? new URL(ogImage, site.url).href : undefined;
       <slot />
     </main>
     <Footer />
+    <dialog class="book-dialog" id="book-meeting" aria-labelledby="book-dialog-title">
+      <form method="dialog"><button class="book-dialog__close" aria-label="Close">&times;</button></form>
+      <p class="eyebrow">Book a free meeting</p>
+      <h2 id="book-dialog-title">Pick a time with Barry, Greg or Maria</h2>
+      <p class="book-dialog__lead">A free, no-obligation 30-minute video call. Choose whoever has a time that suits you.</p>
+      <MeetingHosts />
+    </dialog>
     <script>
       import { onPage } from '../lib/on-page';
+
+      /* ---- Book a meeting ----
+         Every "Book a free meeting" link points at /book-a-meeting (site.bookMeeting). With JS we
+         open the chooser dialog in place instead. Capture phase, so this runs before the
+         ClientRouter's own click handler sees the link. A click on the backdrop closes it. */
+      document.addEventListener('click', (e) => {
+        const target = e.target as Element;
+        if (target instanceof HTMLDialogElement && target.id === 'book-meeting') { target.close(); return; }
+        const link = target.closest?.('a[href="/book-a-meeting"]');
+        if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const dialog = document.getElementById('book-meeting') as HTMLDialogElement | null;
+        if (!dialog?.showModal || location.pathname === '/book-a-meeting') return;
+        e.preventDefault();
+        dialog.showModal();
+      }, true);
 
       // The ClientRouter replaces every <html> attribute on navigation, which would drop the
       // .js class the reveal CSS is gated on. Put it back before the new page paints.

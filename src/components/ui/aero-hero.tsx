@@ -7,6 +7,8 @@ export interface AeroHeroProps {
   image: string;
   imageAlt?: string;
   eyebrow?: string;
+  /** Brand tagline ("The Focus on you"), set in the script face and logo green (.tagline in global.css). */
+  tagline?: string;
   title: string;
   text: string;
   ctaLabel: string;
@@ -26,6 +28,7 @@ export default function AeroHero({
   image,
   imageAlt = '',
   eyebrow,
+  tagline,
   title,
   text,
   ctaLabel,
@@ -82,6 +85,9 @@ export default function AeroHero({
 
       {/* copy: each block carries hero-a__in and an index, so it rises in sequence (keyframes in global.css) */}
       <div className="relative z-20 flex max-w-5xl flex-col items-center px-6 pt-24 pb-16 text-center text-white">
+        {tagline && (
+          <p className="hero-a__in tagline tagline--pill mb-6" style={{ '--i': 0 } as React.CSSProperties}>{tagline}</p>
+        )}
         {eyebrow && (
           <p className="hero-a__in mb-6 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-white/85" style={{ '--i': 0 } as React.CSSProperties}>{eyebrow}</p>
         )}

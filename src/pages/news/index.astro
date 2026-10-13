@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import { allNews, fmtDate } from '../../lib/posts';
+import { site } from '../../data/site';
 
 const items = await allNews();
 const title = 'News: tax and business updates | Focus Accountancy';
@@ -40,7 +41,7 @@ const years = [...new Set(items.map((i) => i.data.published.slice(0, 4)))];
           <p class="eyebrow">Need a hand?</p>
           <h2 class="guide__card-title">Talk it through with us</h2>
           <p class="small">A free, no-obligation meeting, online or at our Bristol office.</p>
-          <a class="btn" href="https://calendly.com/focusaccountancy" rel="noopener">Book a free meeting</a>
+          <a class="btn" href={site.bookMeeting}>Book a free meeting</a>
         </div>
       </aside>
     </div>

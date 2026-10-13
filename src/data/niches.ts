@@ -98,7 +98,7 @@ export const niches: Niche[] = [
         ],
         list: [
           'Form your limited company and register it for corporation tax, PAYE and VAT if you need it',
-          'Set up FreeAgent and connect your business bank account',
+          'Set up FreeAgent and show you how to connect your business bank feed',
           'Put you on payroll and plan your salary and dividends from day one',
           "Take over from your current accountant, including mid-year. We'll ask them for what we need",
         ],
@@ -407,7 +407,7 @@ export const niches: Niche[] = [
         paras: ['Depending on your plan, we:'],
         list: [
           'Register you as self-employed with HMRC if you are just starting out',
-          'Set up FreeAgent and connect your bank account',
+          'Set up FreeAgent and show you how to connect your bank feed',
           'Prepare and file your Self Assessment tax return',
           'Send your MTD quarterly updates and Final Declaration',
           'Review your FreeAgent records each quarter, so problems are fixed early',

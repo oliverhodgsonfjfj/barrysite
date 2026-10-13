@@ -6,6 +6,8 @@ export const site = {
   phoneHref: 'tel:+441172900007',
   email: 'team@focusaccountancy.co.uk',
   hours: '8am to 6pm, Monday to Friday',
+  // Every 'book a meeting' CTA goes here: a chooser for Barry's, Greg's and Maria's diaries.
+  bookMeeting: '/book-a-meeting',
   portal: 'https://manager.brightsg.com/signin',
   calendly: {
     barry: 'https://calendly.com/focusaccountancy',

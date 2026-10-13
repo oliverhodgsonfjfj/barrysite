@@ -1,0 +1,25 @@
+---
+// The three diaries a new client can book into. Barry asked (Oct 2026) that every "book a meeting"
+// offer shows Greg, Maria and himself, so his own diary doesn't fill up first.
+import { Image } from 'astro:assets';
+import { team } from '../data/team';
+
+const HOSTS = ['barry-adams', 'greg-park', 'maria-sagastume'];
+const hosts = HOSTS.map((slug) => team.find((m) => m.slug === slug)!).filter((m) => m.calendly?.video);
+---
+<ul class="hosts">
+  {hosts.map((m) => {
+    const first = m.name.split(' ')[0];
+    return (
+      <li class="host">
+        <Image class="host__photo" src={m.photo} alt="" width={120} height={120} loading="lazy" />
+        <div class="host__text">
+          <p class="host__name">{m.name}{m.letters && <span class="host__letters"> {m.letters}</span>}</p>
+          <p class="host__role">{m.role}</p>
+          <a class="btn btn--small" href={m.calendly!.video} rel="noopener">See {first}'s diary</a>
+          {m.calendly?.phone && <a class="host__alt small" href={m.calendly.phone} rel="noopener">or book a phone call</a>}
+        </div>
+      </li>
+    );
+  })}
+</ul>
