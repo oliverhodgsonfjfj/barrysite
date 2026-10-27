@@ -2920,6 +2920,11 @@
       "permanent": true
     },
     {
+      "source": "/resources/hashtags/:slug*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
       "source": "/blog-feed.xml",
       "destination": "/rss.xml",
       "permanent": true

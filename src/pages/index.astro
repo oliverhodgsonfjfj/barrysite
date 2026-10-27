@@ -47,7 +47,7 @@ const testimonialGrid = reviews.slice(0, 6).map((r) => ({
   quote: r.quote,
 }));
 
-const ro = site.registeredOffice;
+const ro = site.offices[0]; // trading office (matches Google Business Profile), not the registered office
 const mapUrl = (o: { line1: string; town: string; postcode: string }) =>
   `https://www.google.com/maps?q=${encodeURIComponent(`${o.postcode}, ${o.town}, UK`)}&z=16&output=embed`;
 const schema = {

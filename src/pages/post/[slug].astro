@@ -105,6 +105,9 @@ const old = !!d.published && d.published < '2023-01-01';
   .prose figcaption { font-size: 0.9rem; color: var(--ink-2); margin-top: 0.5rem; }
   .prose h4 { margin-top: 1.4rem; font-weight: 650; }
   .prose ol { padding-left: 1.4rem; margin: 0 0 1.1em; color: var(--ink-2); }
+  /* Tailwind's preflight strips list markers; article lists need them back. */
+  .post__body .prose ul { list-style: disc; }
+  .post__body .prose ol { list-style: decimal; }
   .prose blockquote { margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; border-left: 3px solid var(--green); color: var(--ink-2); }
   .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
   .prose th, .prose td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }

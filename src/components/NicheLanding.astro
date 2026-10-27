@@ -40,7 +40,7 @@ const schema = {
     name: site.name,
     url: site.url,
     telephone: '+441172900007',
-    address: { '@type': 'PostalAddress', streetAddress: site.registeredOffice.line1, addressLocality: 'Bristol', postalCode: site.registeredOffice.postcode, addressCountry: 'GB' },
+    address: { '@type': 'PostalAddress', streetAddress: site.offices[0].line1, addressLocality: 'Bristol', postalCode: site.offices[0].postcode, addressCountry: 'GB' },
   },
   offers: nichePlans.map((p) => ({
     '@type': 'Offer',

@@ -19,7 +19,9 @@ interface Props {
 }
 
 const { title, description, current, ogImage, overlayHeader = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname, site.url).href;
+// build.format 'file' makes Astro.url.pathname end in .html; canonicals must use the clean URL.
+const cleanPath = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
+const canonical = new URL(cleanPath, site.url).href;
 const og = ogImage ? new URL(ogImage, site.url).href : undefined;
 // Client-side navigation (ClientRouter) with a short whole-page crossfade; transition:name="root"
 // on <html> below keeps the browser's default page target so the fade applies to the whole page.
