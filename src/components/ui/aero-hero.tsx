@@ -1,4 +1,4 @@
-// Adapted from the 21st.dev "Aero Hero 3" demo: full-screen photo, 12-column divider lines,
+// Adapted from the 21st.dev "Aero Hero 3" demo: full-screen photo,
 // centred light headline and a pill button with a sliding arrow. Rendered statically by Astro.
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -71,17 +71,6 @@ export default function AeroHero({
       )}
       <div className="absolute inset-0 bg-black/45" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-black/60 to-transparent" aria-hidden="true" />
-
-      {/* 12-column divider lines */}
-      <div className="pointer-events-none absolute inset-0 z-10 size-full" aria-hidden="true">
-        <div className="grid h-full w-full grid-cols-12 divide-x divide-white/15">
-          <div className="col-span-1 h-full" />
-          <div className="col-span-3 h-full" />
-          <div className="col-span-4 h-full" />
-          <div className="col-span-3 h-full" />
-          <div className="col-span-1 h-full" />
-        </div>
-      </div>
 
       {/* copy: each block carries hero-a__in and an index, so it rises in sequence (keyframes in global.css) */}
       <div className="relative z-20 flex max-w-5xl flex-col items-center px-6 pt-24 pb-16 text-center text-white">

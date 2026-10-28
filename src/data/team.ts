@@ -1,7 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import barry from '../assets/team/barry-adams.jpg';
 import greg from '../assets/team/greg-park.jpg';
-import noble from '../assets/team/noble-george.jpg';
 import marianna from '../assets/team/marianna-szemes.jpg';
 import maria from '../assets/team/maria-sagastume.jpg';
 import adam from '../assets/team/adam-imtiaz.jpg';
@@ -57,18 +56,6 @@ export const team: TeamMember[] = [
     bio: [
       'Greg started at Focus in June 2021, following a previous job as a carer, as well as working in another accountancy practice. In early 2022 he finished his studies to become a fully qualified accountant via the ACCA and was promoted to Client Manager after just 6 months.',
       'He has a regular meditation ritual and also spends time reading and practising yoga. He is drawn to modern art and the natural world.',
-    ],
-  },
-  {
-    slug: 'noble-george',
-    name: 'Noble George',
-    role: 'Accountant',
-    email: 'team@focusaccountancy.co.uk',
-    flag: { code: 'in', country: 'India' },
-    photo: noble,
-    bio: [
-      'Noble moved to the United Kingdom after completing his MBA in Finance in India and joined a post-graduate course in International Business in 2009. After completing his masters, he started to work in a Bristol-based accountancy practice and later joined Focus Accountancy in 2015. Whilst working, Noble started studying for ACCA and achieved MAAT to support his career.',
-      "He finds time for badminton, chess, cooking for charity, sea fishing and gardening. Growing organic vegetables is his passion in summer. He is a great piano player and a music teacher too. His wife is a GP trainee and a terrific Indian cook. He holds key roles with his family in kids' and youth activities in the church.",
     ],
   },
   {
