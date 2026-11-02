@@ -6,6 +6,7 @@ import '../styles/tailwind.css';
 import '../styles/global.css';
 import { ClientRouter, fade } from 'astro:transitions';
 import Header from '../components/Header.astro';
+import FloatingCta from '../components/FloatingCta.astro';
 import Footer from '../components/Footer.astro';
 import MeetingHosts from '../components/MeetingHosts.astro';
 import { site } from '../data/site';
@@ -54,6 +55,7 @@ const og = ogImage ? new URL(ogImage, site.url).href : undefined;
       <slot />
     </main>
     <Footer />
+    <FloatingCta current={current} />
     <dialog class="book-dialog" id="book-meeting" aria-labelledby="book-dialog-title">
       <form method="dialog"><button class="book-dialog__close" aria-label="Close">&times;</button></form>
       <p class="eyebrow">Book a free meeting</p>

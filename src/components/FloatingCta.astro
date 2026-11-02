@@ -1,0 +1,79 @@
+---
+// The hero's pale green "Book a free meeting" button, floating bottom-right on every page (Barry, Nov 2026).
+// It appears once the visitor scrolls past the first screen, so it never doubles up with the hero's own button.
+// The href is site.bookMeeting, so Base.astro's click handler opens the Barry/Greg/Maria chooser.
+import { site } from '../data/site';
+
+interface Props { current?: string }
+const { current } = Astro.props;
+const onBookingPage = current === site.bookMeeting || Astro.url.pathname.replace(/\.html$/, '') === site.bookMeeting;
+const arrow = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>';
+---
+{!onBookingPage && (
+  <a class="float-cta" href={site.bookMeeting} data-float-cta>
+    <span class="float-cta__label">Book a free meeting</span>
+    <span class="float-cta__arrow">
+      <span class="float-cta__icon" set:html={arrow} />
+      <span class="float-cta__icon float-cta__icon--next" set:html={arrow} />
+    </span>
+  </a>
+)}
+
+<script>
+  import { onPage } from '../lib/on-page';
+
+  // One scroll listener for the session; `cta` is re-pointed at each page's button by onPage.
+  let cta: HTMLElement | null = null;
+  const update = () => cta?.classList.toggle('is-shown', window.scrollY > window.innerHeight * 0.6);
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  onPage(() => {
+    cta = document.querySelector<HTMLElement>('[data-float-cta]');
+    update();
+  });
+</script>
+
+<style>
+  .float-cta {
+    position: fixed; z-index: 34; right: 20px; bottom: 20px;
+    display: inline-flex; align-items: center;
+    text-decoration: none; color: var(--green-ink);
+    border-radius: var(--pill);
+    filter: drop-shadow(0 10px 18px rgb(10 43 0 / 0.28));
+    opacity: 0; visibility: hidden; transform: translateY(16px);
+    transition: opacity 0.35s ease, transform 0.5s var(--ease), visibility 0s linear 0.5s;
+  }
+  .float-cta.is-shown { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  /* Without JS there's no scroll check, so just show it. */
+  :global(html:not(.js)) .float-cta { opacity: 1; visibility: visible; transform: none; }
+  /* Sit above the promotion bar while it's showing. */
+  :global(body:has(.promo:not([hidden]))) .float-cta { bottom: 96px; }
+
+  .float-cta__label {
+    padding: 0.75rem 1.5rem; border-radius: var(--pill);
+    background: var(--lime); font-weight: 500; white-space: nowrap;
+    transition: background-color 0.5s ease-in-out;
+  }
+  .float-cta__arrow {
+    position: relative; display: grid; place-items: center; width: 48px; height: 48px;
+    overflow: hidden; border-radius: 50%; background: var(--lime);
+    transition: background-color 0.5s ease-in-out;
+  }
+  .float-cta__icon { position: absolute; display: grid; transition: transform 0.5s ease-in-out; }
+  .float-cta__icon--next { transform: translateX(-40px); }
+  .float-cta:hover .float-cta__label, .float-cta:hover .float-cta__arrow { background: #fff; }
+  .float-cta:hover .float-cta__icon { transform: translateX(40px); }
+  .float-cta:hover .float-cta__icon--next { transform: none; }
+  .float-cta:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+  @media (max-width: 600px) {
+    .float-cta { right: 12px; bottom: 12px; font-size: 0.95rem; }
+    .float-cta__label { padding: 0.65rem 1.2rem; }
+    .float-cta__arrow { width: 44px; height: 44px; }
+    :global(body:has(.promo:not([hidden]))) .float-cta { bottom: 150px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .float-cta, .float-cta__icon { transition: none; }
+    .float-cta { transform: none; }
+  }
+</style>
