@@ -74,6 +74,7 @@ function TeamMemberCard({ member }: { member: TeamCardMember }) {
               <motion.a
                 key={l.label}
                 href={l.href}
+                target={l.href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener"
                 aria-label={l.label}
                 title={l.label}

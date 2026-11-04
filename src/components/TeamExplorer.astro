@@ -49,8 +49,8 @@ import { team } from '../data/team';
             </div>
             <div class="team-x__links">
               <a class="btn btn--small" href={`mailto:${m.email}`}>Email {m.name.split(' ')[0]}</a>
-              {m.calendly?.video && <a class="btn btn--small btn--outline" href={m.calendly.video} rel="noopener">Book a video call</a>}
-              {m.calendly?.phone && <a class="btn btn--small btn--outline" href={m.calendly.phone} rel="noopener">Book a phone call</a>}
+              {m.calendly?.video && <a class="btn btn--small btn--outline" href={m.calendly.video} target="_blank" rel="noopener">Book a video call</a>}
+              {m.calendly?.phone && <a class="btn btn--small btn--outline" href={m.calendly.phone} target="_blank" rel="noopener">Book a phone call</a>}
               {m.phone && <a class="team-x__text-link" href={`tel:${m.phone.replace(/\s/g, '')}`}>{m.phone}</a>}
               {m.linkedin && <a class="team-x__text-link" href={m.linkedin} rel="noopener">LinkedIn</a>}
             </div>

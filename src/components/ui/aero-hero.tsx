@@ -93,6 +93,7 @@ export default function AeroHero({
         <div className="hero-a__in flex flex-wrap items-center justify-center gap-x-8 gap-y-4" style={{ '--i': 3 } as React.CSSProperties}>
           <a
             href={ctaHref}
+            target={/^https?:/.test(ctaHref) ? '_blank' : undefined}
             rel="noopener"
             className="group inline-flex cursor-pointer items-center justify-center gap-0 rounded-full"
           >

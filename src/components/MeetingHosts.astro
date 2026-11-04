@@ -16,8 +16,8 @@ const hosts = HOSTS.map((slug) => team.find((m) => m.slug === slug)!).filter((m)
         <div class="host__text">
           <p class="host__name">{m.name}{m.letters && <span class="host__letters"> {m.letters}</span>}</p>
           <p class="host__role">{m.role}</p>
-          <a class="btn btn--small" href={m.calendly!.video} rel="noopener">See {first}'s diary</a>
-          {m.calendly?.phone && <a class="host__alt small" href={m.calendly.phone} rel="noopener">or book a phone call</a>}
+          <a class="btn btn--small" href={m.calendly!.video} target="_blank" rel="noopener">See {first}'s diary</a>
+          {m.calendly?.phone && <a class="host__alt small" href={m.calendly.phone} target="_blank" rel="noopener">or book a phone call</a>}
         </div>
       </li>
     );
