@@ -2890,7 +2890,45 @@
           "value": "news.focusaccountancy.co.uk"
         }
       ],
-      "destination": "https://www.focusaccountancy.co.uk/resources",
+      "destination": "https://www.focusaccountancy.co.uk/infozone",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        },
+        {
+          "type": "query",
+          "key": "option",
+          "value": "com_infozone"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/infozone",
+      "permanent": true
+    },
+    {
+      "source": "/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/factsheets",
+      "permanent": true
+    },
+    {
+      "source": "/resources/factsheets",
+      "has": [
+        {
+          "type": "host",
+          "value": "news.focusaccountancy.co.uk"
+        }
+      ],
+      "destination": "https://www.focusaccountancy.co.uk/factsheets",
       "permanent": true
     },
     {

@@ -21,7 +21,7 @@ export default function Overview() {
         ['on fixed fees, with ', { person: { src: '/img/inline-freeagent.png', alt: 'The FreeAgent dashboard', tooltipTitle: 'FreeAgent Gold Partner', tooltipText: 'A FreeAgent subscription is included in every plan.' } }, ' FreeAgent included.'],
       ]}
       stats={[
-        { figure: '2007', label: 'Founded in Bristol', logo: '/img/badge-fsb.png', logoAlt: 'FSB member' },
+        { figure: '2007', label: 'Founded in Bristol', logo: '/img/badge-fsb.png', logoAlt: 'FSB member', logoHeight: '3.25rem' },
         { figure: 'Top 1%', label: 'of UK accountants on FreeIndex', logo: '/img/badge-threebest.png', logoAlt: 'ThreeBest Rated 2025' },
         { figure: '100%', label: 'FreeAgent Accredited team', logo: '/img/badge-freeagent-gold.png', logoAlt: 'FreeAgent Gold Partner' },
         { figure: 'ACCA', label: 'registered practice', logo: '/img/badge-acca.png', logoAlt: 'ACCA registered' },

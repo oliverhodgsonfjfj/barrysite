@@ -17,8 +17,8 @@ export const site = {
     marianna: 'https://calendly.com/marianna-focusaccountancy/30min',
   },
   news: '/news',
-  factsheets: 'https://news.focusaccountancy.co.uk/factsheets',
-  infozone: 'https://news.focusaccountancy.co.uk/component/infozone/?view=infozone&Itemid=119',
+  factsheets: '/factsheets',
+  infozone: '/infozone',
   social: {
     facebook: 'https://www.facebook.com/FocusAccountancy',
     linkedin: 'https://www.linkedin.com/in/barry-adams-uk/',
@@ -34,6 +34,8 @@ export const site = {
   formAction: 'https://formspree.io/f/xgaakpaq',
   freeindex: 'https://www.freeindex.co.uk/profile(focus-accountancy-ltd)_66093.htm',
   googlePlay: 'https://play.google.com/store/apps/details?id=com.taxapps.focusaccountancy&gl=GB',
+  // Empty until a working listing is confirmed (the old site's id625268224 link is dead). Setting it shows the button on Home.
+  appStore: '',
   founded: 2007,
 };
 
@@ -54,8 +56,8 @@ export const nav: NavItem[] = [
   { href: '/resources', label: 'Resources', children: [
     { href: '/pensions', label: 'Pensions' },
     { href: '/news', label: 'News' },
-    { href: 'https://news.focusaccountancy.co.uk/factsheets', label: 'Factsheets', external: true },
-    { href: 'https://news.focusaccountancy.co.uk/component/infozone/?view=infozone&Itemid=119', label: 'Infozone', external: true },
+    { href: '/factsheets', label: 'Factsheets' },
+    { href: '/infozone', label: 'Infozone' },
     { href: '/ir35', label: 'IR35' },
     { href: '/insurance', label: 'Insurance' },
     { href: '/taxes', label: 'Taxes' },

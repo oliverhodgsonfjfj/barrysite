@@ -34,7 +34,7 @@ const serviceFaq = services.map((s) => ({ q: s.q, a: s.a.map((t) => ({ text: t }
       <div class="cards cards--3">
         {ltd.map((p) => <PlanCard plan={p} featured={p.id === 'ltd-premium'} />)}
       </div>
-      <p class="small muted" style="margin-top:1rem">{pricingNotes.poa}</p>
+      <p class="pricing-poa">{pricingNotes.poa}</p>
     </div>
   </section>
 

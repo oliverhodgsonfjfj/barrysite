@@ -8,7 +8,7 @@ import type { ReactNode } from "react";
 export interface InlinePerson { src: string; alt: string; tooltipTitle: string; tooltipText: string }
 export interface InlineStack { images: { src: string; alt: string }[]; tooltipTitle: string; tooltipText: string }
 export interface InlineIcon { icon: ReactNode; tooltipTitle: string; tooltipText: string }
-export interface StatItem { figure: string; label: string; logo: string; logoAlt: string }
+export interface StatItem { figure: string; label: string; logo: string; logoAlt: string; logoHeight?: string }
 
 export interface Testimonial1Props {
   badge?: string;
@@ -105,7 +105,7 @@ export default function Testimonial1({ badge, lines, stats, className }: Testimo
               {index !== 0 && <div className="w-px h-10 bg-[#d5d3c8] absolute left-0 top-1/2 -translate-y-1/2" />}
               <div className="group relative h-16 overflow-hidden rounded-xl cursor-default">
                 <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out group-hover:-translate-y-full pointer-events-none">
-                  <img src={stat.logo} alt={stat.logoAlt} className="object-contain" style={{ height: "2.5rem", width: "auto", maxWidth: "80%" }} />
+                  <img src={stat.logo} alt={stat.logoAlt} className="object-contain" style={{ height: stat.logoHeight ?? "2.5rem", width: "auto", maxWidth: "80%" }} />
                 </div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0 pointer-events-none">
                   <span className="md:text-3xl text-2xl font-semibold text-[#105800] leading-none" style={{ fontFamily: "var(--display)" }}>{stat.figure}</span>

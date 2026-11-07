@@ -132,12 +132,13 @@ const schema = {
       <div class="section__intro section__intro--center" data-reveal>
         <p class="eyebrow eyebrow--center">Reviews</p>
         <h2 id="reviews-title">“{leadQuote.quote}”</h2>
-        <p class="lead">{leadQuote.name}, client. We're in the top 1% of the thousands of UK accountants ranked on <a href={site.freeindex} rel="noopener">FreeIndex</a>.</p>
+        <p class="reviews-x__by">{leadQuote.name}, Focus Accountancy client</p>
+        <p class="reviews-x__rank">Ranked in the top 1% of the thousands of UK accountants on <a href={site.freeindex} rel="noopener">FreeIndex</a></p>
       </div>
       <div data-reveal-stagger>
         <TestimonialsSection client:visible testimonials={testimonialGrid} />
       </div>
-      <p class="reviews-x__more"><a class="btn btn--outline" href="/reviews">All nine reviews and a client case study</a></p>
+      <p class="reviews-x__more"><a class="btn btn--outline" href="/reviews">More reviews and a client case study</a></p>
     </div>
   </section>
 
@@ -152,7 +153,10 @@ const schema = {
           Get tax tips, up-to-date tax rates and a range of intelligent calculators to help you with the tough
           decisions, like 'should I get a company car?' or 'should I be trading as a sole trader or a limited company?'.
         </p>
-        <p><a class="btn" href={site.googlePlay} rel="noopener">Get it on Google Play</a></p>
+        <p class="app__stores">
+          {site.appStore && <a class="btn" href={site.appStore} rel="noopener">Get it on the App Store</a>}
+          <a class="btn" href={site.googlePlay} rel="noopener">Get it on Google Play</a>
+        </p>
       </div>
     </div>
   </section>

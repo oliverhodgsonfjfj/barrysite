@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { allNews, fmtDate } from '../lib/posts';
+
+const title = 'Factsheets: tax and business topics | Focus Accountancy';
+const description = 'Short, plain-English factsheets on VAT, Self Assessment, Corporation Tax, payroll, expenses, property and running a business, sorted by subject.';
+
+// One-off announcements stay on /news; everything else is sorted by the first subject its title matches.
+const newsOnly = /tax diary|budget date|winter fuel|summer vat relief|nearly 660|duty on vaping|survive a cyber attack/i;
+const subjects: { id: string; title: string; match: RegExp }[] = [
+  { id: 'vat', title: 'VAT', match: /\bVAT\b/ },
+  { id: 'pensions-investments', title: 'Pensions and investments', match: /pension|SEIS|EIS\b|cryptoasset/i },
+  { id: 'property-inheritance', title: 'Property, capital gains and inheritance', match: /property|stamp duty|CGT|deed of variation|divorce|giving assets|predevelopment|from family/i },
+  { id: 'employers', title: 'Employers and payroll', match: /(?<!self-)employ|staff|payroll|minimum wage|harassment|discrimination|non-compete|bonus|clawback|worker|company bikes|beneficial loans/i },
+  { id: 'companies', title: 'Companies and contractors', match: /corporation tax|company|IR35/i },
+  { id: 'expenses', title: 'Expenses and tax relief', match: /expense|tax relief|allowance|mileage|cash basis|tools|trading loss/i },
+  { id: 'personal-tax', title: 'Self Assessment and personal tax', match: /tax return|self-assessment|self-employed|HMRC|P800|foreign income|spouse|pay rise|childcare|hobby|averaging|deadline/i },
+  { id: 'running-a-business', title: 'Running your business', match: /./ },
+];
+
+const items = (await allNews()).filter((i) => !newsOnly.test(i.data.title));
+const subjectOf = (t: string) => subjects.find((s) => s.match.test(t))!.id;
+const groups = subjects
+  .map((s) => ({ ...s, items: items.filter((i) => subjectOf(i.data.title) === s.id) }))
+  .filter((g) => g.items.length);
+---
+<Base title={title} description={description} current="/resources">
+  <PageHero eyebrow="Factsheets" title="Factsheets" intro="Short, plain-English guides to tax and business topics, sorted by subject. Please talk to us before acting on anything you read here." compact>
+    <p class="fs-jump">{groups.map((g) => <a href={`#${g.id}`}>{g.title}</a>)}</p>
+  </PageHero>
+  {groups.map((g) => (
+    <section class="section section--tight fs-group" id={g.id} aria-labelledby={`${g.id}-title`}>
+      <div class="container">
+        <h2 id={`${g.id}-title`} class="page-section-title">{g.title}</h2>
+        <ul class="link-grid">
+          {g.items.map((i) => (
+            <li><a href={`/news/${i.data.slug}`}>{i.data.title}<span class="small muted">{fmtDate(i.data.published)}</span></a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .fs-jump { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 1.25rem 0 0; font-weight: 600; }
+  .fs-group { padding-block: 1.5rem; }
+</style>

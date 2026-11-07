@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { calculators, disclaimer, type Calculator } from '../../data/infozone';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return calculators.map((c) => ({ params: { calculator: c.slug }, props: { calc: c } }));
+}
+
+const { calc } = Astro.props as { calc: Calculator };
+---
+<Base title={`${calc.name} | Focus Accountancy`} description={calc.summary} current="/resources">
+  <PageHero eyebrow="Infozone" title={calc.name} intro={calc.summary} compact>
+    <p class="calc-back"><a href="/infozone#calculators">All calculators and forms</a></p>
+  </PageHero>
+  <section class="section section--tight">
+    <div class="container">
+      <iframe class="calc-frame" src={calc.src} title={calc.name} height={calc.height} loading="lazy"></iframe>
+      <p class="calc-help">Want to talk through the numbers? <a href={site.bookMeeting}>Book a free meeting</a>.</p>
+      <p class="small muted calc-disclaimer"><strong>Disclaimer.</strong> {disclaimer}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .calc-back { margin: 1rem 0 0; font-weight: 600; }
+  .calc-frame { display: block; width: 100%; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+  .calc-help { margin: 1.5rem 0 0; }
+  .calc-disclaimer { max-width: 75ch; margin-top: 1rem; }
+</style>

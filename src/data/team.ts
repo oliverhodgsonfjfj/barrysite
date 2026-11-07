@@ -40,7 +40,7 @@ export const team: TeamMember[] = [
     bio: [
       'Barry studied at the University of Plymouth where he spent four years completing an HND in Business and Finance and a degree in Accounting and Finance. After completing his degree, in 1992, he moved to Bristol to work in practice. Since then Barry has worked in practices in Bristol and Somerset.',
       'Whilst working, Barry completed the exams for The Association of Chartered Certified Accountants (1997). He went on to set up Focus Accountancy Ltd in 2007.',
-      'In his spare time he enjoys cycling, walking, reading and spending time with his family. The Adams family now has two lovely children, bringing entirely different challenges to those of the accounting world!',
+      'In his spare time he enjoys cycling, walking, reading and spending time with his family. The Adams family has two lovely children, bringing entirely different challenges to those of the accounting world!',
     ],
   },
   {

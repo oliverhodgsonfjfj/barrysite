@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { calculators, estateValuation, checkers, hmrcForms, companiesHouseForms, disclaimer, type FormGroup } from '../../data/infozone';
+
+const title = 'Infozone: tax calculators and forms | Focus Accountancy';
+const description = 'Free tax calculators, HMRC and Companies House forms, and VAT and EORI number checkers, all in one place, from Focus Accountancy in Bristol.';
+const formSections: { id: string; title: string; intro: string; groups: FormGroup[] }[] = [
+  { id: 'hmrc-forms', title: 'HMRC forms', intro: 'Self Assessment, employer, company and VAT forms. Each one opens on GOV.UK.', groups: hmrcForms },
+  { id: 'companies-house-forms', title: 'Companies House forms', intro: 'Forms for your company, its officers and its charges. Each one opens on GOV.UK.', groups: companiesHouseForms },
+];
+---
+<Base title={title} description={description} current="/resources">
+  <PageHero eyebrow="Infozone" title="Tax calculators and forms" intro="Calculators, HMRC and Companies House forms, and VAT and EORI number checkers, all in one place." compact>
+    <p class="iz-jump">
+      <a href="#calculators">Calculators</a>
+      <a href="#checkers">VAT and EORI checkers</a>
+      <a href="#hmrc-forms">HMRC forms</a>
+      <a href="#companies-house-forms">Companies House forms</a>
+    </p>
+  </PageHero>
+
+  <section class="section section--tight" id="calculators" aria-labelledby="calculators-title">
+    <div class="container" data-reveal>
+      <h2 id="calculators-title" class="page-section-title">Calculators</h2>
+      <div class="cards cards--3">
+        {calculators.map((c) => (
+          <div class="card">
+            <h3 class="card__title">{c.name}</h3>
+            <p>{c.summary}</p>
+            <p><a class="btn btn--outline btn--small" href={`/infozone/${c.slug}`}>Open calculator</a></p>
+          </div>
+        ))}
+        <div class="card">
+          <h3 class="card__title">{estateValuation.name}</h3>
+          <p>{estateValuation.summary} <a href={estateValuation.macroHelp} rel="noopener">How to unblock macros</a>.</p>
+          <p><a class="btn btn--outline btn--small" href={estateValuation.href} rel="noopener">Download the spreadsheet</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="checkers" aria-labelledby="checkers-title">
+    <div class="container" data-reveal>
+      <h2 id="checkers-title" class="page-section-title">VAT and EORI number checkers</h2>
+      <p class="lead">Check a supplier's or customer's number with HMRC before you rely on it.</p>
+      <ul class="link-grid">
+        {checkers.map((c) => <li><a href={c.href} rel="noopener">{c.name}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  {formSections.map((s) => (
+    <section class="section section--tight" id={s.id} aria-labelledby={`${s.id}-title`}>
+      <div class="container" data-reveal>
+        <h2 id={`${s.id}-title`} class="page-section-title">{s.title}</h2>
+        <p class="lead">{s.intro}</p>
+        <div class="iz-groups">
+          {s.groups.map((g) => (
+            <div class="iz-group">
+              <h3>{g.title}</h3>
+              <ul>
+                {g.forms.map((f) => (
+                  <li><a href={f.href} rel="noopener">{f.code && <strong>{f.code}</strong>}<span>{f.name}</span></a></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section--tight">
+    <div class="container">
+      <p class="small muted iz-disclaimer"><strong>Disclaimer.</strong> {disclaimer}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .iz-jump { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 1.25rem 0 0; font-weight: 600; }
+  .iz-groups { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  @media (min-width: 800px) { .iz-groups { grid-template-columns: 1fr 1fr; align-items: start; } }
+  .iz-group { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; }
+  .iz-group h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+  .iz-group ul { list-style: none; margin: 0; padding: 0; }
+  .iz-group li + li { border-top: 1px solid var(--line); }
+  .iz-group a { display: flex; gap: 0.75rem; padding: 0.5rem 0; color: var(--ink-2); text-decoration: none; }
+  .iz-group a:hover { color: var(--green); }
+  .iz-group a:hover span { text-decoration: underline; }
+  .iz-group strong { flex: 0 0 5.5rem; color: var(--ink); font-weight: 650; overflow-wrap: anywhere; }
+  .iz-disclaimer { max-width: 75ch; }
+</style>
