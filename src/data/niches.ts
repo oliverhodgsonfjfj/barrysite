@@ -201,7 +201,7 @@ export const niches: Niche[] = [
   },
   {
     slug: 'contractor-accountants',
-    title: 'Contractor Accountants from £99 a Month | Focus Accountancy',
+    title: 'Contractor Accountants in Bristol & UK, from £99 | Focus',
     description:
       'Contractor accountants for limited company contractors in every sector. Fixed fees from £99 a month, FreeAgent included, IR35 help. Bristol-based, UK-wide.',
     crumb: 'Contractor accountants',

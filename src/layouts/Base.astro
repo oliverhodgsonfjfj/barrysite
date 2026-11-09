@@ -17,9 +17,10 @@ interface Props {
   current?: string;
   ogImage?: string;
   overlayHeader?: boolean;
+  noindex?: boolean;
 }
 
-const { title, description, current, ogImage, overlayHeader = false } = Astro.props;
+const { title, description, current, ogImage, overlayHeader = false, noindex = false } = Astro.props;
 // build.format 'file' makes Astro.url.pathname end in .html; canonicals must use the clean URL.
 const cleanPath = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
 const canonical = new URL(cleanPath, site.url).href;
@@ -35,6 +36,7 @@ const og = ogImage ? new URL(ogImage, site.url).href : undefined;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta name="theme-color" content="#105800" />
     <meta property="og:type" content="website" />

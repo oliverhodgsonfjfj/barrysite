@@ -10,7 +10,7 @@ export function getStaticPaths() {
 
 const { calc } = Astro.props as { calc: Calculator };
 ---
-<Base title={`${calc.name} | Focus Accountancy`} description={calc.summary} current="/resources">
+<Base title={`${calc.name} | Focus Accountancy`} description={calc.summary} current="/resources" noindex>
   <PageHero eyebrow="Infozone" title={calc.name} intro={calc.summary} compact>
     <p class="calc-back"><a href="/infozone#calculators">All calculators and forms</a></p>
   </PageHero>

@@ -20,11 +20,12 @@ const photoFor = (name: string) => `/reviews/${name.toLowerCase().replace(/\s+/g
 <Base title={title} description={description} current="/reviews">
   <PageHero
     eyebrow="Reviews and case studies"
-    title={`“${leadQuote.quote}”`}
+    title="Client reviews of our Bristol accountants"
     intro="We work hard to deliver results to contractors, consultants, freelancers and companies looking for an accountant. We're in the top 1% of the thousands of UK accountants ranked on FreeIndex."
     compact
   >
-    <p class="small muted" style="margin-top:-0.5rem">{leadQuote.name}, client</p>
+    <blockquote class="reviews-lead">“{leadQuote.quote}”</blockquote>
+    <p class="small muted" style="margin-top:0.25rem">{leadQuote.name}, client</p>
     <div class="trust-row">
       <Image src={threeBest} height={96} alt="ThreeBest Rated: Best Business of 2025, Excellence" />
       <img src="/img/reviewbiz.png" alt="ReviewBiz: independently validated reviews" height="48" loading="lazy" />
@@ -85,6 +86,7 @@ const photoFor = (name: string) => `/reviews/${name.toLowerCase().replace(/\s+/g
 </Base>
 
 <style>
+  .reviews-lead { margin: 1.25rem 0 0; font-size: 1.2rem; font-weight: 600; color: var(--ink); }
   .trust-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-top: 1.5rem; }
   .trust-row img { height: auto; }
   .video-grid { display: grid; gap: 1.25rem; }

@@ -17,7 +17,7 @@ export default function Overview() {
       lines={[
         ['A small ', { person: { src: '/img/inline-bridge.jpg', alt: 'Clifton Suspension Bridge with hot-air balloons', tooltipTitle: 'Bristol', tooltipText: 'Based here since 2007. Most of our meetings are online, and you are welcome to visit by appointment.' } }, ' Bristol accountancy firm,'],
         ['run by ', { person: { src: '/team/barry-adams.jpg', alt: 'Barry Adams', tooltipTitle: 'Barry Adams FCCA', tooltipText: 'Managing Director. Founded Focus in 2007.' } }, ' Barry since 2007.'],
-        ['A team ', { stack: { images: [{ src: '/team/greg-park.jpg', alt: 'Greg Park' }, { src: '/team/maria-sagastume.jpg', alt: 'Maria Sagastume' }, { src: '/team/marianna-szemes.jpg', alt: 'Marianna Szemes' }], tooltipTitle: 'A team of eight', tooltipText: "You'll always deal with a name you recognise." } }, " you'll know by name,"],
+        ['A team ', { stack: { images: [{ src: '/team/greg-park.jpg', alt: 'Greg Park' }, { src: '/team/maria-sagastume.jpg', alt: 'Maria Sagastume' }, { src: '/team/marianna-szemes.jpg', alt: 'Marianna Szemes' }], tooltipTitle: 'A team of seven', tooltipText: "You'll always deal with a name you recognise." } }, " you'll know by name,"],
         ['on fixed fees, with ', { person: { src: '/img/inline-freeagent.png', alt: 'The FreeAgent dashboard', tooltipTitle: 'FreeAgent Gold Partner', tooltipText: 'A FreeAgent subscription is included in every plan.' } }, ' FreeAgent included.'],
       ]}
       stats={[

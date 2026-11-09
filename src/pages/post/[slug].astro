@@ -24,7 +24,7 @@ const schema = {
   datePublished: d.published,
   dateModified: d.updated || d.published,
   author: { '@type': d.author === 'Focus Accountancy' ? 'Organization' : 'Person', name: d.author },
-  publisher: { '@type': 'Organization', name: site.name, url: site.url, logo: { '@type': 'ImageObject', url: `${site.url}/img/logo.png` } },
+  publisher: { '@type': 'Organization', name: site.name, url: site.url, logo: { '@type': 'ImageObject', url: `${site.url}/img/logo-schema.png` } },
   mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   ...(d.image ? { image: `${site.url}${d.image}` } : {}),
 };

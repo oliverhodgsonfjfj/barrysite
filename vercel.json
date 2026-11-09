@@ -2948,6 +2948,11 @@
       "permanent": true
     },
     {
+      "source": "/post/freeagent-mobile-app-1",
+      "destination": "/post/freeagent-mobile-app",
+      "permanent": true
+    },
+    {
       "source": "/post/we-re-going-paperless",
       "destination": "/post/we-are-paperless",
       "permanent": true
