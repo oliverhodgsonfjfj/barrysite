@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { site } from '../../data/site';
 import { allPosts, TOPICS, TOPIC_HUBS, fmtDate, readMinutes } from '../../lib/posts';
+import '../../styles/infographics.css';
 
 export async function getStaticPaths() {
   const posts = await allPosts();
@@ -29,24 +30,59 @@ const schema = {
   ...(d.image ? { image: `${site.url}${d.image}` } : {}),
 };
 const old = !!d.published && d.published < '2023-01-01';
+const hero = d.hero && d.image ? d.hero : undefined;
+// Bylines with a team photo get a small avatar in the designed hero.
+const AUTHOR_PHOTOS: Record<string, string> = { 'Barry Adams': '/team/barry-adams.jpg' };
+const authorPhoto = AUTHOR_PHOTOS[d.author];
 ---
-<Base title={title} description={description} current="/resources" ogImage={d.image || undefined}>
+<Base title={title} description={description} current="/resources" ogImage={d.image || undefined} overlayHeader={!!hero}>
   <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify(schema)} />
   <article class="post">
-    <header class="post__head">
-      <div class="container">
-        <p class="eyebrow"><a href="/resources">Resources</a>{d.topics.length > 0 && <> · {d.topics.map((t, i) => <><a href={TOPIC_HUBS[t] ?? `/resources/categories/${t}`}>{TOPICS[t] || t}</a>{i < d.topics.length - 1 ? ', ' : ''}</>)}</>}</p>
-        <h1>{d.title}</h1>
-        <p class="post__meta">
-          <span>{d.author}</span>
-          <span>{fmtDate(d.published)}</span>
-          {d.updated && d.updated !== d.published && <span>Updated {fmtDate(d.updated)}</span>}
-          <span>{readMinutes(d.words)} min read</span>
-        </p>
-      </div>
-    </header>
-    {d.image && !d.imageInline && (
-      <div class="container post__cover"><img src={d.image} alt="" loading="eager" fetchpriority="high" /></div>
+    {hero ? (
+      <header class="post-hero band band--pattern">
+        <div class="container post-hero__grid">
+          <div class="post-hero__copy">
+            <p class="eyebrow"><a href="/resources">Resources</a>{d.topics.length > 0 && <> · {d.topics.map((t, i) => <><a href={TOPIC_HUBS[t] ?? `/resources/categories/${t}`}>{TOPICS[t] || t}</a>{i < d.topics.length - 1 ? ', ' : ''}</>)}</>}</p>
+            <h1>{d.title}</h1>
+            {d.description && <p class="post-hero__lead">{d.description}</p>}
+            <div class="post-hero__meta">
+              {authorPhoto && <img class="post-hero__avatar" src={authorPhoto} alt="" width="44" height="44" />}
+              <p>
+                <span class="post-hero__author">{d.author}</span>
+                <span>{fmtDate(d.published)} · {readMinutes(d.words)} min read</span>
+              </p>
+            </div>
+          </div>
+          <div class="post-hero__art">
+            <img src={d.image} alt={d.imageAlt || ''} width="1600" height="900" loading="eager" fetchpriority="high" />
+          </div>
+        </div>
+        {hero.stats.length > 0 && (
+          <div class="container">
+            <ul class="post-hero__stats" aria-label="Key facts">
+              {hero.stats.map((st) => <li><strong>{st.value}</strong><span>{st.label}</span></li>)}
+            </ul>
+          </div>
+        )}
+      </header>
+    ) : (
+      <>
+        <header class="post__head">
+          <div class="container">
+            <p class="eyebrow"><a href="/resources">Resources</a>{d.topics.length > 0 && <> · {d.topics.map((t, i) => <><a href={TOPIC_HUBS[t] ?? `/resources/categories/${t}`}>{TOPICS[t] || t}</a>{i < d.topics.length - 1 ? ', ' : ''}</>)}</>}</p>
+            <h1>{d.title}</h1>
+            <p class="post__meta">
+              <span>{d.author}</span>
+              <span>{fmtDate(d.published)}</span>
+              {d.updated && d.updated !== d.published && <span>Updated {fmtDate(d.updated)}</span>}
+              <span>{readMinutes(d.words)} min read</span>
+            </p>
+          </div>
+        </header>
+        {d.image && !d.imageInline && (
+          <div class="container post__cover"><img src={d.image} alt={d.imageAlt || ''} loading="eager" fetchpriority="high" /></div>
+        )}
+      </>
     )}
     <div class="container guide post__body">
       <div>
@@ -95,6 +131,34 @@ const old = !!d.published && d.published < '2023-01-01';
   .post__meta { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; margin: 1rem 0 0; color: var(--ink-2); font-size: 0.95rem; }
   .post__meta span:first-child { color: var(--ink); font-weight: 600; }
   .post__cover { padding-top: 2rem; }
+  /* Designed hero: deep-green band, title beside the cover, key facts underneath. The fixed header
+     sits over it in its light (overlay) state, so the band starts under it. */
+  .post-hero { padding-block: clamp(7.5rem, 13vw, 9.5rem) clamp(2.25rem, 5vw, 3.5rem); overflow: hidden; }
+  .post-hero__grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+  @media (min-width: 960px) { .post-hero__grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); } }
+  .post-hero .eyebrow a { color: inherit; text-decoration: none; }
+  .post-hero .eyebrow a:hover { text-decoration: underline; color: #fff; }
+  .post-hero h1 { color: #fff; font-size: clamp(2.2rem, 1rem + 2.9vw, 3.4rem); line-height: 1.04; max-width: 20ch; }
+  .post-hero__lead { color: var(--on-dark-2); font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem); max-width: 52ch; margin: 0.25rem 0 0; }
+  .post-hero__meta { display: flex; align-items: center; gap: 0.85rem; margin-top: 1.75rem; }
+  .post-hero__meta p { display: flex; flex-direction: column; gap: 0.1rem; margin: 0; font-size: 0.92rem; color: var(--on-dark-2); }
+  .post-hero__author { color: #fff; font-weight: 620; }
+  .post-hero__avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--lime); }
+  .post-hero__art { position: relative; }
+  .post-hero__art::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; border: 1.5px solid color-mix(in srgb, var(--lime) 45%, transparent); border-radius: var(--radius-lg); }
+  .post-hero__art img { position: relative; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7); }
+  .post-hero__stats { list-style: none; margin: clamp(2.25rem, 5vw, 3.25rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); border-top: 1px solid rgba(255, 255, 255, 0.14); }
+  .post-hero__stats li { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.25rem 1.5rem 0 0; }
+  .post-hero__stats strong { font-family: var(--display); font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1; color: var(--lime); }
+  .post-hero__stats span { font-size: 0.9rem; color: var(--on-dark-2); max-width: 26ch; }
+  @media (prefers-reduced-motion: no-preference) {
+    .post-hero__copy > * { animation: rise var(--rise-time) var(--ease) both; animation-delay: calc(0.1s + var(--i, 0) * 80ms); }
+    .post-hero__copy > :nth-child(2) { --i: 1; }
+    .post-hero__copy > :nth-child(3) { --i: 2; }
+    .post-hero__copy > :nth-child(4) { --i: 3; }
+    .post-hero__art { animation: rise 1.1s var(--ease) 0.25s both; }
+    .post-hero__stats { animation: rise var(--rise-time) var(--ease) 0.45s both; }
+  }
   .post__cover img { width: 100%; max-height: 520px; object-fit: cover; border-radius: var(--radius); }
   .post__body { padding-top: clamp(2rem, 5vw, 3.5rem); }
   .post__notice { padding: 0.9rem 1.1rem; margin: 0 0 1.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); font-size: 0.95rem; color: var(--ink-2); }

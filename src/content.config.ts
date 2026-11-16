@@ -16,7 +16,14 @@ const posts = defineCollection({
     topics: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     image: z.string().nullable().optional(),
+    imageAlt: z.string().optional(),
     imageInline: z.boolean().default(false),
+    // Optional designed hero: a green band with the cover beside the title and a row of key facts.
+    hero: z
+      .object({
+        stats: z.array(z.object({ value: z.string(), label: z.string() })).max(4).default([]),
+      })
+      .optional(),
     words: z.number().optional(),
     legacy: z.boolean().default(false),
     html: z.string(),
