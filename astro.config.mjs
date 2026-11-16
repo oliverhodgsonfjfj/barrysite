@@ -25,13 +25,15 @@ function focusEditor() {
             }],
             optimizeDeps: { entries: ['keystatic.config.*', 'src/admin/Editor.tsx'] },
             // Studio saves decisions to this file locally; don't reload the page every time it changes.
-            server: { watch: { ignored: ['**/src/data/review-decisions.json'] } },
+            server: { watch: { ignored: ['**/src/data/review-decisions.json', '**/src/content/queue/**'] } },
           },
         });
         injectRoute({ pattern: '/keystatic/[...params]', entrypoint: './src/admin/editor.astro', prerender: false });
         injectRoute({ pattern: '/api/keystatic/[...params]', entrypoint: '@keystatic/astro/internal/keystatic-api.js', prerender: false });
         // Local stand-in for the Vercel function api/review.js: saves Studio decisions to the local file.
         injectRoute({ pattern: '/api/review', entrypoint: './src/admin/dev-review-api.ts', prerender: false });
+        // Local stand-in for api/content.js: saves Studio edits to src/content/queue/<slug>.json.
+        injectRoute({ pattern: '/api/content', entrypoint: './src/admin/dev-content-api.ts', prerender: false });
       },
     },
   };

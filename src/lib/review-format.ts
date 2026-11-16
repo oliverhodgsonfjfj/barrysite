@@ -24,6 +24,9 @@ const FIGURE = new RegExp(
   'g',
 );
 
+/** The same pattern, for Studio's client script (re-highlights an article after Barry edits it). */
+export const FIGURE_SOURCE = FIGURE.source;
+
 export function annotate(html: string) {
   return html
     .split(/(<[^>]+>)/)

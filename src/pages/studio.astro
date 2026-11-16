@@ -10,7 +10,7 @@ import '@fontsource-variable/plus-jakarta-sans';
 import { getCollection } from 'astro:content';
 import { getLineup, ukToday } from '../lib/queue';
 import { allPosts, allNews, TOPICS } from '../lib/posts';
-import { annotate, dayShort, dayLong, dateShort, monthLabel, weekday, dayNum, monthShort, readMins } from '../lib/review-format';
+import { annotate, FIGURE_SOURCE, dayShort, dayLong, dateShort, monthLabel, weekday, dayNum, monthShort, readMins } from '../lib/review-format';
 import decisions from '../data/review-decisions.json';
 import promotionData from '../data/promotion.json';
 import contact from '../data/contact.json';
@@ -18,6 +18,7 @@ import { reviews } from '../data/reviews';
 
 const DEV = import.meta.env.DEV;
 const today = ukToday();
+const BUILD_AT = new Date().toISOString(); // edits saved after this aren't in this build yet
 const lineup = await getLineup(today);
 const posts = await allPosts();
 const news = await allNews();
@@ -93,6 +94,7 @@ const icons: Record<string, string> = {
   content: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8M16 13H8M16 17H8"/>',
   website: '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
   external: '<path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
   pencil: '<path d="M21.17 6.81a1 1 0 0 0-3.99-3.99L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/>',
   search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
   back: '<path d="m12 19-7-7 7-7M19 12H5"/>',
@@ -278,6 +280,12 @@ const types = ['Article', 'Refresh', 'News'];
                   <a class="doc__back" href="#/review"><svg viewBox="0 0 24 24" aria-hidden="true" set:html={icons.back} /> All articles</a>
                   <p class="doc__eyebrow">{d.kind === 'update' ? 'Refresh of an existing article' : 'New article'} · {dayLong(e.date)} · by {d.author}</p>
                   <h1 class="doc__title">{d.title}</h1>
+                  <div class="doc__tools">
+                    <button type="button" class="btn-ghost sm" data-edit={d.slug}><svg viewBox="0 0 24 24" aria-hidden="true" set:html={icons.pencil} /> Edit this article</button>
+                    <button type="button" class="btn-ghost sm" data-copy-link={d.slug}><svg viewBox="0 0 24 24" aria-hidden="true" set:html={icons.link} /> Copy link</button>
+                    <span class="doc__edited" data-edited hidden></span>
+                  </div>
+                  <script type="application/json" data-raw={d.slug} set:html={JSON.stringify({ title: d.title, description: d.description, html: d.html }).replace(/</g, '\\u003c')} />
                   {d.kind === 'update' && (
                     <p class="doc__note">This replaces the article already on your site at <a href={`/post/${d.slug}`} target="_blank" rel="noopener">/post/{d.slug}</a>. The web address stays the same, so it keeps its place in Google.</p>
                   )}
@@ -470,7 +478,7 @@ const types = ['Article', 'Refresh', 'News'];
 
     <div class="toast" id="toast" role="status" hidden></div>
 
-    <script is:inline define:vars={{ items: clientItems, built: decisions, today, order: lineup.map((e) => e.item.data.slug) }}>
+    <script is:inline define:vars={{ items: clientItems, built: decisions, today, order: lineup.map((e) => e.item.data.slug), buildAt: BUILD_AT, figSrc: FIGURE_SOURCE }}>
       const KEY_STORE = 'focus-studio-key';
       const OLD_KEY = 'focus-review-key';
       let key = null;
@@ -478,14 +486,23 @@ const types = ['Article', 'Refresh', 'News'];
       let decisions = built || {};
       let rqFilter = 'todo';
       let libFilter = 'all';
+      let pendingEdit = null;
 
-      // A link like /studio#k=KEY signs in and is then tidied away.
-      const hashParams = new URLSearchParams(location.hash.replace(/^#\/?/, ''));
-      try {
-        key = hashParams.get('k') || localStorage.getItem(KEY_STORE) || localStorage.getItem(OLD_KEY);
-        if (hashParams.get('k')) localStorage.setItem(KEY_STORE, hashParams.get('k'));
-      } catch { key = hashParams.get('k'); }
-      if (hashParams.get('k')) history.replaceState(null, '', location.pathname + '#/');
+      // A link like /studio#k=KEY signs in and is then tidied away, and /studio#k=KEY&go=review/<slug>
+      // (or go=edit/<slug>) also opens that article. Runs on load and whenever the hash changes, so a
+      // second link clicked while Studio is already open works too.
+      function consumeLink() {
+        const params = new URLSearchParams(location.hash.replace(/^#\/?/, ''));
+        const k = params.get('k');
+        if (!k) return false;
+        key = k;
+        readOnly = false;
+        try { localStorage.setItem(KEY_STORE, k); } catch {}
+        history.replaceState(null, '', location.pathname + '#/' + (params.get('go') || '').replace(/^\/+/, ''));
+        return true;
+      }
+      try { key = localStorage.getItem(KEY_STORE) || localStorage.getItem(OLD_KEY); } catch {}
+      consumeLink();
 
       const $ = (s, el = document) => el.querySelector(s);
       const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -585,7 +602,12 @@ const types = ['Article', 'Refresh', 'News'];
 
       // Routing: #/ · #/review · #/review/<slug> · #/lineup · #/content · #/website
       function route() {
+        if (consumeLink() && typeof signedIn === 'function') signedIn();
         const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
+        if (parts[0] === 'edit' && parts[1]) {
+          pendingEdit = decodeURIComponent(parts[1]);
+          return location.replace(`#/review/${parts[1]}`);
+        }
         let view = parts[0] || 'overview';
         if (!$(`[data-view="${view}"]`)) view = 'overview';
         let slug = view === 'review' ? decodeURIComponent(parts[1] || '') : '';
@@ -604,6 +626,7 @@ const types = ['Article', 'Refresh', 'News'];
         document.body.dataset.reading = slug ? '1' : '';
         document.title = `${slug ? items[slug].title : { overview: 'Overview', review: 'Review', lineup: 'Lineup', content: 'All content', website: 'Website' }[view]} · Studio · Focus Accountancy`;
         if (slug) { $('#reader').scrollTop = 0; window.scrollTo(0, 0); $(`[data-rq="${slug}"]`)?.scrollIntoView({ block: 'nearest' }); }
+        if (slug && pendingEdit === slug) { pendingEdit = null; openEditor(slug); }
         else window.scrollTo(0, 0);
       }
 
@@ -639,7 +662,7 @@ const types = ['Article', 'Refresh', 'News'];
           return;
         }
         const btn = ev.target.closest('[data-action]');
-        if (!btn) return;
+        if (!btn || !btn.closest('[data-decide]')) return;
         const box = btn.closest('[data-decide]');
         const slug = box.dataset.decide;
         const err = $('[data-error]', box);
@@ -685,6 +708,163 @@ const types = ['Article', 'Refresh', 'News'];
 
       $('#lib-search').addEventListener('input', renderLibrary);
       $('#lib-type').addEventListener('change', renderLibrary);
+
+      // ---------- Editing an article ----------
+      // Barry edits the title, the Google description and the body here. Saving goes through /api/content,
+      // which cleans the HTML and commits it to GitHub; the site redeploys in a minute or two. Until that
+      // build lands, the saved version is kept in this browser so the page shows what he saved.
+      const EDITS_STORE = 'focus-studio-edits';
+      const FIGURE = new RegExp(figSrc, 'g');
+      const annotateHtml = (html) => html.split(/(<[^>]+>)/).map((part) => part.startsWith('<') ? part : part
+        .replace(FIGURE, (m) => `<mark class="fig">${m}</mark>`)
+        .replace(/\[CONFIRM:?\s*([^\]]*)\]/g, (_, note) => `<mark class="confirm">Please check${note ? ': ' + note.replace(/<\/?mark[^>]*>/g, '') : ''}</mark>`)).join('');
+      const raw = (slug) => JSON.parse($(`[data-raw="${slug}"]`).textContent);
+      const readEdits = () => { try { return JSON.parse(localStorage.getItem(EDITS_STORE) || '{}'); } catch { return {}; } };
+      const writeEdits = (all) => { try { localStorage.setItem(EDITS_STORE, JSON.stringify(all)); } catch {} };
+      const current = {};
+      const timeLabel = (iso) => new Date(iso).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
+
+      function showArticle(slug, a) {
+        current[slug] = a;
+        const doc = $(`[data-article="${slug}"]`);
+        $('.doc__title', doc).textContent = a.title;
+        $('.doc__body', doc).innerHTML = annotateHtml(a.html);
+        const serpTitle = $('.serp__title', doc), serpDesc = $('.serp__desc', doc);
+        if (serpTitle) serpTitle.textContent = `${a.title} | Focus Accountancy`;
+        if (serpDesc) serpDesc.textContent = a.description;
+        $(`.rq__item[data-slug="${slug}"] .rq__title`)?.replaceChildren(document.createTextNode(a.title));
+        if (items[slug]) items[slug].title = a.title;
+        const ed = $('[data-edited]', doc);
+        if (a.edited) { ed.hidden = false; ed.textContent = `Edited ${timeLabel(a.edited)}`; }
+      }
+
+      // Saved edits newer than this build: show them. Older ones are in the build already, so forget them.
+      (() => {
+        const all = readEdits();
+        for (const [slug, a] of Object.entries(all)) {
+          if (!items[slug] || !a.edited || a.edited <= buildAt) delete all[slug];
+          else showArticle(slug, a);
+        }
+        writeEdits(all);
+      })();
+
+      const TOOLS = [
+        ['p', 'Paragraph', 'Normal text'], ['h2', 'Heading', 'Section heading'], ['h3', 'Subheading', 'Smaller heading'],
+        ['bold', '<b>B</b>', 'Bold'], ['italic', '<i>I</i>', 'Italic'],
+        ['ul', '• List', 'Bulleted list'], ['ol', '1. List', 'Numbered list'],
+        ['link', 'Link', 'Add a link to the selected words'], ['unlink', 'Remove link', 'Remove link'],
+        ['undo', 'Undo', 'Undo'], ['redo', 'Redo', 'Redo'],
+      ];
+      let editing = null;
+
+      function openEditor(slug) {
+        if (!key || readOnly) { showGate(); return; }
+        if (editing && editing !== slug) closeEditor();
+        if (editing === slug) return;
+        editing = slug;
+        const a = current[slug] || raw(slug);
+        const doc = $(`[data-article="${slug}"]`);
+        const box = document.createElement('section');
+        box.className = 'ed';
+        box.dataset.editor = slug;
+        box.innerHTML = `
+          <div class="ed__head"><b>Editing</b><span>Change anything you like, then save. Nothing goes live until you've said yes to the article.</span></div>
+          <label class="ed__field"><span>Title</span><textarea rows="2" data-ed-title maxlength="120" class="ed__title"></textarea></label>
+          <label class="ed__field"><span>What Google shows under the title <em data-ed-count></em></span><textarea rows="3" data-ed-desc maxlength="320"></textarea></label>
+          <div class="ed__bar" role="toolbar" aria-label="Formatting">${TOOLS.map(([cmd, label, tip]) => `<button type="button" data-cmd="${cmd}" title="${tip}" aria-label="${tip}">${label}</button>`).join('')}</div>
+          <div class="ed__body prose" contenteditable="true" spellcheck="true" data-ed-body></div>
+          <p class="ed__hint">Yellow notes like <mark class="confirm">[CONFIRM: …]</mark> mark figures to check. Delete the note once the figure is right.</p>
+          <div class="ed__foot">
+            <p class="decide__error" data-ed-error role="alert" hidden></p>
+            <button type="button" class="btn-ghost" data-ed-cancel>Cancel</button>
+            <button type="button" class="btn-primary" data-ed-save>Save changes</button>
+          </div>`;
+        $('[data-ed-title]', box).value = a.title;
+        $('[data-ed-title]', box).addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\n/g, ' '); });
+        $('[data-ed-desc]', box).value = a.description;
+        const body = $('[data-ed-body]', box);
+        body.innerHTML = a.html.replace(/\[CONFIRM:?[^\]]*\]/g, (m) => `<mark class="confirm">${m}</mark>`);
+        const count = () => { const n = $('[data-ed-desc]', box).value.length; $('[data-ed-count]', box).textContent = `${n} characters${n > 160 ? ', Google cuts off at about 160' : ''}`; };
+        $('[data-ed-desc]', box).addEventListener('input', count); count();
+        body.addEventListener('paste', (e) => { e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain')); });
+        try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch {}
+        doc.classList.add('is-editing');
+        $('.doc__tools', doc).after(box);
+        box.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        $('[data-ed-title]', box).focus();
+      }
+
+      function closeEditor() {
+        if (!editing) return;
+        const doc = $(`[data-article="${editing}"]`);
+        $('[data-editor]', doc)?.remove();
+        doc.classList.remove('is-editing');
+        editing = null;
+      }
+
+      function runTool(cmd, body) {
+        body.focus();
+        if (cmd === 'p' || cmd === 'h2' || cmd === 'h3') return document.execCommand('formatBlock', false, cmd === 'p' ? 'P' : cmd.toUpperCase());
+        if (cmd === 'ul') return document.execCommand('insertUnorderedList');
+        if (cmd === 'ol') return document.execCommand('insertOrderedList');
+        if (cmd === 'link') {
+          const sel = getSelection();
+          if (!sel || sel.isCollapsed) { toast('Select the words to turn into a link first.'); return; }
+          const url = prompt('Link to (for example /pricing or https://www.gov.uk/…)', 'https://');
+          if (url && url !== 'https://') document.execCommand('createLink', false, url.trim());
+          return;
+        }
+        document.execCommand(cmd);
+      }
+
+      async function saveEditor(btn) {
+        const slug = editing;
+        const box = btn.closest('[data-editor]');
+        const err = $('[data-ed-error]', box);
+        err.hidden = true;
+        const body = $('[data-ed-body]', box).cloneNode(true);
+        body.querySelectorAll('mark').forEach((m) => m.replaceWith(...m.childNodes)); // our highlights, not content
+        const payload = { slug, title: $('[data-ed-title]', box).value, description: $('[data-ed-desc]', box).value, html: body.innerHTML };
+        btn.disabled = true; btn.textContent = 'Saving…';
+        try {
+          const res = await fetch('/api/content', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Review-Key': key || '' }, body: JSON.stringify(payload) });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) { const e = new Error(data.error || 'Couldn’t save just now. Please try again.'); e.status = res.status; throw e; }
+          const all = readEdits(); all[slug] = data.article; writeEdits(all);
+          closeEditor();
+          showArticle(slug, data.article);
+          toast('<b>Saved.</b> The site picks up your changes in a minute or two.');
+        } catch (e) {
+          if (e.status === 401) { readOnly = true; showGate('That key didn’t work. Use the link from Ollie’s email, or paste the key again.'); }
+          err.hidden = false; err.textContent = e.message;
+          btn.disabled = false; btn.textContent = 'Save changes';
+        }
+      }
+
+      document.addEventListener('click', async (ev) => {
+        const edit = ev.target.closest('[data-edit]');
+        if (edit) { openEditor(edit.dataset.edit); return; }
+        const tool = ev.target.closest('[data-cmd]');
+        if (tool) { ev.preventDefault(); runTool(tool.dataset.cmd, $('[data-ed-body]', tool.closest('[data-editor]'))); return; }
+        if (ev.target.closest('[data-ed-cancel]')) {
+          if (confirm('Discard your changes to this article?')) closeEditor();
+          return;
+        }
+        const save = ev.target.closest('[data-ed-save]');
+        if (save) { saveEditor(save); return; }
+        const copy = ev.target.closest('[data-copy-link]');
+        if (copy) {
+          const slug = copy.dataset.copyLink;
+          const link = key && !readOnly
+            ? `${location.origin}/studio#k=${encodeURIComponent(key)}&go=review/${slug}`
+            : `${location.origin}/studio#/review/${slug}`;
+          try { await navigator.clipboard.writeText(link); toast(key ? '<b>Link copied.</b> It signs Barry in and opens this article.' : 'Link copied.'); }
+          catch { prompt('Copy this link:', link); }
+        }
+      });
+      // Keep the editor's own buttons from stealing the text selection.
+      document.addEventListener('mousedown', (ev) => { if (ev.target.closest('[data-cmd]')) ev.preventDefault(); });
+      window.addEventListener('beforeunload', (ev) => { if (editing) { ev.preventDefault(); ev.returnValue = ''; } });
 
       // Sign in
       function showGate(msg) {
@@ -925,6 +1105,26 @@ const types = ['Article', 'Refresh', 'News'];
       .prose th, .prose td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
       .prose th { color: var(--ink); background: var(--sage-2); }
       .prose blockquote { margin: 1.5rem 0; padding: 0.4rem 0 0.4rem 1.2rem; border-left: 3px solid var(--green); }
+      .doc__tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0.25rem 0 1.25rem; }
+      .doc__tools svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .doc__edited { font-size: 0.85rem; color: var(--ink-3); }
+      .doc.is-editing .doc__title, .doc.is-editing .doc__panels, .doc.is-editing .checks, .doc.is-editing .doc__body, .doc.is-editing .decide, .doc.is-editing .doc__tools { display: none; }
+      .ed { margin: 0 0 2rem; display: grid; gap: 1rem; }
+      .ed__head { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; align-items: baseline; padding: 0.75rem 0.95rem; background: var(--sage-2); border-radius: 12px; font-size: 0.92rem; color: var(--ink-2); }
+      .ed__head b { color: var(--green); }
+      .ed__field { display: grid; gap: 0.35rem; font-weight: 600; font-size: 0.9rem; }
+      .ed__field em { font-style: normal; font-weight: 400; color: var(--ink-3); }
+      .ed__field input, .ed__field textarea { font: inherit; font-weight: 400; font-size: 1rem; padding: 0.7rem 0.85rem; border: 1px solid var(--line-2); border-radius: 12px; background: #fff; color: var(--ink); width: 100%; resize: vertical; }
+      .ed__field .ed__title { font-family: var(--display); font-size: clamp(1.1rem, 1rem + 0.8vw, 1.35rem); font-weight: 650; line-height: 1.25; resize: none; }
+      .ed__field input:focus, .ed__field textarea:focus, .ed__body:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+      .ed__bar { position: sticky; top: 0; z-index: 3; display: flex; flex-wrap: wrap; gap: 0.3rem; padding: 0.45rem; background: var(--panel); border: 1px solid var(--line-2); border-radius: 12px; box-shadow: 0 8px 20px -16px rgba(0, 0, 0, 0.35); }
+      .ed__bar button { font: 600 0.85rem/1 var(--body); min-height: 36px; padding: 0 0.7rem; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--ink); cursor: pointer; }
+      .ed__bar button:hover { background: var(--sage-2); border-color: var(--line); }
+      .ed__body { min-height: 420px; padding: 1.25rem 1.4rem; border: 1px solid var(--line-2); border-radius: 12px; background: #fff; }
+      .ed__body mark.confirm { font-weight: 600; }
+      .ed__hint { font-size: 0.85rem; color: var(--ink-3); margin: 0; }
+      .ed__foot { position: sticky; bottom: 0; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 0.6rem; padding: 0.85rem 0; background: linear-gradient(to top, var(--panel) 75%, transparent); }
+      .ed__foot .decide__error { flex: 1 1 100%; margin: 0; }
       mark.fig { background: #fff0b3; color: inherit; padding: 0 0.15em; border-radius: 4px; }
       mark.confirm { background: #ffd9a8; color: #6b3500; font-weight: 650; font-size: 0.85em; padding: 0.12em 0.5em; border-radius: 6px; }
 

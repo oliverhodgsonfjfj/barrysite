@@ -4,8 +4,8 @@
 
 const REPO = process.env.GITHUB_REPO || 'oliverhodgsonfjfj/barrysite';
 const BRANCH = process.env.GITHUB_BRANCH || 'main';
-const FILE = 'src/data/review-decisions.json';
-const API = `https://api.github.com/repos/${REPO}/contents/${FILE}`;
+const DECISIONS = 'src/data/review-decisions.json';
+const contentsUrl = (file) => `https://api.github.com/repos/${REPO}/contents/${file}`;
 
 function headers() {
   if (!process.env.GITHUB_TOKEN) throw new Error('GITHUB_TOKEN is not set');
@@ -17,23 +17,35 @@ function headers() {
   };
 }
 
-export async function readDecisions() {
-  const res = await fetch(`${API}?ref=${BRANCH}`, { headers: headers(), cache: 'no-store' });
+/** Reads a JSON file from the branch. Returns its sha too, so a write can't overwrite a newer version. */
+export async function readJson(file) {
+  const res = await fetch(`${contentsUrl(file)}?ref=${BRANCH}`, { headers: headers(), cache: 'no-store' });
+  if (res.status === 404) return { sha: undefined, data: null };
   if (!res.ok) throw new Error(`GitHub read failed: ${res.status}`);
   const body = await res.json();
-  return { sha: body.sha, decisions: JSON.parse(Buffer.from(body.content, 'base64').toString('utf8') || '{}') };
+  return { sha: body.sha, data: JSON.parse(Buffer.from(body.content, 'base64').toString('utf8') || 'null') };
 }
 
-export async function writeDecisions(decisions, sha, message) {
-  const content = Buffer.from(JSON.stringify(decisions, null, 2) + '\n').toString('base64');
-  const res = await fetch(API, {
+/** Commits a JSON file. { conflict: true } means someone saved in between: read again and retry. */
+export async function writeJson(file, data, sha, message) {
+  const content = Buffer.from(JSON.stringify(data, null, 2) + '\n').toString('base64');
+  const res = await fetch(contentsUrl(file), {
     method: 'PUT',
     headers: { ...headers(), 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message, content, sha, branch: BRANCH, committer: { name: 'Focus content review', email: 'team@focusaccountancy.co.uk' } }),
+    body: JSON.stringify({ message, content, sha, branch: BRANCH, committer: { name: 'Focus Studio', email: 'team@focusaccountancy.co.uk' } }),
   });
   if (res.status === 409 || res.status === 422) return { conflict: true };
   if (!res.ok) throw new Error(`GitHub write failed: ${res.status}`);
   return { conflict: false };
+}
+
+export async function readDecisions() {
+  const { sha, data } = await readJson(DECISIONS);
+  return { sha, decisions: data || {} };
+}
+
+export async function writeDecisions(decisions, sha, message) {
+  return writeJson(DECISIONS, decisions, sha, message);
 }
 
 /** Constant-time compare so the key can't be guessed a character at a time. */

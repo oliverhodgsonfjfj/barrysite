@@ -6,6 +6,19 @@ by `api/review.js`, which triggers a Vercel deploy. On that deploy the article g
 (or straight away if the date has passed). A daily cron (`api/release.js`) redeploys on lineup days so
 scheduled articles appear without anyone touching anything.
 
+## Links and editing
+
+- **Links for Barry:** `https://www.focusaccountancy.co.uk/studio#k=<REVIEW_KEY>&go=review/<slug>` signs him in
+  and opens that article; `go=edit/<slug>` opens it straight in the editor. The key is stored in his browser
+  and removed from the address bar, so after the first link plain `/studio#/review/<slug>` works. The
+  **Copy link** button on each article builds the signed-in link.
+- **Editing:** "Edit this article" lets Barry change the title, the Google description and the body (headings,
+  bold, italic, lists, links). Saving posts to `/api/content` (`api/content.js`), which cleans the HTML to
+  the allowed tags below (`api/_content.js`) and commits `src/content/queue/<slug>.json` to `main`. The site
+  redeploys in a minute or two; until then Studio shows the saved version from his browser. Pasted text
+  comes in as plain text. Deleting a `[CONFIRM …]` marker in the editor is how he signs a figure off.
+- Live posts (`src/content/posts`) aren't editable in Studio yet.
+
 ## Queue file format
 
 ```json
