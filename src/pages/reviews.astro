@@ -15,7 +15,6 @@ const platforms = [
   { label: 'LinkedIn', href: site.social.linkedin },
   { label: 'Yell', href: 'https://www.yell.com/biz/focus-accountancy-ltd-bristol-6860492/' },
 ];
-const photoFor = (name: string) => `/reviews/${name.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 ---
 <Base title={title} description={description} current="/reviews">
   <PageHero
@@ -50,7 +49,7 @@ const photoFor = (name: string) => `/reviews/${name.toLowerCase().replace(/\s+/g
           <article class="quote-card">
             <p class="quote-card__title">“{r.title}”</p>
             <blockquote><p>{r.quote}</p></blockquote>
-            <footer>{r.photo && <img src={photoFor(r.name)} alt="" loading="lazy" />}{r.name}</footer>
+            <footer>{r.photo && <Image src={r.photo} width={200} height={200} alt="" loading="lazy" />}{r.name}</footer>
           </article>
         ))}
       </div>

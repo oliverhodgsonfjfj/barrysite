@@ -1,0 +1,77 @@
+{
+  "slug": "vat-registration-threshold",
+  "title": "VAT Registration Threshold: What You Must Know in 2026",
+  "description": "The UK VAT registration threshold is £90,000. Learn how it's calculated, when contractors should register early, and what MTD means for you. Plain-English guide.",
+  "author": "Focus Accountancy",
+  "topics": [
+    "taxes"
+  ],
+  "kind": "new",
+  "source": "Julio",
+  "sourceRef": "1c56f084-8c66-4bcb-862f-980a35d7236f",
+  "written": "2026-08-13",
+  "why": "Supports Focus’s best-earning old post (how to re-register for VAT, 107 clicks in 16 months).",
+  "keyword": {
+    "term": "vat registration threshold",
+    "volume": null,
+    "note": "Search volume not on file. Related: \"re register for vat\" 70 a month (DataForSEO, Aug 2026)."
+  },
+  "checks": [
+    {
+      "status": "ok",
+      "claim": "VAT registration threshold £90,000 (since 1 April 2024); 12-month rolling test, register within 30 days of the end of the month",
+      "note": "Unchanged by the 28 Oct 2026 Budget.",
+      "source": "https://www.gov.uk/register-for-vat"
+    },
+    {
+      "status": "fixed",
+      "claim": "£450 × 220 days example: threshold crossed 'at the end of month 10' → 'month 11'",
+      "note": "Even billing gives £82,500 after 10 months and £90,750 after 11.",
+      "source": ""
+    },
+    {
+      "status": "fixed",
+      "claim": "30-day forward test: 'register immediately' → register by the end of the 30-day period, effective from its start; £100,000 contract example now says it's invoiced within 30 days",
+      "note": "The test only bites if turnover in the next 30 days alone will go over £90,000.",
+      "source": "https://www.gov.uk/register-for-vat"
+    },
+    {
+      "status": "ok",
+      "claim": "Voluntary registration has no minimum; taxable turnover includes zero-rated sales and excludes exempt or out-of-scope income",
+      "note": "",
+      "source": "https://www.gov.uk/register-for-vat"
+    },
+    {
+      "status": "ok",
+      "claim": "MTD for VAT applies to all VAT-registered businesses from April 2022",
+      "note": "",
+      "source": "https://www.gov.uk/government/publications/vat-notice-70022-making-tax-digital-for-vat"
+    },
+    {
+      "status": "ok",
+      "claim": "File and pay 1 month and 7 days after the period ends; points-based late-submission penalties from January 2023",
+      "note": "4 points for quarterly filers, then £200.",
+      "source": "https://www.gov.uk/guidance/penalty-points-and-penalties-if-you-submit-your-vat-return-late"
+    },
+    {
+      "status": "ok",
+      "claim": "Deregistration threshold £88,000",
+      "note": "",
+      "source": "https://www.gov.uk/register-for-vat/cancel-your-registration"
+    },
+    {
+      "status": "fixed",
+      "claim": "Late registration penalty '5% to 15% depending on how long you were unregistered' → failure-to-notify penalty of up to 30% if not deliberate (more if deliberate), depending on behaviour and disclosure",
+      "note": "5/10/15% was the pre-2010 regime. A non-deliberate unprompted disclosure within 12 months can be 0%.",
+      "source": "https://www.gov.uk/government/publications/compliance-checks-penalties-for-failure-to-notify-ccfs11/compliance-checks-penalties-for-failure-to-notify-ccfs11"
+    },
+    {
+      "status": "fixed",
+      "claim": "FreeAgent MTD 'handled as part of your monthly accounting service' → VAT returns are included in Ltd Premium and Ltd Tax Boost; 'quarterly review meetings' → 'quarterly FreeAgent reviews'",
+      "note": "pricing.ts: VAT returns and quarterly FreeAgent reviews are only in Ltd Premium and Ltd Tax Boost, and they're reviews, not meetings.",
+      "source": "src/data/pricing.ts"
+    }
+  ],
+  "words": 1507,
+  "html": "<p>You've just landed a string of new contracts and your invoices are stacking up. Quietly, your taxable turnover is creeping toward £90,000, and missing the VAT registration deadline could cost you more than you think.</p><p>If you're a contractor or freelancer watching your turnover grow and wondering whether VAT registration is a burden or an opportunity, this guide will show you exactly how the £90,000 threshold is calculated, what voluntary registration could mean for your cash flow, and how Making Tax Digital for VAT changes your obligations the moment you register.</p><h2>What is the VAT registration threshold in the UK right now?</h2><p>The current UK VAT registration threshold is <strong>£90,000</strong> in taxable turnover. This figure has been in place since 1 April 2024, when it increased from the previous threshold of £85,000. According to <a href=\"https://www.gov.uk/register-for-vat\" target=\"_blank\" rel=\"noopener\">HMRC's official guidance</a>, you must register for VAT if your total taxable turnover for the last 12 months exceeds £90,000, or if you expect it to exceed £90,000 in the next 30 days.</p><p>Once registered, you must charge VAT at the standard rate of 20% on all taxable supplies, unless your goods or services are exempt or zero-rated. You collect this output tax from your clients, deduct the input tax you've paid on your own business purchases, and pay the difference to HMRC via a VAT return.</p><h3>Does the VAT threshold apply to limited companies and sole traders differently?</h3><p>No. The £90,000 threshold applies equally to limited companies and sole traders. Many contractors underestimate their company's taxable turnover by confusing it with their take-home pay. Your company's invoiced fees are what count, not what you draw from it.</p><h2>How to calculate whether you've crossed the £90,000 threshold (with a contractor example)</h2><p>The threshold is measured on a <strong>rolling 12-month basis</strong>, not a tax year or calendar year. At the end of every month, you look back at the previous 12 months of taxable turnover. If the total exceeds £90,000, you've triggered the registration obligation.</p><p>Taxable turnover includes all sales of goods and services that are subject to VAT at any rate, including zero-rated supplies. It does not include exempt supplies (such as certain financial services or insurance), VAT itself, or income that is genuinely outside the scope of VAT.</p><p>Here's a worked example relevant to a typical contractor. Imagine an IT consultant operating through a limited company, billing a day rate of £450. Working 220 days a year, their annual invoiced turnover is £99,000. But the threshold isn't checked annually. At the end of month 11, their rolling 12-month total crosses £90,000. At that point, they have 30 days to register with HMRC. If they don't, they're liable for VAT on all sales from the date they should have registered, even if they haven't collected it from clients.</p><p>Most IT consultants, engineers, and management consultants bill exclusively to VAT-registered businesses. Those clients can reclaim the VAT you charge them, so adding 20% to your invoices costs them nothing net. The VAT is essentially invisible to your corporate clients. What you gain is the ability to reclaim input tax on your own business costs: software subscriptions, equipment, professional fees, and accountancy costs.</p><h2>The 30-day forward-looking test: when you must register before you hit £90,000</h2><p>There are two separate triggers for mandatory VAT registration, and contractors often only know about one of them. The first is the backward-looking 12-month rolling test described above. The second is the <strong>30-day forward-looking test</strong>.</p><p>If at any point you have reasonable grounds to believe your taxable turnover will exceed £90,000 in the next 30 days alone, you must register by the end of that 30-day period. You don't wait until the end of the month. Your registration takes effect from the start of that 30-day period.</p><p>This catches contractors who land a large project or a new contract that will push them over the threshold in a single month. If you sign a £100,000 project contract in January that will be invoiced within the next 30 days, you must register for VAT from the start of that 30-day window, even if your cumulative turnover to date is well below £90,000. </p><h2>Should contractors and freelancers register for VAT voluntarily?</h2><p>Voluntary VAT registration is available to any business making taxable supplies, even if your turnover is well below £90,000. <a href=\"https://www.gov.uk/register-for-vat\" target=\"_blank\" rel=\"noopener\">HMRC allows voluntary registration</a> and there is no minimum turnover requirement. The strategic case for registering early comes down to a few factors.</p><p>First, input tax recovery. Once registered, you can reclaim VAT on all your business purchases: your accountant's fees, FreeAgent subscription, laptop, software licences, and professional development costs. For a contractor spending £5,000 a year on business costs, that's up to £1,000 in VAT reclaimed annually.</p><p>Second, client perception. Many corporate procurement teams and agencies will only engage contractors who are VAT-registered, because it signals a degree of business credibility and scale. A VAT number on your invoice is a quiet signal that you're operating professionally.</p><p>A scenario where voluntary registration is less attractive is if you bill primarily to non-VAT-registered individuals or small businesses that cannot reclaim VAT. In that case, adding 20% to your invoices is a real cost to your clients, and you may need to absorb it by reducing your net rate. For most B2B contractors, this simply doesn't apply.</p><h2>What changes the moment you become VAT-registered: invoicing, MTD, and record-keeping</h2><p>Registration isn't just about adding 20% to your invoices. It triggers a set of obligations that change how you run your business day to day.</p><p>Your invoices must now show your VAT registration number, the VAT rate applied, the net amount, the VAT amount, and the gross total. Every invoice you issue needs to be a valid VAT invoice. With <a href=\"/freeagent\">FreeAgent</a>, this is handled automatically, but you need to ensure your settings are correct from day one.</p><p>More significantly, VAT registration now brings you within the scope of <strong>Making Tax Digital (MTD) for VAT</strong>. MTD has applied to all VAT-registered businesses since April 2022. This means you must keep digital records and submit your VAT returns using MTD-compatible software. You cannot submit a VAT return manually or via HMRC's old online portal. FreeAgent is fully MTD-compatible and is included in all of our limited company and sole trader packages, and VAT returns are included in our Ltd Premium and Ltd Tax Boost packages.</p><p>VAT returns are typically submitted quarterly, and you have one month and seven days after the end of each VAT period to file and pay. Missing a deadline triggers a points-based penalty system introduced by HMRC in January 2023, where accumulating points leads to financial penalties.</p><h3>How does Making Tax Digital affect VAT-registered businesses?</h3><p>MTD for VAT requires all VAT-registered businesses to keep digital records of their VAT transactions and submit returns using HMRC-approved software. You cannot use spreadsheets alone unless they are linked to compatible bridging software. For contractors using FreeAgent, MTD compliance is built in: the software captures your transactions, calculates your VAT liability, and submits directly to HMRC. The quarterly FreeAgent reviews included in our Ltd Premium and Ltd Tax Boost packages are specifically designed to catch any MTD record-keeping issues before they become a problem at return time.</p><h2>The VAT deregistration threshold: what happens if your turnover drops</h2><p>The VAT deregistration threshold sits at <strong>£88,000</strong>, which is £2,000 below the registration threshold. According to the <a href=\"https://commonslibrary.parliament.uk/research-briefings/sn00963/\" target=\"_blank\" rel=\"noopener\">House of Commons Library</a>, businesses may cancel their VAT registration if their annual turnover falls below this figure. At this point, deregistration becomes an option, though not an obligation.</p><p>Whether to deregister is a strategic decision. If you're billing VAT-registered clients, staying registered keeps your input tax recovery intact. If your turnover has genuinely dropped and you're now billing more to non-VAT-registered clients, deregistration removes the administrative burden and the pricing disadvantage. We'd always recommend taking advice before deregistering, because the timing affects which VAT period you're liable for and whether you need to account for VAT on business assets you retain.</p><h2>What happens if you miss the VAT registration deadline?</h2><p>Missing the registration deadline is not a minor administrative slip. HMRC will assess VAT on all your sales from the date you should have registered, regardless of whether you collected it from clients. If you invoiced £120,000 in the period you should have been registered, HMRC will calculate the VAT element of that £120,000 as if VAT was already included (using the VAT fraction: 1/6 at the 20% standard rate). You owe that VAT to HMRC, even if you never charged it to your clients.</p><p>On top of the VAT liability, HMRC can charge a failure-to-notify penalty of up to 30% of the VAT due if the delay wasn't deliberate (and more if it was), depending on why you were late and whether you told HMRC before it found out. Interest may also apply.</p><p>If you think you may have missed the deadline, the right move is to notify HMRC and register immediately. Voluntary disclosure is treated more favourably than HMRC discovering the error themselves.</p>"
+}

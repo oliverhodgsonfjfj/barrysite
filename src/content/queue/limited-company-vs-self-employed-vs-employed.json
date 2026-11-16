@@ -1,0 +1,89 @@
+{
+  "slug": "limited-company-vs-self-employed-vs-employed",
+  "title": "Limited Company vs Self-employed vs Employed: 2026/27 Guide",
+  "description": "Limited company, self-employed or employed? How each is taxed in 2026/27, the admin and costs, IR35, and a worked comparison at £50,000.",
+  "author": "Mike Evans",
+  "topics": [
+    "small-business"
+  ],
+  "kind": "update",
+  "source": "Focus SEO team",
+  "sourceRef": "limited-company-vs-self-employed-vs-employed",
+  "written": "2026-11-13",
+  "why": "Your second most-read article. It dates from 2020 and uses 2019/20 tax rates; this rewrites it with 2026/27 figures and links it to the services, without changing its web address.",
+  "keyword": {
+    "term": "limited company vs self employed",
+    "volume": null,
+    "note": "Search volume not on file. The old post earned 74 clicks in the 16 months to Aug 2026 (Search Console)."
+  },
+  "checks": [
+    {
+      "status": "ok",
+      "claim": "Income Tax 2026/27: £12,570 allowance, 20% to £50,270, 40% to £125,140, 45% above; allowance reduced £1 per £2 over £100,000; Scotland differs",
+      "note": "Checked on gov.uk 13 Nov 2026. 60% effective rate is derived (40% plus loss of allowance). Thresholds frozen to 2030/31 per Budget fact table.",
+      "source": "https://www.gov.uk/income-tax-rates"
+    },
+    {
+      "status": "ok",
+      "claim": "Class 4 NI 6% (£12,570 to £50,270) and 2% above; Class 2 treated as paid at £7,105+; voluntary Class 2 £3.65 a week",
+      "note": "Checked on gov.uk 13 Nov 2026 (2026/27 figures).",
+      "source": "https://www.gov.uk/self-employed-national-insurance-rates"
+    },
+    {
+      "status": "ok",
+      "claim": "Employee NI 8% between £12,570 and £50,270, 2% above; employer NI 15% above £5,000; Employment Allowance £10,500, not available where a sole director is the only employee above the secondary threshold",
+      "note": "Rates and thresholds for employers 2026 to 2027 and Employment Allowance eligibility page, checked 13 Nov 2026.",
+      "source": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027"
+    },
+    {
+      "status": "ok",
+      "claim": "Corporation Tax 19% up to £50,000, 25% over £250,000, marginal relief between; limits reduced for associated companies and short periods; pay 9 months and 1 day after period end, return within 12 months",
+      "note": "gov.uk corporation-tax-rates, pay-corporation-tax and company-tax-returns, checked 13 Nov 2026. Budget 2026 left CT rates unchanged (OOTLAR Annex A, per Budget fact table).",
+      "source": "https://www.gov.uk/corporation-tax-rates"
+    },
+    {
+      "status": "ok",
+      "claim": "Dividend allowance £500; 10.75% / 35.75% / 39.35% for 2026/27; unchanged for 2027/28",
+      "note": "gov.uk tax-on-dividends shows the 2026/27 table; 2027/28 unchanged per OOTLAR Annex A (Budget fact table).",
+      "source": "https://www.gov.uk/tax-on-dividends"
+    },
+    {
+      "status": "ok",
+      "claim": "MTD for Income Tax: qualifying income over £50,000 from 6 April 2026, over £30,000 from 6 April 2027, over £20,000 from 6 April 2028",
+      "note": "Checked on gov.uk 13 Nov 2026.",
+      "source": "https://www.gov.uk/guidance/check-if-youre-eligible-for-making-tax-digital-for-income-tax"
+    },
+    {
+      "status": "ok",
+      "claim": "Self Assessment online deadline and payment 31 January; second payment on account 31 July",
+      "note": "Checked on gov.uk 13 Nov 2026.",
+      "source": "https://www.gov.uk/self-assessment-tax-returns/deadlines"
+    },
+    {
+      "status": "ok",
+      "claim": "Off-payroll rules: public sector and medium/large private clients decide status and issue an SDS; small clients, the intermediary decides; deemed employer deducts Income Tax and employee NI and pays employer NI. IR35 unchanged in Budget 2026.",
+      "note": "gov.uk off-payroll guidance checked 13 Nov 2026; 'IR35 unchanged' per Budget fact table.",
+      "source": "https://www.gov.uk/guidance/understanding-off-payroll-working-ir35"
+    },
+    {
+      "status": "ok",
+      "claim": "Sole traders have unlimited liability; limited company owners liable only up to their investment; directors remain legally responsible for records and accounts even if they hire an accountant",
+      "note": "gov.uk business-legal-structures and running-a-limited-company, checked 13 Nov 2026.",
+      "source": "https://www.gov.uk/business-legal-structures"
+    },
+    {
+      "status": "ok",
+      "claim": "Worked example at £50,000 (England, 2026/27): employed £10,480 tax/NI, keeps £39,520 (employer NI £6,750); sole trader £9,732, keeps £40,268; company (salary £12,570, employer NI £1,136, CT £6,896, dividend tax £3,107) £11,138, keeps £38,862",
+      "note": "Calculated by us from the verified rates above. Assumptions are stated in the article (single director, no Employment Allowance, 19% CT, all profit drawn). Barry may prefer a different salary level for the example.",
+      "source": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027"
+    },
+    {
+      "status": "check",
+      "claim": "Worked comparison at £50,000 profit: sole trader keeps £40,268, employee £39,520, limited company £38,862 (salary £12,570, no Employment Allowance, all profit taken out)",
+      "note": "Rates checked on gov.uk; the arithmetic and the salary assumption are ours. Please check, or tell us the salary level you'd rather show.",
+      "source": ""
+    }
+  ],
+  "words": 1604,
+  "html": "<p>There's no single best option. As an employee, your employer takes tax off your pay and you get employment rights. As a sole trader, you pay Income Tax and Class 4 National Insurance on your profits, with the least admin. With a limited company, the company pays Corporation Tax and you take money out as salary and dividends. That costs more to run, but gives you limited liability and more control over when you're taxed.</p><p>If you take out everything you earn, there's often little between them. A company comes into its own when you can leave some profit in the business.</p><p><em>We first published this guide in 2020 using 2019/20 tax rates. It's been rewritten with 2026/27 figures, checked after the Autumn Budget on 28 October 2026. It's a guide, not advice for your situation.</em></p><h2>How each option is taxed in 2026/27</h2><h3>Income Tax (applies to all three)</h3><table><thead><tr><th>Band</th><th>Taxable income</th><th>Rate</th></tr></thead><tbody><tr><td>Personal Allowance</td><td>Up to £12,570</td><td>0%</td></tr><tr><td>Basic rate</td><td>£12,571 to £50,270</td><td>20%</td></tr><tr><td>Higher rate</td><td>£50,271 to £125,140</td><td>40%</td></tr><tr><td>Additional rate</td><td>Over £125,140</td><td>45%</td></tr></tbody></table><p>Your Personal Allowance falls by £1 for every £2 of income over £100,000, and is gone at £125,140. That makes the effective rate on income between those two figures 60%. Bands are different if you live in Scotland.</p><h3>Employed</h3><p>Your employer runs PAYE, so tax and National Insurance come off your pay before you see it. You pay 8% employee National Insurance on earnings between £12,570 and £50,270, and 2% above that. Your employer also pays 15% on your earnings above £5,000, on top of your salary. That's one reason contract rates look higher than salaries for the same work.</p><h3>Self-employed (sole trader)</h3><p>You pay Income Tax on your profit, plus Class 4 National Insurance: 6% on profits between £12,570 and £50,270, and 2% above that. If your profits are £7,105 or more, Class 2 is treated as paid, so there's nothing extra to pay. Below that, you can choose to pay voluntary Class 2 at £3.65 a week to protect your National Insurance record.</p><p>You file a Self Assessment return each year. The online deadline and balancing payment are both 31 January, and you may also have to make payments on account in January and July. Making Tax Digital for Income Tax is now arriving too: it applies from April 2026 if your qualifying income was over £50,000, from April 2027 if it was over £30,000, and from April 2028 if it was over £20,000. Our <a href=\"/making-tax-digital\">Making Tax Digital guide</a> explains what that means.</p><h3>Limited company</h3><p>The company pays Corporation Tax on its profits:</p><ul><li>19% on profits of £50,000 or less (the small profits rate)</li><li>25% on profits over £250,000 (the main rate)</li><li>between the two, marginal relief tapers the rate from 19% up to 25%</li></ul><p>Those limits are reduced if you have associated companies or a short accounting period. Corporation Tax is due 9 months and 1 day after the end of your accounting period, and the return within 12 months.</p><p>You then pay yourself. A salary goes through payroll like any other employee. Dividends come out of profits after Corporation Tax. For 2026/27 you get a £500 dividend allowance, then pay:</p><table><thead><tr><th>Dividend tax band</th><th>Rate</th></tr></thead><tbody><tr><td>Basic rate</td><td>10.75%</td></tr><tr><td>Higher rate</td><td>35.75%</td></tr><tr><td>Additional rate</td><td>39.35%</td></tr></tbody></table><p>These rates rose in April 2026, and the October Budget left them the same for 2027/28. The Employment Allowance (£10,500 for 2026/27) can cover employer National Insurance, but not if a sole director is the only employee paid above the £5,000 threshold, which rules out many one-person companies.</p><h2>Side by side</h2><table><thead><tr><th></th><th>Employed</th><th>Sole trader</th><th>Limited company</th></tr></thead><tbody><tr><td>Main taxes</td><td>Income Tax and employee NI through PAYE</td><td>Income Tax and Class 4 NI through Self Assessment</td><td>Corporation Tax, then Income Tax on salary and dividends</td></tr><tr><td>When you pay</td><td>Every payday</td><td>31 January and 31 July</td><td>9 months and 1 day after the company's year end, then via your own tax return</td></tr><tr><td>Liability for debts</td><td>None</td><td>Unlimited</td><td>Limited to your investment</td></tr><tr><td>Admin</td><td>Very little</td><td>Records, tax return, MTD updates</td><td>Accounts, Company Tax Return, confirmation statement, payroll, your own tax return</td></tr><tr><td>Holiday and sick pay</td><td>Yes</td><td>No</td><td>No</td></tr><tr><td>Choose when you take income</td><td>No</td><td>No, you're taxed on all profit</td><td>Yes</td></tr><tr><td>Our fees</td><td>Not needed</td><td>From £50 a month plus VAT</td><td>From £99 a month plus VAT</td></tr></tbody></table><h2>A worked example: £50,000</h2><p>Here's how £50,000 a year compares in 2026/27. We've assumed you live in England, have no other income, no pension contributions or student loan, and take out everything you earn. For the company, we've assumed one director paid a £12,570 salary with the rest as dividends, no Employment Allowance, and Corporation Tax at 19%. Figures are rounded to the nearest pound.</p><table><thead><tr><th></th><th>Employed (£50,000 salary)</th><th>Sole trader (£50,000 profit)</th><th>Limited company (£50,000 profit)</th></tr></thead><tbody><tr><td>Income Tax on salary or profit</td><td>£7,486</td><td>£7,486</td><td>£0</td></tr><tr><td>National Insurance</td><td>£2,994</td><td>£2,246</td><td>£1,136 (employer)</td></tr><tr><td>Corporation Tax</td><td>n/a</td><td>n/a</td><td>£6,896</td></tr><tr><td>Dividend tax</td><td>n/a</td><td>n/a</td><td>£3,107</td></tr><tr><td><strong>Total tax and NI</strong></td><td><strong>£10,480</strong></td><td><strong>£9,732</strong></td><td><strong>£11,138</strong></td></tr><tr><td><strong>What you keep</strong></td><td><strong>£39,520</strong></td><td><strong>£40,268</strong></td><td><strong>£38,862</strong></td></tr></tbody></table><p>At this level, taking every penny out, the sole trader keeps the most. The employee's employer also pays £6,750 in employer National Insurance on top of the salary.</p><p>So why do so many contractors use a company? Because you don't have to take everything out. Profit left in the company has only paid Corporation Tax, and you decide when to take it. That lets you keep your personal income below the higher-rate threshold, smooth your income between contracts, or pay into a pension from the company. One of our clients built up reserves this way to <a href=\"/post/case-study-james-year-off\">take a year off</a>. The more you earn and the less you need to live on, the bigger the gap gets.</p><h2>Admin and running costs</h2><p>As an employee, there's very little to do. As a sole trader, you keep records, file a tax return and, as MTD reaches you, send quarterly updates through software.</p><p>A company is more work. You'll prepare annual accounts, file a Company Tax Return, file a confirmation statement with Companies House, run payroll and file your own tax return. You can hire an accountant to do it, but as a director you're still legally responsible for the company's records and accounts. You'll also want a separate business bank account and, for many contractors, business insurance.</p><p>Our <a href=\"/pricing\">fixed monthly fees</a> start at £50 a month plus VAT for a sole trader and £99 a month plus VAT for a limited company, with FreeAgent included in both.</p><h2>Limited liability</h2><p>As a sole trader you're personally responsible for all the debts of your business. A limited company is legally separate from you, and owners are responsible for its debts only up to what they invested. In practice, lenders and landlords sometimes ask directors for personal guarantees, so limited liability isn't a complete shield.</p><h2>IR35 for contractors</h2><p>If you contract through your own company, IR35 (the off-payroll working rules) is the big question. If a contract is <em>inside</em> IR35, you're treated as an employee for tax, and most of the company's tax advantage disappears for that contract.</p><p>For public sector clients and medium or large private sector clients, the client decides your status and must give you a status determination statement. If the rules apply, the fee-payer deducts Income Tax and employee National Insurance and pays employer National Insurance. For small private sector clients, your own company decides. The October Budget made no changes to IR35.</p><p>Our <a href=\"/ir35\">IR35 guide</a> explains how status is decided and how to get an independent review. If most of your work would be inside IR35, it's worth comparing an umbrella company or a permanent role.</p><h2>Other things to weigh up</h2><ul><li><strong>Mortgages.</strong> Lenders usually want to see a track record of accounts before they'll count company income, so contracting just before a mortgage application can make things harder.</li><li><strong>Security.</strong> Holiday pay, sick pay and a steady salary matter more to some people than others. If you get repeat work and are happy to take holidays between contracts, you'll miss them less.</li><li><strong>Setting aside tax.</strong> Sole traders and company directors pay tax months after they earn the money. That's useful if you're disciplined, and painful if you're not.</li><li><strong>How much you need.</strong> If you need every pound you earn to live on, a company's ability to keep profit back helps much less.</li></ul><p>Our pages for <a href=\"/contractor-accountants\">contractors</a> and <a href=\"/sole-trader-accountants\">sole traders</a> explain how we help with each.</p><h2>Questions people ask</h2><h3>Is it better to be a sole trader or a limited company?</h3><p>It depends on your profit, how much you need to draw, and your contracts. If you take out everything you earn, a sole trader often pays a little less. A company usually wins when you can leave profit in the business.</p><h3>At what profit is a limited company worth it?</h3><p>There's no single number. It depends on how much you draw, your other income, pension plans and your IR35 position. We'll run the numbers for you.</p><h3>Do the self-employed still pay Class 2 National Insurance?</h3><p>Not if your profits are £7,105 or more, because it's treated as paid. Below that, you can pay voluntarily at £3.65 a week.</p><h3>Can I switch from sole trader to limited company later?</h3><p>Yes. Lots of people start as a sole trader and incorporate once profits grow. Read about <a href=\"/post/incorporation-relief-a-smart-move-for-business-owners\">incorporation relief</a>, and talk to us before you move.</p><h3>Does IR35 apply to sole traders?</h3><p>IR35 applies when you work through an intermediary, such as your own company. Sole traders still need to be genuinely self-employed, but the off-payroll rules themselves don't apply.</p><p>Weighing up your options? <a href=\"/book-a-meeting\">Book a free meeting</a> and we'll compare them using your own figures.</p>"
+}

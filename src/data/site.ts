@@ -1,11 +1,14 @@
+// Phone, email and hours are edited in the site editor (/keystatic) and live in contact.json.
+import contact from './contact.json';
+
 export const site = {
   name: 'Focus Accountancy Ltd',
   shortName: 'Focus Accountancy',
   url: 'https://www.focusaccountancy.co.uk',
-  phone: '0117 290 0007',
-  phoneHref: 'tel:+441172900007',
-  email: 'team@focusaccountancy.co.uk',
-  hours: '8am to 6pm, Monday to Friday',
+  phone: contact.phone,
+  phoneHref: `tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+44')}`,
+  email: contact.email,
+  hours: contact.hours,
   // Every 'book a meeting' CTA goes here: a chooser for Barry's, Greg's and Maria's diaries.
   bookMeeting: '/book-a-meeting',
   portal: 'https://manager.brightsg.com/signin',

@@ -45,4 +45,55 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { posts, news };
+// New blog posts written in the site editor (/keystatic): Markdown files with frontmatter.
+// src/lib/posts.ts merges them with the legacy posts above.
+const ymd = z.coerce.date().transform((d) => d.toISOString().slice(0, 10));
+const blog = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().default(''),
+    draft: z.boolean().default(false),
+    published: ymd,
+    updated: ymd.nullable().optional(),
+    author: z.string().default('Focus Accountancy'),
+    topics: z.array(z.string()).default([]),
+    image: z.string().nullable().optional(),
+  }),
+});
+
+// Articles waiting for Barry's yes/no on the review page (docs/content-queue.md). They reach the site
+// through allPosts() in src/lib/posts.ts once approved in src/data/review-decisions.json and their
+// lineup date (src/data/lineup.json) has arrived.
+const queue = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/queue' }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    description: z.string().default(''),
+    author: z.string().default('Focus Accountancy'),
+    topics: z.array(z.string()).default([]),
+    kind: z.enum(['new', 'update']).default('new'),
+    source: z.string().default('Focus SEO team'),
+    sourceRef: z.string().default(''),
+    written: z.string().default(''),
+    why: z.string().default(''),
+    keyword: z
+      .object({ term: z.string(), volume: z.number().nullable().optional(), note: z.string().default('') })
+      .optional(),
+    checks: z
+      .array(
+        z.object({
+          status: z.enum(['ok', 'fixed', 'check']),
+          claim: z.string(),
+          note: z.string().default(''),
+          source: z.string().default(''),
+        }),
+      )
+      .default([]),
+    words: z.number().optional(),
+    html: z.string(),
+  }),
+});
+
+export const collections = { posts, news, blog, queue };

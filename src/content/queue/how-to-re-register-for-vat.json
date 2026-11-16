@@ -1,0 +1,85 @@
+{
+  "slug": "how-to-re-register-for-vat",
+  "title": "How to Re-register for VAT: Steps, Deadlines and FreeAgent",
+  "description": "Turnover back over £90,000? How to re-register for VAT with HMRC, the 30-day deadlines, your VAT number, VAT schemes and setting FreeAgent up again.",
+  "author": "Barry Adams",
+  "topics": [
+    "small-business",
+    "taxes",
+    "freeagent"
+  ],
+  "kind": "update",
+  "source": "Focus SEO team",
+  "sourceRef": "how-to-re-register-for-vat",
+  "written": "2026-11-13",
+  "why": "Your most-read article. It's just over 300 words and dates from 2021; this brings it up to date and links it to the services, without changing its web address.",
+  "keyword": {
+    "term": "re register for vat",
+    "volume": 70,
+    "note": "DataForSEO, Aug 2026: 70 searches a month, difficulty 4. The old post earned 107 clicks in the 16 months to Aug 2026 (Search Console)."
+  },
+  "checks": [
+    {
+      "status": "ok",
+      "claim": "VAT threshold £90,000; look-back test: register within 30 days of the end of the month you went over, effective from the first day of the second month after",
+      "note": "Checked on gov.uk 13 Nov 2026. Budget 2026 left the threshold at £90,000 (OOTLAR Annex A, per the Budget fact table). May example (register by 30 June, registered from 1 July) follows gov.uk's own 15 July example.",
+      "source": "https://www.gov.uk/vat-registration/when-to-register"
+    },
+    {
+      "status": "ok",
+      "claim": "Look-forward test: turnover expected over £90,000 in the next 30 days alone; register by the end of the 30 days; effective from the date you realised",
+      "note": "Checked on gov.uk 13 Nov 2026.",
+      "source": "https://www.gov.uk/vat-registration/when-to-register"
+    },
+    {
+      "status": "ok",
+      "claim": "Register online; VAT1 by post for an exception (temporary rise) and other listed cases; 9-digit number by post; can't show VAT until the number arrives but can raise prices and reissue invoices; HMRC signs you up to MTD for VAT unless exempt; agent can act",
+      "note": "Checked on gov.uk 13 Nov 2026.",
+      "source": "https://www.gov.uk/register-for-vat/how-register-for-vat"
+    },
+    {
+      "status": "ok",
+      "claim": "Reinstatement of a cancelled registration with the person's agreement, normally within six months; turnover from the previous registration period generally excluded from the look-back test",
+      "note": "HMRC VAT Deregistration Manual VATDREG15000, checked 13 Nov 2026.",
+      "source": "https://www.gov.uk/hmrc-internal-manuals/vat-deregistration/vatdreg15000"
+    },
+    {
+      "status": "check",
+      "claim": "You'll be given a new VAT number when you re-register",
+      "note": "The HMRC manual says you're 're-registered under the normal rules' but doesn't say in terms that a new number is issued. HMRC community forum answers say a new number is always issued. Barry to confirm from experience.",
+      "source": "https://www.gov.uk/hmrc-internal-manuals/vat-deregistration/vatdreg15000"
+    },
+    {
+      "status": "ok",
+      "claim": "Flat Rate Scheme: join at £150,000 or less (excl. VAT); leave over £230,000 (incl. VAT); limited cost business 16.5% if goods under 2% of turnover or under £1,000 a year; 1% first-year discount",
+      "note": "Checked on gov.uk 13 Nov 2026 (how-much-you-pay and if-your-circumstances-change pages).",
+      "source": "https://www.gov.uk/vat-flat-rate-scheme/how-much-you-pay"
+    },
+    {
+      "status": "check",
+      "claim": "The 1% first-year Flat Rate discount applies when you re-register",
+      "note": "gov.uk says 'your first year as a VAT-registered business' but doesn't cover businesses registering for a second time.",
+      "source": "https://www.gov.uk/vat-flat-rate-scheme/how-much-you-pay"
+    },
+    {
+      "status": "ok",
+      "claim": "Cash Accounting Scheme: join at £1.35m or less estimated taxable turnover in the next 12 months, leave over £1.6m; not with the Flat Rate Scheme",
+      "note": "Checked on gov.uk 13 Nov 2026.",
+      "source": "https://www.gov.uk/vat-cash-accounting-scheme/eligibility"
+    },
+    {
+      "status": "ok",
+      "claim": "Failure-to-notify penalty: % of potential lost revenue; non-deliberate unprompted within 12 months 0-30%, later/prompted minimum 10% or 20%; deliberate up to 70%, concealed up to 100%; no penalty with a reasonable excuse. VAT returns usually every 3 months, due one calendar month and 7 days after period end.",
+      "note": "CC/FS11 and gov.uk/submit-vat-return checked 13 Nov 2026. Duty to pay VAT from the date you should have registered is on gov.uk/vat-registration/when-to-register.",
+      "source": "https://www.gov.uk/government/publications/compliance-checks-penalties-for-failure-to-notify-ccfs11/compliance-checks-penalties-for-failure-to-notify-ccfs11"
+    },
+    {
+      "status": "check",
+      "claim": "FreeAgent re-registration steps and full (level 8) access",
+      "note": "Carried over from your 2021 post. FreeAgent's help page blocked automated access (403), so it couldn't be re-checked.",
+      "source": "https://support.freeagent.com/hc/en-gb/articles/4402695620882-How-to-update-your-VAT-registration-settings-when-you-re-register-your-business-for-VAT"
+    }
+  ],
+  "words": 1279,
+  "html": "<p>To re-register for VAT, you apply to HMRC in the same way as a brand-new business: online through HMRC's <a href=\"https://www.gov.uk/register-for-vat\" target=\"_blank\" rel=\"noopener\">register for VAT service</a>, or by post on form VAT1 in a few special cases. You must do it if your taxable turnover goes back over the £90,000 VAT threshold, and you can choose to do it earlier. If you use FreeAgent, you can carry on in the same account by adding a new VAT registration period.</p><h2>When do you have to re-register for VAT?</h2><p>The rules are the same as for any business. The VAT registration threshold is <strong>£90,000</strong> of taxable turnover, and the Autumn Budget on 28 October 2026 left it unchanged. You must register if you meet either of two tests.</p><h3>The look-back test</h3><p>At the end of every month, add up your taxable turnover for the last 12 months. If it's gone over £90,000, you must register <strong>within 30 days of the end of that month</strong>. You're registered from the first day of the second month after you went over. So if you go over in May, you register by 30 June and you're VAT-registered from 1 July.</p><h3>The look-forward test</h3><p>If you expect your taxable turnover in the <strong>next 30 days alone</strong> to go over £90,000, say because you've just signed a big contract, you must register by the end of those 30 days. Your registration starts from the date you realised.</p><p>Taxable turnover is everything you sell that isn't exempt from VAT, including zero-rated sales. Sales you made while you were registered last time don't usually count.</p><h2>Can you re-register voluntarily?</h2><p>Yes, even if your turnover is below £90,000. You can then reclaim VAT on your business costs, and if your clients are VAT-registered businesses they can usually reclaim the VAT you charge, so it often costs them nothing. If you mostly sell to the public, adding 20% to your prices makes you more expensive, so weigh that up first.</p><h2>How to re-register for VAT with HMRC</h2><ol><li><strong>Apply online.</strong> You can usually register online, and you can save your answers and come back later. Have your turnover figures and the date you went over the threshold to hand.</li><li><strong>Use form VAT1 if you have to.</strong> A few cases must go by post. The one most relevant when re-registering is asking for an <em>exception</em> because your turnover has only gone over the threshold temporarily.</li><li><strong>Wait for your VAT number.</strong> HMRC sends a 9-digit VAT registration number by post. It must go on every invoice you raise.</li><li><strong>Don't show VAT until it arrives.</strong> You can raise your prices to cover the VAT you'll owe, then reissue the invoices showing VAT once your number comes through.</li></ol><p>An accountant can also send your VAT returns and deal with HMRC for you. See gov.uk's <a href=\"https://www.gov.uk/register-for-vat/how-register-for-vat\" target=\"_blank\" rel=\"noopener\">how to register for VAT</a> page for the full list.</p><h2>What happens to your old VAT number?</h2><p>HMRC can sometimes reinstate a cancelled registration with your agreement, as if you'd never deregistered. Its standard practice is to allow this within six months of the cancellation date. Otherwise, you're registered again under the normal rules with a new VAT number [CONFIRM: HMRC issues a new number on re-registration; its manual covers reinstating the old one, not reuse]. Don't put your old number on invoices.</p><h2>Making Tax Digital for VAT</h2><p>When you register, HMRC signs your business up to Making Tax Digital for VAT unless you're exempt. You keep digital records and send returns through compatible software, such as FreeAgent. Returns are usually every 3 months, and the deadline to file and pay is usually one calendar month and 7 days after each period ends. Our <a href=\"/making-tax-digital\">Making Tax Digital guide</a> has more.</p><h2>VAT schemes worth considering</h2><h3>Flat Rate Scheme</h3><p>You pay HMRC a fixed percentage of your VAT-inclusive turnover instead of working out VAT on every sale and purchase. You can join if your VAT turnover is £150,000 or less (excluding VAT). You must leave if your turnover for the last 12 months was over £230,000 (including VAT) on the anniversary of joining, or you expect it to go over that in the next 30 days alone.</p><p>If you mostly sell your time, check this carefully. If you spend less than 2% of your turnover on goods, or less than £1,000 a year, you're a <strong>limited cost business</strong> and pay 16.5%, which wipes out the benefit for many contractors. There's a 1% discount in your first year as a VAT-registered business [CONFIRM: whether the 1% first-year discount applies when you re-register].</p><h3>Cash Accounting Scheme</h3><p>You pay VAT on sales when your customers pay you, and reclaim it on purchases when you've paid your suppliers. That helps if clients pay slowly. You can join if your estimated VAT taxable turnover for the next 12 months is £1.35 million or less, and must leave above £1.6 million. You can't combine it with the Flat Rate Scheme.</p><h2>Setting FreeAgent up again</h2><p>You don't need a new copy of FreeAgent. You add a new VAT registration period to your existing account. Before you start, your previous period must be marked as de-registered with a date, its final VAT return must be filed or marked as filed, and you need full (level 8) access [CONFIRM: FreeAgent re-registration steps and access level still current]. Then:</p><ol><li>Change your VAT registration status.</li><li>Enter your new VAT settings.</li><li>Enter your new VAT registration details, including your VAT number and registration date.</li><li>Enter your new VAT return details.</li></ol><p>FreeAgent then prepares returns for the new period under Taxes, then VAT. Old periods stay in Settings, under VAT Registration. Once the new period exists, changes to transactions in the old period won't flow into your new returns. FreeAgent's <a href=\"https://support.freeagent.com/hc/en-gb/articles/4402695620882-How-to-update-your-VAT-registration-settings-when-you-re-register-your-business-for-VAT\" target=\"_blank\" rel=\"noopener\">re-registration guide</a> shows each screen. As a <a href=\"/freeagent\">FreeAgent Gold Partner</a>, we can check your settings, and a FreeAgent subscription is included in all our plans.</p><h2>Penalties for registering late</h2><p>Register late and you'll owe HMRC the VAT on your sales from the date you should have registered, even if you never charged it. HMRC can also charge a failure to notify penalty, worked out as a percentage of that VAT:</p><ul><li>not deliberate, and you tell HMRC yourself within 12 months: 0% to 30%</li><li>not deliberate, but later or only after HMRC prompts you: a minimum of 10% or 20%</li><li>deliberate: up to 70%, or up to 100% if it was concealed</li></ul><p>There's no penalty if you had a reasonable excuse, it wasn't deliberate and you told HMRC without unreasonable delay. HMRC's <a href=\"https://www.gov.uk/government/publications/compliance-checks-penalties-for-failure-to-notify-ccfs11/compliance-checks-penalties-for-failure-to-notify-ccfs11\" target=\"_blank\" rel=\"noopener\">failure to notify factsheet</a> has the detail.</p><h2>How we can help</h2><p>If you run a limited company, VAT returns are included in our Ltd Premium plan, at £145 a month plus VAT for turnover up to £250K. See our <a href=\"/pricing\">pricing</a> for every plan, or how we work with <a href=\"/contractor-accountants\">contractors</a>.</p><h2>Questions people ask</h2><h3>How long do I have to re-register for VAT?</h3><p>30 days from the end of the month your rolling 12-month turnover went over £90,000. If you expect to go over in the next 30 days alone, register by the end of those 30 days.</p><h3>Will I get my old VAT number back?</h3><p>Only if HMRC agrees to reinstate your old registration, which it normally allows within six months of cancellation.</p><h3>Can I keep using the same FreeAgent account?</h3><p>Yes. Close off the old period, file its final return, then add a new VAT registration period.</p><h3>Do I have to re-register if I'm under £90,000?</h3><p>No, but you can choose to. It often makes sense if your clients are VAT-registered.</p><p>Not sure whether you need to re-register, or which scheme suits you? <a href=\"/book-a-meeting\">Book a free meeting</a> and we'll look at your turnover with you.</p>"
+}

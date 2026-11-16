@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { releasedQueue, stripReviewMarkers } from './queue';
 
 export const TOPICS: Record<string, string> = {
   'small-business': 'Small business',
@@ -28,7 +29,57 @@ export const MERGED_POSTS: Record<string, string> = {
 
 export async function allPosts(): Promise<Post[]> {
   const posts = (await getCollection('posts')).filter((p) => !(p.data.slug in MERGED_POSTS));
-  return posts.sort((a, b) => (b.data.published || '').localeCompare(a.data.published || ''));
+  // Articles Barry approved on the review page whose lineup date has arrived (src/lib/queue.ts).
+  // A "new" article is added; an "update" replaces the body of the post with the same slug, keeping its
+  // original date and adding an "Updated" date.
+  const bySlug = new Map(posts.map((p) => [p.data.slug, p]));
+  for (const { item, date } of await releasedQueue()) {
+    const q = item.data;
+    const html = stripReviewMarkers(q.html);
+    const old = bySlug.get(q.slug);
+    if (q.kind === 'update' && old) {
+      bySlug.set(q.slug, { ...old, data: { ...old.data, title: q.title, description: q.description, author: q.author, topics: q.topics.length ? q.topics : old.data.topics, words: q.words, updated: date, html, legacy: false } });
+    } else if (!old) {
+      bySlug.set(q.slug, {
+        id: `queue-${q.slug}`,
+        collection: 'posts',
+        data: { slug: q.slug, title: q.title, description: q.description, published: date, author: q.author, topics: q.topics, tags: [], image: null, imageInline: false, words: q.words, legacy: false, html },
+      } as Post);
+    }
+  }
+  for (const p of await editorPosts()) {
+    if (bySlug.has(p.data.slug)) console.warn(`[posts] src/content/blog/${p.data.slug}.md has the same web address as an existing post; skipped.`);
+    else bySlug.set(p.data.slug, p);
+  }
+  return [...bySlug.values()].sort((a, b) => (b.data.published || '').localeCompare(a.data.published || ''));
+}
+
+// Posts written in the site editor (src/content/blog/*.md), reshaped to match the legacy post entries.
+// Drafts show in `npm run dev` only, never in a build.
+export async function editorPosts(includeDrafts = import.meta.env.DEV): Promise<Post[]> {
+  const entries = await getCollection('blog', (e) => includeDrafts || !e.data.draft);
+  return entries.map((e) => {
+    const d = e.data;
+    return {
+      id: `blog/${e.id}`,
+      collection: 'posts',
+      data: {
+        slug: e.id,
+        title: d.title,
+        description: d.description,
+        published: d.published,
+        updated: d.updated ?? undefined,
+        author: d.author,
+        topics: d.topics,
+        tags: [],
+        image: d.image ?? null,
+        imageInline: false,
+        words: (e.body ?? '').split(/\s+/).filter(Boolean).length,
+        legacy: false,
+        html: e.rendered?.html ?? '',
+      },
+    } as Post;
+  });
 }
 
 export function fmtDate(iso?: string) {

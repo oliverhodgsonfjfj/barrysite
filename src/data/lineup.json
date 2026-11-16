@@ -1,0 +1,19 @@
+{
+  "note": "Publishing lineup for articles in src/content/queue. Two a week (Tuesday and Thursday mornings). An article goes live on its date once Barry says yes; a yes after the date publishes it straight away.",
+  "items": [
+    { "slug": "autumn-budget-2026", "date": "2026-11-17" },
+    { "slug": "freeagent-without-an-accountant", "date": "2026-11-19" },
+    { "slug": "self-assessment-deadline-2027", "date": "2026-11-24" },
+    { "slug": "how-to-re-register-for-vat", "date": "2026-11-26" },
+    { "slug": "contractor-take-home-pay", "date": "2026-12-01" },
+    { "slug": "business-mileage-rates", "date": "2026-12-03" },
+    { "slug": "switching-accountants-it-contractor", "date": "2026-12-08" },
+    { "slug": "vat-registration-threshold", "date": "2026-12-10" },
+    { "slug": "limited-company-vs-self-employed-vs-employed", "date": "2026-12-15" },
+    { "slug": "freeagent-vs-xero", "date": "2026-12-17" },
+    { "slug": "inside-or-outside-ir35", "date": "2027-01-05" },
+    { "slug": "director-tax-planning-before-april-2027", "date": "2027-01-07" },
+    { "slug": "corporation-tax-for-contractors", "date": "2027-01-12" },
+    { "slug": "freeagent-sole-trader-guide", "date": "2027-01-14" }
+  ]
+}

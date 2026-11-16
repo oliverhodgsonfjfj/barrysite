@@ -1,0 +1,22 @@
+---
+// The review page moved into Focus Studio (/studio). Old links (/review#k=KEY, /review#<slug>) still work.
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Studio · Focus Accountancy</title>
+    <script is:inline>
+      (function () {
+        var h = location.hash.slice(1);
+        var to = '/studio#/review';
+        if (/(^|&)k=/.test(h)) to = '/studio#' + h;
+        else if (h) to = '/studio#/review/' + h;
+        location.replace(to);
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/studio" /></noscript>
+  </head>
+  <body><p><a href="/studio">Open Studio</a></p></body>
+</html>

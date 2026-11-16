@@ -40,12 +40,12 @@ const teamMembers = team.map((m) => ({
   calendly: m.calendly?.video,
 }));
 
-const testimonialGrid = reviews.slice(0, 6).map((r) => ({
+const testimonialGrid = await Promise.all(reviews.slice(0, 6).map(async (r) => ({
   name: r.name,
   role: `“${r.title}”`,
-  image: r.photo ? `/reviews/${r.name.toLowerCase().replace(/\s+/g, '-')}.jpg` : undefined,
+  image: r.photo ? (await getImage({ src: r.photo, width: 200, height: 200 })).src : undefined,
   quote: r.quote,
-}));
+})));
 
 const ro = site.offices[0]; // trading office (matches Google Business Profile), not the registered office
 const mapUrl = (o: { line1: string; town: string; postcode: string }) =>

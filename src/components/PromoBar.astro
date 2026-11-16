@@ -1,0 +1,79 @@
+---
+// Promotion bar, edited in the site editor (/keystatic → Promotion bar). Sits at the bottom of the
+// screen so it never fights the fixed header. Visitors can close it; it stays closed until the message changes.
+import promoData from '../data/promotion.json';
+
+// Keystatic leaves optional fields out of the file when they're empty.
+const promo = promoData as { enabled: boolean; message: string; linkLabel?: string; link?: string; endDate?: string | null };
+
+const today = new Date().toISOString().slice(0, 10);
+const show = promo.enabled && promo.message.trim() !== '' && (!promo.endDate || promo.endDate >= today);
+const external = /^https?:\/\//.test(promo.link || '');
+const key = `promo:${promo.message}`;
+---
+{show && (
+  <aside class="promo" data-promo-key={key} data-promo-end={promo.endDate || ''} aria-label="Announcement" hidden>
+    <p class="promo__msg">{promo.message}</p>
+    {promo.link && (
+      <a class="promo__btn" href={promo.link} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
+        {promo.linkLabel || 'Find out more'}
+      </a>
+    )}
+    <button class="promo__close" type="button" aria-label="Close announcement">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+    </button>
+  </aside>
+)}
+
+<script>
+  import { onPage } from '../lib/on-page';
+
+  function initPromo() {
+    const bar = document.querySelector<HTMLElement>('.promo');
+    if (!bar) return;
+    const key = bar.dataset.promoKey || '';
+    const end = bar.dataset.promoEnd || '';
+    // The site is static, so the end date is checked again in the browser in case it passed since the last build.
+    if (end && end < new Date().toISOString().slice(0, 10)) return;
+    try { if (localStorage.getItem(key) === 'closed') return; } catch {}
+    bar.hidden = false;
+    bar.querySelector('.promo__close')?.addEventListener('click', () => {
+      bar.hidden = true;
+      try { localStorage.setItem(key, 'closed'); } catch {}
+    });
+  }
+  onPage(initPromo);
+</script>
+
+<style>
+  .promo {
+    position: fixed; z-index: 35; left: 50%; bottom: 16px; transform: translateX(-50%);
+    width: min(760px, calc(100% - 32px));
+    display: flex; align-items: center; gap: 0.75rem 1rem;
+    padding: 0.7rem 0.7rem 0.7rem 1.25rem;
+    background: var(--green-ink); color: #fff;
+    border-radius: 999px; box-shadow: 0 12px 32px -12px rgb(10 43 0 / 0.45);
+    animation: promo-in 0.35s ease-out both;
+  }
+  .promo[hidden] { display: none; }
+  .promo__msg { flex: 1; margin: 0; font-size: 0.95rem; line-height: 1.4; color: #fff; }
+  .promo__btn {
+    flex: none; padding: 0.5rem 1rem; border-radius: 999px;
+    background: #b9e2a0; color: var(--green-ink); font-weight: 600; font-size: 0.9rem; text-decoration: none; white-space: nowrap;
+  }
+  .promo__btn:hover { background: #fff; color: var(--green-ink); }
+  .promo__close {
+    flex: none; display: grid; place-items: center; width: 34px; height: 34px;
+    border: 0; border-radius: 50%; background: transparent; color: rgb(255 255 255 / 0.75); cursor: pointer;
+  }
+  .promo__close:hover { background: rgb(255 255 255 / 0.12); color: #fff; }
+  .promo__close:focus-visible, .promo__btn:focus-visible { outline: 2px solid #b9e2a0; outline-offset: 2px; }
+  @media (max-width: 600px) {
+    .promo { flex-wrap: wrap; border-radius: 18px; padding: 0.9rem 0.6rem 0.9rem 1.1rem; }
+    .promo__msg { flex-basis: calc(100% - 50px); }
+    .promo__close { order: 2; }
+    .promo__btn { order: 3; }
+  }
+  @keyframes promo-in { from { opacity: 0; transform: translate(-50%, 12px); } }
+  @media (prefers-reduced-motion: reduce) { .promo { animation: none; } }
+</style>

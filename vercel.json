@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/admin",
+      "destination": "/studio",
+      "permanent": false
+    },
+    {
       "source": "/",
       "has": [
         {
@@ -3120,6 +3125,25 @@
           "value": "strict-origin-when-cross-origin"
         }
       ]
+    },
+    {
+      "source": "/(review|studio)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/release",
+      "schedule": "30 6 * * *"
     }
   ]
 }
