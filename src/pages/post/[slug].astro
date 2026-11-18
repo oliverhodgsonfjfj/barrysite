@@ -32,7 +32,7 @@ const schema = {
 const old = !!d.published && d.published < '2023-01-01';
 const hero = d.hero && d.image ? d.hero : undefined;
 // Bylines with a team photo get a small avatar in the designed hero.
-const AUTHOR_PHOTOS: Record<string, string> = { 'Barry Adams': '/team/barry-adams.jpg' };
+const AUTHOR_PHOTOS: Record<string, string> = { 'Barry Adams': '/team/barry-adams.jpg', 'Maria Sagastume': '/team/maria-sagastume.jpg' };
 const authorPhoto = AUTHOR_PHOTOS[d.author];
 ---
 <Base title={title} description={description} current="/resources" ogImage={d.image || undefined} overlayHeader={!!hero}>
