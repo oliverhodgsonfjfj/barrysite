@@ -7,6 +7,7 @@
 // How the lineup works: docs/content-queue.md.
 import '@fontsource-variable/libre-franklin';
 import '@fontsource-variable/plus-jakarta-sans';
+import '../styles/infographics.css';
 import { getCollection } from 'astro:content';
 import { getLineup, ukToday } from '../lib/queue';
 import { allPosts, allNews, TOPICS } from '../lib/posts';
@@ -715,9 +716,10 @@ const types = ['Article', 'Refresh', 'News'];
       // build lands, the saved version is kept in this browser so the page shows what he saved.
       const EDITS_STORE = 'focus-studio-edits';
       const FIGURE = new RegExp(figSrc, 'g');
-      const annotateHtml = (html) => html.split(/(<[^>]+>)/).map((part) => part.startsWith('<') ? part : part
+      const IG_BLOCK = /(<figure class="ig[\s\S]*?<\/figure>)/;
+      const annotateHtml = (html) => html.split(IG_BLOCK).map((chunk) => chunk.startsWith('<figure class="ig') ? chunk : chunk.split(/(<[^>]+>)/).map((part) => part.startsWith('<') ? part : part
         .replace(FIGURE, (m) => `<mark class="fig">${m}</mark>`)
-        .replace(/\[CONFIRM:?\s*([^\]]*)\]/g, (_, note) => `<mark class="confirm">Please check${note ? ': ' + note.replace(/<\/?mark[^>]*>/g, '') : ''}</mark>`)).join('');
+        .replace(/\[CONFIRM:?\s*([^\]]*)\]/g, (_, note) => `<mark class="confirm">Please check${note ? ': ' + note.replace(/<\/?mark[^>]*>/g, '') : ''}</mark>`)).join('')).join('');
       const raw = (slug) => JSON.parse($(`[data-raw="${slug}"]`).textContent);
       const readEdits = () => { try { return JSON.parse(localStorage.getItem(EDITS_STORE) || '{}'); } catch { return {}; } };
       const writeEdits = (all) => { try { localStorage.setItem(EDITS_STORE, JSON.stringify(all)); } catch {} };
@@ -783,7 +785,10 @@ const types = ['Article', 'Refresh', 'News'];
         $('[data-ed-title]', box).addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\n/g, ' '); });
         $('[data-ed-desc]', box).value = a.description;
         const body = $('[data-ed-body]', box);
-        body.innerHTML = a.html.replace(/\[CONFIRM:?[^\]]*\]/g, (m) => `<mark class="confirm">${m}</mark>`);
+        let igN = 0;
+        body.innerHTML = a.html.split(IG_BLOCK).map((chunk) => chunk.startsWith('<figure class="ig')
+          ? chunk.replace('<figure ', `<figure contenteditable="false" data-ig="${igN++}" title="Graphic: delete it if you don't want it, but it can't be edited here" `)
+          : chunk.replace(/\[CONFIRM:?[^\]]*\]/g, (m) => `<mark class="confirm">${m}</mark>`)).join('');
         const count = () => { const n = $('[data-ed-desc]', box).value.length; $('[data-ed-count]', box).textContent = `${n} characters${n > 160 ? ', Google cuts off at about 160' : ''}`; };
         $('[data-ed-desc]', box).addEventListener('input', count); count();
         body.addEventListener('paste', (e) => { e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain')); });
@@ -824,6 +829,8 @@ const types = ['Article', 'Refresh', 'News'];
         err.hidden = true;
         const body = $('[data-ed-body]', box).cloneNode(true);
         body.querySelectorAll('mark').forEach((m) => m.replaceWith(...m.childNodes)); // our highlights, not content
+        // Locked graphics go back as markers; the server puts the original HTML back (api/_content.js).
+        body.querySelectorAll('figure[data-ig]').forEach((f) => { const m = document.createElement('p'); m.textContent = `[[ig:${f.dataset.ig}]]`; f.replaceWith(m); });
         const payload = { slug, title: $('[data-ed-title]', box).value, description: $('[data-ed-desc]', box).value, html: body.innerHTML };
         btn.disabled = true; btn.textContent = 'Saving…';
         try {
@@ -925,6 +932,8 @@ const types = ['Article', 'Refresh', 'News'];
         --display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
         --body: 'Libre Franklin Variable', 'Libre Franklin', system-ui, sans-serif;
         --r: 16px; --r-lg: 22px;
+        /* Used by the article infographics (src/styles/infographics.css), same values as the live site. */
+        --radius: 18px; --radius-lg: 30px; --on-dark: #f3f6ee; --on-dark-2: #c3d2b8;
         --shadow: 0 1px 2px rgba(19, 32, 15, 0.04), 0 8px 24px -12px rgba(19, 32, 15, 0.12);
         --side: 248px;
       }
@@ -1122,6 +1131,8 @@ const types = ['Article', 'Refresh', 'News'];
       .ed__bar button:hover { background: var(--sage-2); border-color: var(--line); }
       .ed__body { min-height: 420px; padding: 1.25rem 1.4rem; border: 1px solid var(--line-2); border-radius: 12px; background: #fff; }
       .ed__body mark.confirm { font-weight: 600; }
+      .ed__body figure[data-ig] { cursor: default; user-select: none; outline: 2px dashed transparent; outline-offset: 4px; }
+      .ed__body figure[data-ig]:hover { outline-color: var(--line-2); }
       .ed__hint { font-size: 0.85rem; color: var(--ink-3); margin: 0; }
       .ed__foot { position: sticky; bottom: 0; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 0.6rem; padding: 0.85rem 0; background: linear-gradient(to top, var(--panel) 75%, transparent); }
       .ed__foot .decide__error { flex: 1 1 100%; margin: 0; }

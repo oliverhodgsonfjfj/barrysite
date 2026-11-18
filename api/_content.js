@@ -9,6 +9,12 @@ const ALLOWED = ['p', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'strong', 'em', 'a', '
 const DROPPED = ['script', 'style', 'iframe', 'object', 'embed', 'form', 'input', 'button', 'select', 'textarea', 'svg', 'math', 'template', 'noscript', 'img', 'video', 'audio', 'link', 'meta'];
 const LIMITS = { title: 120, description: 320, html: 200_000 };
 
+// Infographics and booking boxes (<figure class="ig …">, see src/styles/infographics.css) are locked in the
+// editor. It sends them back as <p>[[ig:N]]</p> markers, and only figures already in the saved article can
+// come back, so nothing new can be smuggled in through them. A missing marker means Barry deleted it.
+const IG_BLOCK = /<figure class="ig[\s\S]*?<\/figure>/g;
+const IG_MARKER = /<p>\s*\[\[ig:(\d+)\]\]\s*<\/p>|\[\[ig:(\d+)\]\]/g;
+
 const RENAME = { b: 'strong', i: 'em', h1: 'h2', h5: 'h4', h6: 'h4' };
 const BLOCKS = new Set(['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'table', 'blockquote', 'section', 'article']);
 
@@ -61,7 +67,9 @@ export function applyEdit(article, input) {
   if (title.length > LIMITS.title) return { error: `The title is too long (${title.length} characters). Please keep it under ${LIMITS.title}.` };
   if (description.length > LIMITS.description) return { error: `The Google description is too long. Please keep it under ${LIMITS.description} characters.` };
   if (String(input.html ?? '').length > LIMITS.html) return { error: 'That article is too long to save in one go.' };
-  const html = input.html == null ? article.html : cleanHtml(input.html);
+  const figures = String(article.html).match(IG_BLOCK) || [];
+  const html = input.html == null ? article.html
+    : cleanHtml(input.html).replace(IG_MARKER, (_, a, b) => figures[Number(a ?? b)] ?? '');
   if (wordCount(html) < 50) return { error: 'The article looks almost empty. Nothing was saved, so you can undo and try again.' };
   return {
     article: { ...article, title, description, html, words: wordCount(html), edited: new Date().toISOString() },

@@ -27,7 +27,12 @@ const FIGURE = new RegExp(
 /** The same pattern, for Studio's client script (re-highlights an article after Barry edits it). */
 export const FIGURE_SOURCE = FIGURE.source;
 
-export function annotate(html: string) {
+const IG_BLOCK = /(<figure class="ig[\s\S]*?<\/figure>)/;
+
+/** Highlights figures and [CONFIRM] notes for review. Infographic blocks are left as they are: every
+ *  number in them repeats the article text, which is highlighted. */
+export function annotate(html: string): string {
+  if (IG_BLOCK.test(html)) return html.split(IG_BLOCK).map((c) => (c.startsWith('<figure class="ig') ? c : annotate(c))).join('');
   return html
     .split(/(<[^>]+>)/)
     .map((part) => {
