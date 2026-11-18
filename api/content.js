@@ -3,8 +3,9 @@
 //   POST /api/content {slug, title, description, html} → saves it; needs the X-Review-Key header
 // A save commits src/content/queue/<slug>.json to main, which redeploys the site (the article itself
 // still only goes live once approved and its lineup date arrives). The HTML is cleaned in _content.js.
-import { createRequire } from 'node:module';
-const lineup = createRequire(import.meta.url)('../src/data/lineup.json');
+import { readFileSync } from 'node:fs';
+// Read at runtime from a static path, so Vercel bundles the file with the function (see vercel.json).
+const lineup = JSON.parse(readFileSync(new URL('../src/data/lineup.json', import.meta.url), 'utf8'));
 import { keyMatches, readJson, writeJson } from './_github.js';
 import { applyEdit } from './_content.js';
 

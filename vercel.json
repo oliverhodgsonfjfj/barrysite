@@ -3145,5 +3145,16 @@
       "path": "/api/release",
       "schedule": "30 6 * * *"
     }
-  ]
+  ],
+  "functions": {
+    "api/review.js": {
+      "includeFiles": "src/data/lineup.json"
+    },
+    "api/content.js": {
+      "includeFiles": "src/data/lineup.json"
+    },
+    "api/release.js": {
+      "includeFiles": "src/data/lineup.json"
+    }
+  }
 }

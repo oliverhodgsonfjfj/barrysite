@@ -1,7 +1,8 @@
 // Daily cron (vercel.json): on a lineup day, rebuild the site so approved articles dated today go live.
 // The site is static, so a scheduled article only appears after a build that runs on or after its date.
-import { createRequire } from 'node:module';
-const lineup = createRequire(import.meta.url)('../src/data/lineup.json');
+import { readFileSync } from 'node:fs';
+// Read at runtime from a static path, so Vercel bundles the file with the function (see vercel.json).
+const lineup = JSON.parse(readFileSync(new URL('../src/data/lineup.json', import.meta.url), 'utf8'));
 import { readDecisions, ukToday } from './_github.js';
 
 export default async function handler(req, res) {

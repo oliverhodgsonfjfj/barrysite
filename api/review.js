@@ -3,8 +3,9 @@
 //   POST /api/review {slug, decision, note} → decision is "yes", "no" or "undo"; needs the X-Review-Key header
 // A POST commits src/data/review-decisions.json to main, which redeploys the site. Approved articles
 // go live on their lineup date (src/data/lineup.json), or on this deploy if the date has passed.
-import { createRequire } from 'node:module';
-const lineup = createRequire(import.meta.url)('../src/data/lineup.json');
+import { readFileSync } from 'node:fs';
+// Read at runtime from a static path, so Vercel bundles the file with the function (see vercel.json).
+const lineup = JSON.parse(readFileSync(new URL('../src/data/lineup.json', import.meta.url), 'utf8'));
 import { keyMatches, readDecisions, writeDecisions } from './_github.js';
 
 const SLUGS = new Set(lineup.items.map((i) => i.slug));
