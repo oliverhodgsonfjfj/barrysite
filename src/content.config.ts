@@ -91,6 +91,14 @@ const queue = defineCollection({
         }),
       )
       .default([]),
+    // Optional cover and designed hero, same as published posts (src/content/posts).
+    image: z.string().nullable().optional(),
+    imageAlt: z.string().optional(),
+    hero: z
+      .object({
+        stats: z.array(z.object({ value: z.string(), label: z.string() })).max(4).default([]),
+      })
+      .optional(),
     words: z.number().optional(),
     html: z.string(),
   }),

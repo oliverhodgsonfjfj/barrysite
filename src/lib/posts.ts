@@ -43,7 +43,7 @@ export async function allPosts(): Promise<Post[]> {
       bySlug.set(q.slug, {
         id: `queue-${q.slug}`,
         collection: 'posts',
-        data: { slug: q.slug, title: q.title, description: q.description, published: date, author: q.author, topics: q.topics, tags: [], image: null, imageInline: false, words: q.words, legacy: false, html },
+        data: { slug: q.slug, title: q.title, description: q.description, published: date, author: q.author, topics: q.topics, tags: [], image: q.image ?? null, imageAlt: q.imageAlt, hero: q.hero, imageInline: false, words: q.words, legacy: false, html },
       } as Post);
     }
   }
