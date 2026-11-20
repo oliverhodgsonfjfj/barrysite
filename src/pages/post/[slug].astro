@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { site } from '../../data/site';
 import { allPosts, TOPICS, TOPIC_HUBS, fmtDate, readMinutes } from '../../lib/posts';
 import '../../styles/infographics.css';
+import { team } from '../../data/team';
 
 export async function getStaticPaths() {
   const posts = await allPosts();
@@ -34,6 +35,9 @@ const hero = d.hero && d.image ? d.hero : undefined;
 // Bylines with a team photo get a small avatar in the designed hero.
 const AUTHOR_PHOTOS: Record<string, string> = { 'Barry Adams': '/team/barry-adams.jpg', 'Maria Sagastume': '/team/maria-sagastume.jpg' };
 const authorPhoto = AUTHOR_PHOTOS[d.author];
+// Authority box at the end of the article for bylines that belong to the current team.
+const member = team.find((m) => m.name === d.author);
+const memberName = member ? [member.name, member.letters].filter(Boolean).join(' ') : '';
 ---
 <Base title={title} description={description} current="/resources" ogImage={d.image || undefined} overlayHeader={!!hero}>
   <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify(schema)} />
@@ -90,6 +94,22 @@ const authorPhoto = AUTHOR_PHOTOS[d.author];
           <p class="post__notice"><strong>Older article.</strong> Rates, thresholds and rules change every tax year. Check the current position with us before acting on anything here.</p>
         )}
         <div class="prose" set:html={d.html} />
+        {member && (
+          <aside class="post__approved" aria-label="About the author">
+            <img class="post__approved-photo" src={AUTHOR_PHOTOS[member.name] || member.photo.src} alt="" width="72" height="72" loading="lazy" />
+            <div>
+              <p class="post__approved-badge">
+                <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M10 1.5 12.2 3.4l2.9-.3.9 2.8 2.5 1.5-1 2.7 1 2.7-2.5 1.5-.9 2.8-2.9-.3L10 18.5l-2.2-1.9-2.9.3-.9-2.8-2.5-1.5 1-2.7-1-2.7 2.5-1.5.9-2.8 2.9.3z"/><path fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m6.6 10.2 2.2 2.2 4.6-4.8"/></svg>
+                Written and approved by {member.name}
+              </p>
+              <p class="post__approved-name"><strong>{memberName}</strong>, {member.role}, Focus Accountancy</p>
+              <p class="post__approved-text">{member.name === 'Barry Adams'
+                ? 'Barry is a Chartered Certified Accountant (ACCA qualified in 1997) and founded Focus Accountancy in Bristol in 2007. Every article under his name is checked and signed off by him before it goes live.'
+                : `Checked and signed off by ${member.name} before it went live.`}</p>
+              <p class="post__approved-links"><a href="/about">Meet the team</a>{member.linkedin && <> · <a href={member.linkedin} rel="noopener" target="_blank">LinkedIn</a></>} · <a href={site.bookMeeting}>Book a meeting with {member.name.split(' ')[0]}</a></p>
+            </div>
+          </aside>
+        )}
         {d.tags.length > 0 && <p class="post__tags">{d.tags.map((t) => <span>{t}</span>)}</p>}
       </div>
       <aside class="guide__aside">
@@ -124,6 +144,14 @@ const authorPhoto = AUTHOR_PHOTOS[d.author];
 </Base>
 
 <style is:global>
+  .post__approved { display: flex; gap: 1.1rem; align-items: flex-start; margin-top: clamp(2rem, 5vw, 3rem); padding: 1.35rem 1.5rem; border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 14px; background: var(--surface-2); }
+  .post__approved-photo { flex: none; width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+  .post__approved p { margin: 0; }
+  .post__approved-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
+  .post__approved-name { margin-top: 0.35rem !important; font-size: 1.02rem; }
+  .post__approved-text { margin-top: 0.35rem !important; font-size: 0.95rem; color: var(--ink-2); }
+  .post__approved-links { margin-top: 0.6rem !important; font-size: 0.92rem; }
+  @media (max-width: 520px) { .post__approved { flex-direction: column; } }
   .post__head { border-bottom: 1px solid var(--line); padding-block: clamp(2.5rem, 6vw, 4rem) clamp(1.75rem, 4vw, 2.5rem); }
   .post__head h1 { max-width: 22ch; }
   .post__head .eyebrow a { color: inherit; text-decoration: none; }
