@@ -54,7 +54,7 @@ export const niches: Niche[] = [
     h1: 'Accountants for IT contractors',
     intro:
       "Developers, engineers, architects, testers and tech consultants working through their own limited company. We look after the accounts, the tax and the deadlines, so you can get on with the contract. Fixed monthly fees, FreeAgent included, and a Bristol team you can actually talk to.",
-    hero: { image: heroIt, alt: 'A software developer working at two monitors in a converted warehouse studio overlooking Bristol harbour', text: 'Developers, engineers and tech consultants with their own limited company. Fixed monthly fees, FreeAgent included.', position: '78% 50%', video: '/video/it-contractor-accountants.mp4' },
+    hero: { image: heroIt, alt: 'A member of the Focus Accountancy team working on a laptop beside two monitors in the Bristol office', text: 'Developers, engineers and tech consultants with their own limited company. Fixed monthly fees, FreeAgent included.', position: '30% 50%' },
     feeButton: 'Fees from £99 a month',
     proof: proofCommon,
     why: {
@@ -212,7 +212,7 @@ export const niches: Niche[] = [
     h1: 'Accountants for contractors',
     intro:
       "Whether you're an engineer, a project manager, a consultant or an interim, if you contract through your own limited company we can look after all of it: accounts, corporation tax, payroll, VAT, your tax return and IR35. Fixed monthly fees, FreeAgent included, and a team that knows how contracting works.",
-    hero: { image: heroContractor, alt: 'A contractor working on a laptop by a train window at golden hour, with the Clifton Suspension Bridge in the distance', text: 'For limited company contractors in every sector. Fixed fees from £99 a month, FreeAgent included, IR35 help when you need it.', position: '76% 50%', video: '/video/contractor-accountants.mp4' },
+    hero: { image: heroContractor, alt: 'A Focus Accountancy accountant working on a tablet and monitor at his desk in the Bristol office', text: 'For limited company contractors in every sector. Fixed fees from £99 a month, FreeAgent included, IR35 help when you need it.', position: '70% 50%' },
     feeButton: 'Fees from £99 a month',
     proof: proofCommon,
     why: {
@@ -356,7 +356,7 @@ export const niches: Niche[] = [
     h1: 'Accountants for sole traders and the self-employed',
     intro:
       "If you work for yourself, we'll take the tax return, the deadlines and Making Tax Digital off your hands, and help you keep more of what you earn. Fixed monthly fees from £50, with FreeAgent included so your records keep themselves up to date.",
-    hero: { image: heroSoleTrader, alt: 'A self-employed carpenter checking his accounts on a laptop at the workbench of his Bristol workshop', text: 'Your tax return and Making Tax Digital handled, from £50 a month with FreeAgent included.', position: '72% 50%', video: '/video/sole-trader-accountants.mp4' },
+    hero: { image: heroSoleTrader, alt: 'A member of the Focus Accountancy team smiling at her desk by the window in the Bristol office', text: 'Your tax return and Making Tax Digital handled, from £50 a month with FreeAgent included.', position: '72% 50%' },
     feeButton: 'Fees from £50 a month',
     proof: proofCommon,
     why: {
@@ -493,7 +493,7 @@ export const niches: Niche[] = [
     h1: 'Accountants for landlords',
     intro:
       "Whether you have one buy-to-let or a growing portfolio, we'll prepare your rental accounts and tax return, send your Making Tax Digital updates, and help you pay the right tax and no more. A fixed £25 per property a month, with FreeAgent included.",
-    hero: { image: heroLandlord, alt: "A landlord holding keys and a folder in the bay window of an empty Bristol flat, looking out over Totterdown's colourful terraces", text: 'Rental accounts, your tax return and MTD submissions for £25 per property a month.', position: '80% 50%', video: '/video/landlord-accountants.mp4' },
+    hero: { image: heroLandlord, alt: 'A Focus Accountancy accountant at her desk in the Bristol office, turning to talk with a colleague', text: 'Rental accounts, your tax return and MTD submissions for £25 per property a month.', position: '32% 50%' },
     feeButton: '£25 per property a month',
     proof: proofCommon,
     why: {
@@ -630,7 +630,7 @@ export const niches: Niche[] = [
     h1: 'Accountants for freelancers and consultants',
     intro:
       "Designers, writers, developers, marketers, coaches and consultants: if you freelance, we'll keep your tax right and your admin light, whether you work as a sole trader or through a limited company. Fixed monthly fees, FreeAgent included.",
-    hero: { image: heroFreelancer, alt: 'A freelance designer drawing on a tablet at a café table on Gloucester Road, Bristol', text: 'Sole trader or limited company, we keep your tax right and your admin light. Fixed fees, FreeAgent included.', position: '76% 50%', video: '/video/freelancer-accountants.mp4' },
+    hero: { image: heroFreelancer, alt: 'A member of the Focus Accountancy team working at her desk in the Bristol office', text: 'Sole trader or limited company, we keep your tax right and your admin light. Fixed fees, FreeAgent included.', position: '32% 50%' },
     feeButton: 'Fees from £50 a month',
     proof: proofCommon,
     why: {
