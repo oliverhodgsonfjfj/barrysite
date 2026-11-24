@@ -43,7 +43,7 @@ export default defineConfig({
   site: 'https://www.focusaccountancy.co.uk',
   trailingSlash: 'never',
   build: { format: 'file' },
-  integrations: [react(), sitemap({ filter: (page) => !page.includes('/infozone/') && !/\/(review|studio)$/.test(page) }), focusEditor()],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/infozone/') && !/\/(review|studio|photo-preview)$/.test(page) }), focusEditor()],
 
   vite: {
     plugins: [tailwindcss()],

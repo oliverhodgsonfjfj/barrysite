@@ -1,0 +1,112 @@
+---
+// Hidden review page for Barry: the six page tops with the team's real photos in place of the
+// AI images and videos. Not linked from anywhere, noindex, left out of the sitemap. Delete once approved.
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import AeroHero from '../components/ui/aero-hero';
+import { niches } from '../data/niches';
+import { site } from '../data/site';
+import mtd from '../assets/heroes/real/making-tax-digital.jpg';
+import contractor from '../assets/heroes/real/contractor-accountants.jpg';
+import it from '../assets/heroes/real/it-contractor-accountants.jpg';
+import freelancer from '../assets/heroes/real/freelancer-accountants.jpg';
+import soleTrader from '../assets/heroes/real/sole-trader-accountants.jpg';
+import landlord from '../assets/heroes/real/landlord-accountants.jpg';
+
+const real = {
+  'contractor-accountants': { image: contractor, position: '70% 50%', alt: 'A Focus Accountancy accountant working on a tablet and monitor at his desk in the Bristol office' },
+  'it-contractor-accountants': { image: it, position: '30% 50%', alt: 'A member of the Focus Accountancy team working on a laptop beside two monitors in the Bristol office' },
+  'freelancer-accountants': { image: freelancer, position: '32% 50%', alt: 'A member of the Focus Accountancy team working at her desk in the Bristol office' },
+  'sole-trader-accountants': { image: soleTrader, position: '72% 50%', alt: 'A member of the Focus Accountancy team smiling at her desk by the window in the Bristol office' },
+  'landlord-accountants': { image: landlord, position: '32% 50%', alt: 'A Focus Accountancy accountant at her desk in the Bristol office, turning to talk with a colleague' },
+} as const;
+
+const img = (src: ImageMetadata) => getImage({ src, width: 1920, format: 'webp', quality: 78 });
+
+const heroes = [
+  {
+    label: 'Making Tax Digital',
+    path: '/making-tax-digital',
+    image: (await img(mtd)).src,
+    alt: 'A Focus Accountancy accountant at her desk in the Bristol office with accounting software open on two monitors',
+    position: '62% 50%',
+    eyebrow: 'Making Tax Digital',
+    title: 'Making Tax Digital for Income Tax',
+    text: 'From April 2026, sole traders and landlords with qualifying income above the threshold must keep digital records, submit quarterly updates to HMRC, and complete a Final Declaration at the end of every tax year.',
+    ctaLabel: 'Book an MTD review with Maria',
+    secondaryLabel: 'MTD plans from £75 a month',
+    points: ['£50,000 from April 2026', '£30,000 from April 2027', '£20,000 from April 2028'],
+  },
+  ...(await Promise.all(
+    (Object.keys(real) as (keyof typeof real)[]).map(async (slug) => {
+      const n = niches.find((x) => x.slug === slug)!;
+      const r = real[slug];
+      return {
+        label: n.eyebrow.charAt(0).toUpperCase() + n.eyebrow.slice(1),
+        path: `/${slug}`,
+        image: (await img(r.image)).src,
+        alt: r.alt,
+        position: r.position,
+        eyebrow: n.eyebrow,
+        title: n.h1,
+        text: n.hero.text,
+        ctaLabel: 'Book a free meeting',
+        secondaryLabel: n.feeButton,
+        points: n.proof,
+      };
+    }),
+  )),
+];
+---
+
+<Base title="Photo preview | Focus Accountancy" description="Draft page tops using the Focus team's own photos." noindex>
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section__intro">
+        <p class="eyebrow">Draft for review</p>
+        <h1>Your photos at the top of six pages</h1>
+        <p class="lead">
+          This page is a draft and is not linked from anywhere on the website. It shows how the top of each page
+          would look with the team's own photos in place of the AI images and videos. The pages on the website
+          itself have not changed.
+        </p>
+        <ol class="pp-list">
+          {heroes.map((h, i) => <li><a href={`#pp-${i + 1}`}>{h.label}</a></li>)}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  {heroes.map((h, i) => (
+    <div id={`pp-${i + 1}`} class="pp-item">
+      <p class="pp-bar">
+        <strong>{i + 1} of {heroes.length}: {h.label}</strong>
+        <a href={h.path}>See the page as it is now</a>
+      </p>
+      <AeroHero
+        image={h.image}
+        imageAlt={h.alt}
+        position={h.position}
+        eyebrow={h.eyebrow}
+        title={h.title}
+        text={h.text}
+        ctaLabel={h.ctaLabel}
+        ctaHref={site.bookMeeting}
+        secondaryLabel={h.secondaryLabel}
+        secondaryHref={h.path}
+        points={h.points}
+      />
+    </div>
+  ))}
+</Base>
+
+<style>
+  .pp-list { margin: 1.5rem 0 0; padding-left: 1.25rem; display: grid; gap: 0.35rem; }
+  .pp-item { scroll-margin-top: 5rem; }
+  .pp-bar {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; align-items: baseline;
+    margin: 0; padding: 0.9rem clamp(1rem, 4vw, 2.5rem);
+    background: #0a2b00; color: #fff; font-size: 0.95rem;
+  }
+  .pp-bar a { color: #fff; text-decoration: underline; }
+</style>
