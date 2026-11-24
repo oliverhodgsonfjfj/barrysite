@@ -89,6 +89,7 @@ export const team: TeamMember[] = [
   {
     slug: 'adam-imtiaz',
     name: 'Adam Imtiaz',
+    letters: 'ACCA',
     role: 'Client Manager',
     email: 'adam@focusaccountancy.co.uk',
     linkedin: 'https://www.linkedin.com/in/adam-imtiaz-30a24a419',
