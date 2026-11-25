@@ -78,12 +78,36 @@ const schema = {
     imageAlt="A freelance consultant working on a laptop at a kitchen table by a window, with Bristol's colourful terraced houses outside"
     tagline="The Focus on you"
     title="Bristol accountants for contractors, consultants and freelancers"
-    text="Fixed monthly fees, FreeAgent included, unlimited support, and a small Bristol team you'll know by name."
+    text="Your own accountant to ring, email or meet. Accounts and tax returns done within a month of sending us your information."
     ctaLabel="Book a free meeting"
     ctaHref={site.bookMeeting}
     secondaryLabel="Find your plan"
     secondaryHref="/pricing#plan-finder"
   />
+
+  <!-- Why Focus: Barry's differentiators (25 Nov 2026). Old home page is tagged before-real-photos-2026-11-25. -->
+  <section class="section section--tight why-x" aria-labelledby="why-title">
+    <div class="container" data-reveal>
+      <div class="section__intro">
+        <p class="eyebrow">Why Focus</p>
+        <h2 id="why-title">We make looking after your finances simple</h2>
+      </div>
+      <ul class="why-x__grid">
+        <li class="why-x__item">
+          <h3>We set your software up for you</h3>
+          <p>FreeAgent is included in your fee, and we set it up for you so it is ready to use from the start.</p>
+        </li>
+        <li class="why-x__item">
+          <h3>We help you to pay less tax</h3>
+          <p>We look at how you take your income and what you can claim, so you do not pay more tax than you need to.</p>
+        </li>
+        <li class="why-x__item">
+          <h3>More time for you</h3>
+          <p>We look after the accounts and the deadlines. You get more time with your family or to work on your business. The choice is yours.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
   <!-- Overview -->
   <section class="section section--tight" id="intro" aria-label="Who we are">
@@ -195,3 +219,10 @@ const schema = {
     </div>
   </section>
 </Base>
+
+<style>
+  .why-x__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--gutter); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .why-x__item { background: var(--sage-2); border-radius: var(--radius); padding: 1.6rem 1.5rem; }
+  .why-x__item h3 { margin: 0 0 0.5rem; font-size: 1.2rem; color: var(--green-ink); }
+  .why-x__item p { margin: 0; color: var(--ink-2); }
+</style>
